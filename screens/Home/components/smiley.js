@@ -26,8 +26,8 @@ const smiley = ({navigation,joinPage}) =>{
               <Logo />
             {/* <Text style={{fontSize: SIZES.h1}}>The Mask Bet</Text> */}
             <View style={styles.rows}>
-                <Button1 text="Create" backgroundColor={COLORS.primary} nextPage={nextPage} width={0.3}/>
-                <Button1 text="Join" backgroundColor={COLORS.primary} nextPage={joinPage}  width={0.3}/>
+                <Button1 text="Create" backgroundColor={COLORS.lightGray1} nextPage={nextPage} width={0.3}/>
+                <Button1 text="Join" backgroundColor={COLORS.lightGray1} nextPage={joinPage}  width={0.3}/>
             </View>
         </View>
     )

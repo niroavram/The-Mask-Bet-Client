@@ -5,7 +5,7 @@ import Home from '../screens/Home/Home';
 import Signin from '../screens/Login/Signin'
 import Signup from '../screens/Login/Signup'
 import Signin2 from "../screens/Login/Signin2";
-
+import Hello from "../screens/newOne/Helloworld";
 import { COLORS,images } from "../constants";
 // import LoginHome from "../screens/Login/LoginHome";
 const Tab = createBottomTabNavigator();
@@ -33,6 +33,21 @@ const Tabs = () => {
             }}
             />
             <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>HOME</Text>
+          </View>
+        )
+      }} />
+           <Tab.Screen name="Hello" component={Hello} options={{
+        tabBarIcon: ({focused})=>(
+          <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
+            <Image source={images.Home}
+            resizeMode='contain'
+            style={{
+              width:25,
+              height:25,
+              tintColor: focused? COLORS.primary : COLORS.gray3
+            }}
+            />
+            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Hello</Text>
           </View>
         )
       }} />
