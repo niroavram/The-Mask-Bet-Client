@@ -35,15 +35,13 @@ const smiley = ({navigation,joinPage}) =>{
 
 const styles = StyleSheet.create({
     rows:{
-        height:Dimensions.get('window').height*0.2,
         borderRadius: SIZES.radius,
         flexDirection: 'row',
         justifyContent: "center",
         alignItems: "center",     
     },
     ctn:{
-        marginTop:100,
-        top:40,
+        flex: 1,
         alignItems: "center",     
 
     }

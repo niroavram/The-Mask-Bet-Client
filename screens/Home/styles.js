@@ -3,13 +3,12 @@ import { COLORS, SIZES } from "../../constants";
 
 const styles = StyleSheet.create({
   container: {
+      flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   groupContainer: {
-    margin: 15,
-    padding: 15,
-    width: SIZES.p80,
+     flex:3,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: SIZES.radius,

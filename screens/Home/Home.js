@@ -24,11 +24,11 @@ const Home = ({navigation}) =>{
      }
     return (
         <Background style={styles.container}>
-            {displayJoin ? <Hello />:
-            <View>
+          
             <Smiley navigation={navigation} joinPage={joinPage} />
+            <View style={styles.groupContainer}>
             <Text style={{fontSize: SIZES.h1}}>My Groups</Text>
-            <View style={styles.groupsContainer}>
+            
             <FlatList 
             numColumns={2}
             keyExtractor={(item)=>item.id}
@@ -38,11 +38,7 @@ const Home = ({navigation}) =>{
             )}
             />
             </View>
-            <Button title="Let's Start" 
-            onPress={() => navigation.navigate('Signin') } />
-            </View>
-        }
-        </Background>
+           </Background>
     )
 }
 

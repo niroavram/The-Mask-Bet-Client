@@ -20,14 +20,20 @@ import BackButton from '../../components/Buttons/BackButton';
 import Btn from '../../components/Btn';
 
 const LoginHome = ({navigation}) =>{
+      const siginPage = () =>{
+            navigation.navigate('Signin')
+        }
+        const signUpPage = () =>{
+            navigation.navigate('Signup')
+        }
+        
   return (
         <Background>
-        <BackButton goBack={navigation.goBack}/>
         <Logo />
-        {/* <Button1 text="Login" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ navigation.navigate('Signin')}
+        <Button1 text="Login" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ siginPage}
 />
-        <Button1 text="Signup" backgroundColor={COLORS.white2} textColor={COLORS.primary}  width={0.8}  nextPage={ navigation.navigate('Signup')}
-/> */}
+        <Button1 text="Signup" backgroundColor={COLORS.white2} textColor={COLORS.primary}  width={0.8}  nextPage={signUpPage }
+/>
 {/* <Button1 text="SSS" nextPage={navigation.navigate('Home')}/> */}
       </Background>    )
 }

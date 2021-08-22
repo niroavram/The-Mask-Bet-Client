@@ -1,11 +1,11 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text,View,Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text,View,Image, TouchableOpacity,ActivityIndicator } from "react-native";
 import Home from '../screens/Home/Home';
+import Profile from "../screens/Profile/Profile";
 import Signin from '../screens/Login/Signin'
 import Signup from '../screens/Login/Signup'
-import Signin2 from "../screens/Login/Signin2";
-import Hello from "../screens/newOne/Helloworld";
+import LoginHome from "../screens/Login/LoginHome";
 import { COLORS,images } from "../constants";
 // import LoginHome from "../screens/Login/LoginHome";
 const Tab = createBottomTabNavigator();
@@ -17,6 +17,13 @@ const LogoHome =({children, onPress})=>(
   </TouchableOpacity>
 ) 
 const Tabs = () => {
+  const [isLoading,setIsLoading] = React.useState(true)
+
+  if(isLoading){
+    <View style={{flex:1 ,justifyContent:'center',alignItems:'center'}}>
+      <ActivityIndicator size="large"/>
+    </View>
+  }
   var isSignin = true
   const tab1 = (  
     <>
@@ -36,53 +43,10 @@ const Tabs = () => {
           </View>
         )
       }} />
-           <Tab.Screen name="Hello" component={Hello} options={{
-        tabBarIcon: ({focused})=>(
-          <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
-            <Image source={images.Home}
-            resizeMode='contain'
-            style={{
-              width:25,
-              height:25,
-              tintColor: focused? COLORS.primary : COLORS.gray3
-            }}
-            />
-            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Hello</Text>
-          </View>
-        )
-      }} />
-          {/* <Tab.Screen name="HomeLogin" component={LoginHome} options={{
-        tabBarIcon: ({focused})=>(
-          <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
-            <Image source={images.Login}
-            resizeMode='contain'
-            style={{
-              width:25,
-              height:25,
-              tintColor: focused? COLORS.primary : COLORS.gray3
-            }}
-            />
-            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Guy</Text>
-          </View>
-          
-        )
-      }}/> */}
-            <Tab.Screen name="Signin2" component={Signin2} options={{
-        tabBarIcon: ({focused})=>(
-          <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
-            <Image source={images.Login}
-            resizeMode='contain'
-            style={{
-              width:25,
-              height:25,
-              tintColor: focused? COLORS.primary : COLORS.gray3
-            }}
-            />
-            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Login</Text>
-          </View>
-          
-        )
-      }}/>  
+         
+       
+
+     
        <Tab.Screen name="Home2" component={Home} options={{
 tabBarIcon: ({focused})=>(
   <Image
@@ -96,7 +60,7 @@ tabBarIcon: ({focused})=>(
 ),
 tabBarButton: (props)=>(<LogoHome {...props}/>)
       }} />
-      <Tab.Screen name="Signin" component={Signin} options={{
+      <Tab.Screen name="Proflie" component={Profile} options={{
         tabBarIcon: ({focused})=>(
           <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
             <Image source={images.Login}
@@ -107,28 +71,12 @@ tabBarButton: (props)=>(<LogoHome {...props}/>)
               tintColor: focused? COLORS.primary : COLORS.gray3
             }}
             />
-            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Login</Text>
+            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Profile</Text>
           </View>
           
         )
       }}/>      
   
-          <Tab.Screen name="Signup" component={Signup} options={{
-        tabBarIcon: ({focused})=>(
-          <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
-            <Image source={images.Login}
-            resizeMode='contain'
-            style={{
-              width:25,
-              height:25,
-              tintColor: focused? COLORS.primary : COLORS.gray3
-            }}
-            />
-            <Text style={{color:focused? COLORS.primary : COLORS.gray3, fontSize:12}}>Sign Up</Text>
-          </View>
-          
-        )
-      }}/> 
       </>
 
   )

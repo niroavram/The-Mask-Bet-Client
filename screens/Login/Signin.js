@@ -18,9 +18,10 @@ import Background from '../../components/Background';
 import Logo from '../../components/Logo';
 import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
+import { AuthContext } from '../../components/context';
 const Signin = ({navigation}) =>{
-  const [email, setEmail]=useState("")
-  const [password, setPassword]=useState("")
+  const [email, setEmail]=useState("niroavram@gmail.com")
+  const [password, setPassword]=useState("Nir12112")
   const [s, setPad]=useState("ss")
  
   // const getDataUsingAsyncAwaitGetCall = async () => {
@@ -35,14 +36,21 @@ const Signin = ({navigation}) =>{
   //     alert(error.message);
   //   }
   // };
+  const {signIn} = React.useContext(AuthContext)
   const postData = ()=>{
   server.post('signin',{email,password})
   .then(function(res){
-    setPad(JSON.stringify(res))
-    alert(res);
+    alert(res.data)
+    if(JSON.stringify(res.error)){
+      alert("Invalid Email Or Password")
+    }else{
+      signIn(JSON.stringify(res.data))
+
+    }
+  
   })
   .catch(function(error){
-    console.log(error)
+    alert("Invalid Email Or Password")
   })
 }
   return (
