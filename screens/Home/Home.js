@@ -20,7 +20,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Home = ({ navigation}) => {
   const [myGroups, setMyGroups] = useState([
     { name: "Maccabi", id: 1 },
-    { name: "Killers", id: 2 },
+    { name: "Killes", id: 2 },
     { name: "Zehavi", id: 3 },
     { name: "Haifa", id: 4 },
   ]);
