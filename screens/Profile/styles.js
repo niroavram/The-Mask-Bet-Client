@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         borderRadius: SIZES.radius,
         alignItems: 'baseline',
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       inputIcon: {
         paddingRight: 10,

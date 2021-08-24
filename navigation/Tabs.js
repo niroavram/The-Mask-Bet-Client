@@ -16,9 +16,8 @@ const LogoHome =({children, onPress})=>(
     </View>
   </TouchableOpacity>
 ) 
-const Tabs = () => {
+const Tabs = ({user}) => {
   const [isLoading,setIsLoading] = React.useState(true)
-
   if(isLoading){
     <View style={{flex:1 ,justifyContent:'center',alignItems:'center'}}>
       <ActivityIndicator size="large"/>
@@ -28,7 +27,7 @@ const Tabs = () => {
   const tab1 = (  
     <>
 
-      <Tab.Screen name="Home" component={Home} options={{
+      <Tab.Screen name="Home" component={Home} Sam={user} options={{
         tabBarIcon: ({focused})=>(
           <View style={{alignItems:'center', justifyContent:"center",top:10}}> 
             <Image source={images.Home}

@@ -4,7 +4,7 @@ import { images,COLORS } from '../constants'
 export default function Background({ children }) {
   return (
     <ImageBackground
-      source={images.background}
+      source={images.background2}
       resizeMode="repeat"
       style={styles.background}
     >
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.white,
   },
   container: {
     flex: 1,

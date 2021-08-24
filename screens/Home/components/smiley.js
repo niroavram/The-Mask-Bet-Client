@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         alignItems: "center",     
     },
     ctn:{
-        flex: 1,
+        flex: 2,
         alignItems: "center",     
 
     }

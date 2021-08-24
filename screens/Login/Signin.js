@@ -40,14 +40,7 @@ const Signin = ({navigation}) =>{
   const postData = ()=>{
   server.post('signin',{email,password})
   .then(function(res){
-    alert(res.data)
-    if(JSON.stringify(res.error)){
-      alert("Invalid Email Or Password")
-    }else{
-      signIn(JSON.stringify(res.data))
-
-    }
-  
+      signIn(res.data)
   })
   .catch(function(error){
     alert("Invalid Email Or Password")
@@ -66,13 +59,15 @@ const Signin = ({navigation}) =>{
           <View style={{
     flex: 3,
     borderRadius: 25,
-    backgroundColor: COLORS.lightGray2,
+    backgroundColor: 'rgba(180, 180, 180, 0.8)',
     shadowColor: COLORS.gray3,
     shadowOpacity: 0.5,
     shadowRadius:25,
     width: Dimensions.get('window').width*0.9,
     justifyContent: 'center',
-    alignItems: 'center',bottom:0
+    alignItems: 'center',bottom:0,
+    borderWidth:1,
+    borderColor: COLORS.primaryLight
 
   }}>
 

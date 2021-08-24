@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   groupContainer: {
-     flex:3,
+     flex:6,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: SIZES.radius,
@@ -16,20 +16,22 @@ const styles = StyleSheet.create({
   item: {
     margin: 12,
     padding: 15,
-    backgroundColor: COLORS.gray2,
+    backgroundColor: COLORS.lightGray2,
     width: Dimensions.get('window').width*0.4,
     height: Dimensions.get('window').width*0.35,
     justifyContent: "center",
     alignItems: "center", 
+    shadowColor: COLORS.lightOrange,    
     borderRadius: SIZES.radius,
-    shadowOpacity: 0.5,
+    borderWidth: 0.5,
+    shadowOpacity: 0.8,
     shadowRadius: 3.5,
-    elevation: 5,
+    elevation: 6,
     shadowOffset:{
         width:5,
         height:10
       },
-    shadowColor: COLORS.lightOrange
+    
   },
   btn: {
     marginHorizontal: 15,

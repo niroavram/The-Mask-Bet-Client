@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
     left: 4,
   },
   image: {
-    width: 24,
-    height: 24,
+    width: 46,
+    height: 46,
+    backgroundColor:'white',
+    borderRadius: 50
   },
 })

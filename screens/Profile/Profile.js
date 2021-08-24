@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import styles from "./styles"
 import { Ionicons } from '@expo/vector-icons';
-import {COLORS,FONTS,SIZES} from "../../constants/index"
+import {COLORS,FONTS,SIZES,images} from "../../constants/index"
 import axios from 'axios';
 import server from '../../apis/server';
 import Background from '../../components/Background';
@@ -54,19 +54,19 @@ const Coins = ()=>{
                     <BackButton goBack={navigation.goBack}/>
 
           <View style={{flex:1,bottom:0}}>
-<Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightOrange3}}>
+{/* <Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightOrange3}}>
   Welcome !
-  </Text>   
+  </Text>    */}
          </View>
        
           <View style={{
-    flex: 3,
+    flex:6 ,
     borderRadius: 25,
-    backgroundColor: COLORS.lightGray2,
+    backgroundColor: 'rgba(180, 180, 180, 0.8)',
     shadowColor: COLORS.gray3,
     shadowOpacity: 0.5,
     shadowRadius:25,
-    width: Dimensions.get('window').width*0.9,
+    width: Dimensions.get('window').width*0.8,
     justifyContent: 'center',
     alignItems: 'center',bottom:0
 
@@ -82,9 +82,19 @@ const Coins = ()=>{
          </View>
         
         <View style={styles.inputContainer}>
+          <View style={{flexDirection:'row'}}>
         <Text style={{fontSize: SIZES.h1 ,color: COLORS.darkGray}}>
- Coins: {coins}
+ Coins:   <Image source={images.bitcoin}
+            resizeMode='contain'
+            style={{
+              width:40,
+              height:40,
+            
+            }}
+            />{coins}
   </Text>  
+
+            </View>
   <Button1 text="Get Coins" backgroundColor={COLORS.orange} nextPage={Coins} width={0.3}/>
             </View>
            
@@ -92,6 +102,11 @@ const Coins = ()=>{
             <Button title=" SignOut" onPress={()=>{signOut()}}/>
             </View>
   </View>
+  <View style={{flex:1,bottom:0}}>
+{/* <Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightOrange3}}>
+  Welcome !
+  </Text>    */}
+         </View>
       </Background>    )
 }
 

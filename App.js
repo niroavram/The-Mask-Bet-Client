@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { ActivityIndicator, View } from "react-native";
@@ -6,32 +6,125 @@ import Tabs from "./navigation/Tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "./components/context";
 import Home from "./screens/Home/Home";
+import Profile from "./screens/Profile/Profile";
 import Signin from "./screens/Login/Signin";
 import Signup from "./screens/Login/Signup";
 import LoginHome from "./screens/Login/LoginHome";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
 
 const App = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [userToken, setUserTsoken] = React.useState(null);
-  
+  // const [isLoading, setIsLoading] = React.useState(true);
+  // const [userToken, setUserTsoken] = React.useState(null);
+  const initialLoginState = {
+    isLoading: true,
+    userName: null,
+    userToken: null,
+  };
+  // console.log(initialLoginState)
+  const loginReducer = (prevState, action) => {
+
+    switch( action.type ) {
+      case 'RETRIEVE_TOKEN': 
+        return {
+          ...prevState,
+          userToken: action.token,
+          isLoading: false,
+        };
+      case 'LOGIN': 
+        return {
+          ...prevState,
+          userName: action.id,
+          userToken: action.token,
+          isLoading: false,
+        };
+      case 'LOGOUT': 
+        return {
+          ...prevState,
+          userName: null,
+          userToken: null,
+          isLoading: false,
+        };
+      case 'REGISTER': 
+        return {
+          ...prevState,
+          userName: action.id,
+          userToken: action.token,
+          isLoading: false,
+        };
+    }
+  };
+
+  const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
   const authContext = React.useMemo(() => ({
-    signIn: (user) => {
-      setIsLoading(false), setUserTsoken(user);
+    signIn: async(foundUser) => {
+      // setUserToken('fgkj');
+      // setIsLoading(false);
+      const user = foundUser.user
+      try {
+        await AsyncStorage.setItem('userToken', foundUser.token);
+      } catch(e) {
+        console.log(e);
+      }
+      // console.log('user token: ', userToken);
+      dispatch({ type: 'LOGIN', id: user._id, token: foundUser.token });
     },
-    signOut: () => {
-      setIsLoading(false), setUserTsoken(null);
+    signOut: async() => {
+      // setUserToken(null);
+      // setIsLoading(false);
+      try {
+        await AsyncStorage.removeItem('userToken');
+      } catch(e) {
+        console.log(e);
+      }
+      dispatch({ type: 'LOGOUT' });
     },
     signUp: () => {
-      setIsLoading(false), setUserTsoken("ss");
+      // setUserToken('fgkj');
+      // setIsLoading(false);
     },
-  }));
-  console.log(userToken)
+ 
+  }), []);
+  // console.log(AsyncStorage.getItem('userToken'))
+  useEffect(() => {
+    setTimeout(async() => {
+      // setIsLoading(false);
+      let userToken;
+      userToken = null;
+      try {
+        userToken = await AsyncStorage.getItem('userToken');
+      } catch(e) {
+        console.log(e);
+      }
+      // console.log('user token: ', userToken);
+      dispatch({ type: 'RETRIEVE_TOKEN', token: userToken });
+    }, 1000);
+  }, []);
+
+  if( loginState.isLoading ) {
+    return(
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+        <ActivityIndicator size="large"/>
+      </View>
+    );
+  }
+
+  // console.log(userToken)
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        {userToken !== null?(<Tabs/>):(
+        {loginState.userName !== null?(
+        
+        <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      > 
+    
+    <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Profile" component={Profile} />
+      
+      </Stack.Navigator>):(
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
