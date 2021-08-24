@@ -21,7 +21,7 @@ const App = () => {
     userName: null,
     userToken: null,
   };
-  // console.log(initialLoginState)
+   console.log(initialLoginState)
   const loginReducer = (prevState, action) => {
 
     switch( action.type ) {
