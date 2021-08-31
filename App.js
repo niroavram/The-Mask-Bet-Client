@@ -10,6 +10,10 @@ import Profile from "./screens/Profile/Profile";
 import Signin from "./screens/Login/Signin";
 import Signup from "./screens/Login/Signup";
 import LoginHome from "./screens/Login/LoginHome";
+import JoinGroup from "./screens/CreateGroup/JoinGroup";
+import CreateGroup from "./screens/CreateGroup/CreateGroup";
+import CreateEvent from "./screens/CreateEvent/CreateEvent";
+import Group from "./screens/Group/Group";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
 
@@ -21,7 +25,6 @@ const App = () => {
     userName: null,
     userToken: null,
   };
-   console.log(initialLoginState)
   const loginReducer = (prevState, action) => {
 
     switch( action.type ) {
@@ -58,20 +61,18 @@ const App = () => {
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
   const authContext = React.useMemo(() => ({
     signIn: async(foundUser) => {
-      // setUserToken('fgkj');
-      // setIsLoading(false);
+
       const user = foundUser.user
       try {
         await AsyncStorage.setItem('userToken', foundUser.token);
+        console.log("nir")
       } catch(e) {
         console.log(e);
       }
-      // console.log('user token: ', userToken);
       dispatch({ type: 'LOGIN', id: user._id, token: foundUser.token });
     },
     signOut: async() => {
-      // setUserToken(null);
-      // setIsLoading(false);
+     
       try {
         await AsyncStorage.removeItem('userToken');
       } catch(e) {
@@ -80,12 +81,10 @@ const App = () => {
       dispatch({ type: 'LOGOUT' });
     },
     signUp: () => {
-      // setUserToken('fgkj');
-      // setIsLoading(false);
+ 
     },
  
   }), []);
-  // console.log(AsyncStorage.getItem('userToken'))
   useEffect(() => {
     setTimeout(async() => {
       // setIsLoading(false);
@@ -122,8 +121,12 @@ const App = () => {
       > 
     
     <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Profile" component={Profile} />
-      
+    <Stack.Screen name="Profile" component={Profile} />
+    <Stack.Screen name="CreateGroup" component={CreateGroup} />
+    <Stack.Screen name="CreateEvent" component={CreateEvent} />
+    <Stack.Screen name="JoinGroup" component={JoinGroup} />
+    <Stack.Screen name="Group" component={Group} />
+
       </Stack.Navigator>):(
       <Stack.Navigator
         screenOptions={{

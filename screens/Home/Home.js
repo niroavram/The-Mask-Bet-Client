@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -26,23 +26,28 @@ const Home = ({ navigation}) => {
   ]);
 
   const [displayJoin, setDisplayJoin] = React.useState(false);
+  const [userDetails, setUser] = React.useState(null);
+
   const joinPage = () => {
     setDisplayJoin(true);
   };
-
-  async ()=>{  
+  useEffect(()=>{
+    getUser()
+  })
+  const getUser =async ()=>{  
     try{  
-      let user = await AsyncStorage.getItem('userToken'); 
-      console.log(user) 
-      // let parsed = JSON.parse(user);  
-      // alert(parsed);  
+     let  user = await AsyncStorage.getItem('userToken'); 
+      console.log(user)
+      setUser(user) 
+      
     }  
     catch(error){  
       alert(error)  
     }  
   }
   const profilePage = () => {
-    navigation.navigate('Profile')  };
+    navigation.navigate('Profile')  
+  };
   return (
     <Background style={styles.container}>
       <TouchableOpacity onPress={profilePage} style={{flex:1,flexDirection:'row'}}>

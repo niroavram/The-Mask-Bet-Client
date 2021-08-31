@@ -4,7 +4,7 @@ import { images,COLORS } from '../constants'
 export default function Background({ children }) {
   return (
     <ImageBackground
-      source={images.background2}
+      source={images.background}
       resizeMode="repeat"
       style={styles.background}
     >
