@@ -23,9 +23,11 @@ const [groupDet,setgroupDet]= React.useState("")
  useEffect(()=>{
     groupDetGet()
  })
+
  const groupDetGet = ()=>{
      setgroupDet(route.params.group.data.totogroup)
  }
+ 
     console.log(groupDet)
     // const {group} = route
     // let groupa = group.data
@@ -36,13 +38,20 @@ const [groupDet,setgroupDet]= React.useState("")
         {/* <Text> {groupa.name}</Text>
         <Text>Code : {groupa.code}</Text> */}
         <View>
-            <Text style={{fontSize: SIZES.h1, color: COLORS.white}}>
+            <Text style={{fontSize: SIZES.h1, color: COLORS.black}}>
            name {groupDet.name}
             </Text>
-            <Text style={{fontSize: SIZES.h1, color: COLORS.white}}>
+            <Text style={{fontSize: SIZES.h1, color: COLORS.black}}>
             Code : {groupDet.code}
             </Text>
         </View>
+        {Array.map((item)=>{
+             <DataTable.Row>
+             <DataTable.Cell></DataTable.Cell>
+             <DataTable.Cell>john@kindacode.com</DataTable.Cell>
+             <DataTable.Cell numeric>33</DataTable.Cell>
+           </DataTable.Row>
+        })}
       </Background>    )
 }
 

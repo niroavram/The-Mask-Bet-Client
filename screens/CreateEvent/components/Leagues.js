@@ -18,7 +18,7 @@ const Leagues = (props) => {
     const {item}=props
     var upp = item.upcoming
     if(upp.length>0){
-        console.log(upp[2])
+
     }
     
   return (

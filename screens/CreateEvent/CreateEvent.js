@@ -28,12 +28,13 @@ const CreateEvent = ({ navigation }) => {
       .get("leagues")
       .then(function (res) {
         setLeauges(res.data)
+    
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  
+  console.log(leagues)
   if(leagues===null){
     getLeagues()
   }
@@ -63,7 +64,7 @@ const CreateEvent = ({ navigation }) => {
           <Text>Hiiii</Text>
       <FlatList
           numColumns={1}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item._id}
           data={leagues}
           renderItem={({ item }) => <Leagues item={item}/>}
         />
