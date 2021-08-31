@@ -24,18 +24,7 @@ const Signin = ({navigation}) =>{
   const [password, setPassword]=useState("Nir12112")
   const [s, setPad]=useState("ss")
  
-  // const getDataUsingAsyncAwaitGetCall = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       'https://the-mask-bet-server.herokuapp.com/leagues',
-  //     );
-  //     alert(JSON.stringify(response.data));
-  //     setPad(JSON.stringify(response))
-  //   } catch (error) {
-  //     // handle error
-  //     alert(error.message);
-  //   }
-  // };
+
   const {signIn} = React.useContext(AuthContext)
   const postData = ()=>{
   server.post('signin',{email,password})

@@ -14,10 +14,16 @@ import { SIZES,COLORS } from '../../../constants';
 import Button1 from '../../../components/Buttons/Button1';
 import Logo from '../../../components/Logo';
 import hello from '../../newOne/hello';
-const smiley = ({navigation,joinPage}) =>{
+const smiley = ({navigation}) =>{
     const [displayJoin, setDisplayJoin] = React.useState(false);
     const nextPage = () =>{
-        navigation.navigate('Signin')
+        navigation.navigate('CreateGroup')
+    }
+    const joinPage = () =>{
+        navigation.navigate('JoinGroup')
+    }
+    const createEventPage = () =>{
+        navigation.navigate('CreateEvent')
     }
     
 
@@ -26,8 +32,13 @@ const smiley = ({navigation,joinPage}) =>{
               <Logo />
             {/* <Text style={{fontSize: SIZES.h1}}>The Mask Bet</Text> */}
             <View style={styles.rows}>
-                <Button1 text="Create" backgroundColor={COLORS.lightGray1} nextPage={nextPage} width={0.3}/>
-                <Button1 text="Join" backgroundColor={COLORS.lightGray1} nextPage={joinPage}  width={0.3}/>
+                <Button1 text="Create" backgroundColor={COLORS.lightOrange} nextPage={nextPage} width={0.3}/>
+                <Button1 text="Join" backgroundColor={COLORS.lightOrange} nextPage={joinPage}  width={0.3}/>
+
+            </View>
+            <View>
+            <Button1 text="Event" backgroundColor={COLORS.lightOrange} nextPage={createEventPage}  width={0.3}/>
+
             </View>
         </View>
     )

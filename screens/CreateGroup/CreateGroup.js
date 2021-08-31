@@ -1,33 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   Image,
   TextInput,
-  FlatList,
   Button,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
+import { RadioButton } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS, FONTS, SIZES } from "../../constants/index";
-import axios from "axios";
 import server from "../../apis/server";
 import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
-const Signup = ({ navigation }) => {
+const CreateGroup = ({ navigation }) => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setName] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+  const [name, setName] = useState("");
+  const [value, setChecked] = React.useState("first");
+  const [userToken, setUser] = React.useState(null);
+
+  useEffect(() => {
+    getUser();
+  });
+  const getUser = async () => {
+    try {
+      let user = await AsyncStorage.getItem("userToken");
+      setUser(user);
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   const postData = () => {
     server
-      .post("signup", { username, email, password })
+      .post(
+        "create-toto-group",
+        { name, isPublic },
+        { headers: { Authorization: "Bearer " + userToken } }
+      )
       .then(function (res) {
-        alert("Sign Up is successfully!");
-        navigation.navigate('Signin')
+        navigation.navigate('Group',{group: res})
+        alert("Saves successfuly!");
       })
       .catch(function (error) {
         console.log(error);
@@ -40,9 +58,7 @@ const Signup = ({ navigation }) => {
       <View style={{ flex: 1, bottom: 0 }}>
         <Text
           style={{ fontSize: SIZES.largeTitle, color: COLORS.lightOrange3 }}
-        >
-          Welcome !
-        </Text>
+        ></Text>
       </View>
 
       <View
@@ -64,10 +80,29 @@ const Signup = ({ navigation }) => {
         </View>
         <View style={{ flex: 1 }}>
           <Text style={{ fontSize: SIZES.largeTitle, color: COLORS.darkGray }}>
-            Sign Up
+            Create Group
           </Text>
         </View>
-
+        <RadioButton.Group
+          onValueChange={(newValue) => setIsPublic(newValue)}
+          value={isPublic}
+        >
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
+              <Text style={{fontSize: SIZES.h1}}>Group Type</Text>
+              </View>
+            <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
+              <Text style={{ fontSize: SIZES.h2 }}>Private </Text>
+              <RadioButton value={false} />
+            </View>
+            <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
+              <Text style={{ fontSize: SIZES.h2 }}>Public</Text>
+              <RadioButton value={true} />
+            </View>
+          </View>
+        </RadioButton.Group>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -81,44 +116,16 @@ const Signup = ({ navigation }) => {
             keyboardAppearance="dark"
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setName}
-            value={username}
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            // onSubmitEditing={() => this.passwordInput.focus()}
-            autoCorrect={false}
-            keyboardType="default"
-            returnKeyType="next"
-            placeholder="Email"
-            selectionColor="white"
-            keyboardAppearance="dark"
-            placeholderTextColor={COLORS.darkGray}
-            onChangeText={setEmail}
-            value={email}
-          />
-
-          <TextInput
-            style={styles.input}
-            returnKeyType="go"
-            // ref={input => (this.passwordInput = input)}
-            placeholder="Password"
-            placeholderTextColor={COLORS.gray2}
-            selectionColor="white"
-            keyboardAppearance="dark"
-            value={password}
-            secureTextEntry
-            onChangeText={setPassword}
+            value={name}
           />
         </View>
-       
-        
-        <View style={{ flex: 1 , marginTop:10}}>
-          <Button title=" Sign Up" onPress={() => postData()} />
+
+        <View style={{ flex: 1, marginTop: 10 }}>
+          <Button title="Create" onPress={() => postData()} />
         </View>
       </View>
     </Background>
   );
 };
 
-export default Signup;
+export default CreateGroup;
