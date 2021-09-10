@@ -45,13 +45,7 @@ const [groupDet,setgroupDet]= React.useState("")
             Code : {groupDet.code}
             </Text>
         </View>
-        {Array.map((item)=>{
-             <DataTable.Row>
-             <DataTable.Cell></DataTable.Cell>
-             <DataTable.Cell>john@kindacode.com</DataTable.Cell>
-             <DataTable.Cell numeric>33</DataTable.Cell>
-           </DataTable.Row>
-        })}
+    
       </Background>    )
 }
 
