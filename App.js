@@ -65,7 +65,6 @@ const App = () => {
       const user = foundUser.user
       try {
         await AsyncStorage.setItem('userToken', foundUser.token);
-        console.log("nir")
       } catch(e) {
         console.log(e);
       }
