@@ -15,6 +15,7 @@ import CreateGroup from "./screens/CreateGroup/CreateGroup";
 import CreateEvent from "./screens/CreateEvent/CreateEvent";
 import Group from "./screens/Group/Group";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import GroupEvents from "./screens/GroupEvents/GroupEvents";
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -125,6 +126,8 @@ const App = () => {
     <Stack.Screen name="CreateEvent" component={CreateEvent} />
     <Stack.Screen name="JoinGroup" component={JoinGroup} />
     <Stack.Screen name="Group" component={Group} />
+    <Stack.Screen name="GroupEvents" component={GroupEvents} />
+
 
       </Stack.Navigator>):(
       <Stack.Navigator
