@@ -48,6 +48,10 @@ const Home = ({ navigation}) => {
   const profilePage = () => {
     navigation.navigate('Profile')  
   };
+
+  const GroupEvents = () => {
+    navigation.navigate('GroupEvents')  
+  };
   return (
     <Background style={styles.container}>
       <TouchableOpacity onPress={profilePage} style={{flex:1,flexDirection:'row'}}>
@@ -57,6 +61,12 @@ const Home = ({ navigation}) => {
         </Text>
       </TouchableOpacity>
       <Smiley navigation={navigation} joinPage={joinPage} />
+      <TouchableOpacity onPress={GroupEvents} style={{flex:1,flexDirection:'row'}}>
+     
+        <Text style={{ fontSize: SIZES.h1, color: COLORS.black }}>
+          Group proflie
+        </Text>
+      </TouchableOpacity>
       <View style={styles.groupContainer}>
         <Text style={{ fontSize: SIZES.h1 }}>My Groups</Text>
 
