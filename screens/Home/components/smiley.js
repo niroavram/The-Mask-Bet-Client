@@ -22,9 +22,7 @@ const smiley = ({navigation}) =>{
     const joinPage = () =>{
         navigation.navigate('JoinGroup')
     }
-    const createEventPage = () =>{
-        navigation.navigate('CreateEvent')
-    }
+
     
 
     return (
@@ -32,12 +30,11 @@ const smiley = ({navigation}) =>{
               <Logo />
             {/* <Text style={{fontSize: SIZES.h1}}>The Mask Bet</Text> */}
             <View style={styles.rows}>
-                <Button1 text="Create" backgroundColor={COLORS.lightOrange} nextPage={nextPage} width={0.3}/>
-                <Button1 text="Join" backgroundColor={COLORS.lightOrange} nextPage={joinPage}  width={0.3}/>
+                <Button1 text="Create" backgroundColor={COLORS.lightOrange} nextPage={nextPage} width={0.45}/>
+                <Button1 text="Join" backgroundColor={COLORS.lightOrange} nextPage={joinPage}  width={0.45}/>
 
             </View>
             <View>
-            <Button1 text="Event" backgroundColor={COLORS.lightOrange} nextPage={createEventPage}  width={0.3}/>
 
             </View>
         </View>

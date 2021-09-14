@@ -13,6 +13,7 @@ import LoginHome from "./screens/Login/LoginHome";
 import JoinGroup from "./screens/CreateGroup/JoinGroup";
 import CreateGroup from "./screens/CreateGroup/CreateGroup";
 import CreateEvent from "./screens/CreateEvent/CreateEvent";
+import CreateUserBet from "./screens/CreateUserBet/CreateUserBet";
 import Group from "./screens/Group/Group";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GroupEvents from "./screens/GroupEvents/GroupEvents";
@@ -64,8 +65,10 @@ const App = () => {
     signIn: async(foundUser) => {
 
       const user = foundUser.user
+      console.log(user)
       try {
-        await AsyncStorage.setItem('userToken', foundUser.token);
+        await AsyncStorage.setItem('userToken', foundUser.token)
+        await AsyncStorage.setItem('userId', user._id);
       } catch(e) {
         console.log(e);
       }
@@ -75,6 +78,7 @@ const App = () => {
      
       try {
         await AsyncStorage.removeItem('userToken');
+        await AsyncStorage.removeItem('useeId');
       } catch(e) {
         console.log(e);
       }
@@ -127,6 +131,8 @@ const App = () => {
     <Stack.Screen name="JoinGroup" component={JoinGroup} />
     <Stack.Screen name="Group" component={Group} />
     <Stack.Screen name="GroupEvents" component={GroupEvents} />
+    <Stack.Screen name="CreateUserBet" component={CreateUserBet} />
+
 
 
       </Stack.Navigator>):(

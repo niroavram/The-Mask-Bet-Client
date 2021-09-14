@@ -13,13 +13,22 @@ import { COLORS, SIZES } from "../../../constants";
 const Game = ({game,addGame,removeGame}) => {
   var wid = Dimensions.get("window").width;
   const [isSlected, setIsSlected] = useState(false);
+  const gamey ={
+    homeTeam: game.homeTeam,
+    awayTeam: game.awayTeam,
+    startHomeTeam: 0,
+    startAwayTeam: 0,
+    startGame: game.dateGame,
+    gameApi: game,
+    bet: [0, 0, 0],
+  }
   const selctItem = () => {
       if(isSlected){
         setIsSlected(false)
-         removeGame(game) 
+         removeGame(gamey) 
       }else{
         setIsSlected(true)
-        addGame(game)
+        addGame(gamey)
       }
   };
 

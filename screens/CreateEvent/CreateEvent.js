@@ -22,17 +22,18 @@ import BackButton from "../../components/Buttons/BackButton";
 import Leagues from "./components/Leagues";
 import { Switch, TextInput } from "react-native-paper";
 
-const CreateEvent = ({ navigation }) => {
+const CreateEvent = ({ navigation,route }) => {
   const [leagues, setLeauges] = useState(null);
   const [mygames, setMyGames] = useState([]);
   const [isNext, setIsNext] = useState(false);
   const [isMask, setIsMask] = useState(true);
   const [isActive, setIsActive] = useState(false);
   const [userToken, setUserToken] = useState(null);
-  const [doubles, setDoubles] = useState(0);
-  const [triangles, setTraingles] = useState(0);
-  const [price, setPrice] = useState(0);
-  const group_id = "610639d3cb8f6f0015bf77b5";
+  const [doubles, setDoubles] = useState(3);
+  const [triangles, setTraingles] = useState(1);
+  const [price, setPrice] = useState(30);
+  const [group_id, setgroup_id] = useState(route.params.group_id);
+
   useEffect(() => {
     getUser();
   });
@@ -66,27 +67,28 @@ const CreateEvent = ({ navigation }) => {
   const removeGame = (game) => {
     setMyGames(mygames.filter((a) => a.homeTeam != game.homeTeam));
   };
-
   const postEvent = () => {
-    server
-      .post(
-        "create-newevent",
-        { isMask, doubles, triangles, price, group_id, isActive },
-        { headers: { Authorization: "Bearer " + userToken } }
+    server.post(
+        'create-newevent',
+       { isMask, doubles, triangles, price,  group_id, isActive,  mygames },
+        { headers: { 
+          'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + userToken , 
+  } }
       )
       .then(function (res) {
-        console.log(res);
+        navigation.goBack()
         alert("Create is successfully!", "Now tell your friends");
       })
       .catch(function (error) {
+        console.log(mygames.length )
         alert("Bad move", "try again");
         console.log(error);
       });
   };
   // const postEvent = () =>{
 
-  // console.log(isMask,doubles,triangles,price,group_id,isActive)
-
+  //   console.log( "isMask",typeof isMask, "doubles", typeof doubles,"triangles",typeof triangles,"price",typeof price,"group_id",typeof group_id,"isActive",typeof isActive )
   // }
   const getLeagues = () => {
     server

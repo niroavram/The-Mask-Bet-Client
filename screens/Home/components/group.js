@@ -13,9 +13,12 @@ import { images, SIZES } from '../../../constants';
 import styles from '../styles';
 import ButtonInside from '../../../components/Buttons/ButtonInside';
 const group = (props) =>{
-    let {item} = props
+    let {item,navigation} = props
+    const groupPage = ()=>{
+        navigation.navigate('Group',{groupin: item})
+    }
     return (
-        <TouchableOpacity style={styles.item} >
+        <TouchableOpacity style={styles.item} onPress={groupPage}>
                 <Image 
                     source={images.CupFifa}
                     style={{
@@ -28,7 +31,7 @@ const group = (props) =>{
                     {/* <View style={styles.btn}>
                     <Text style={{fontSize: SIZES.h3,padding:5}}>Check Group</Text>
                     </View> */}
-                    <ButtonInside text="Place Bet"/>
+                    <ButtonInside text="Enter"/>
                 </TouchableOpacity>
     )
 }
