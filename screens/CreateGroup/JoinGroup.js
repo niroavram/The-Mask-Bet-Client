@@ -17,6 +17,7 @@ import server from "../../apis/server";
 import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
+import Button1 from "../../components/Buttons/Button1";
 const JoinGroup = ({ navigation }) => {
   const [code, setCode] = useState("");
   const [userToken, setUser] = React.useState(null);
@@ -60,13 +61,13 @@ const JoinGroup = ({ navigation }) => {
 
       <View
         style={{
-          flex: 3,
+          flex: 5,
           borderRadius: 25,
           backgroundColor: COLORS.lightGray2,
           shadowColor: COLORS.gray3,
           shadowOpacity: 0.5,
           shadowRadius: 25,
-          width: Dimensions.get("window").width * 0.9,
+          width: Dimensions.get("window").width * 0.99,
           justifyContent: "center",
           alignItems: "center",
           bottom: 0,
@@ -90,7 +91,7 @@ const JoinGroup = ({ navigation }) => {
             autoCorrect={false}
             keyboardType="default"
             returnKeyType="next"
-            placeholder="Name"
+            placeholder="Enter Group Code"
             selectionColor="white"
             keyboardAppearance="dark"
             placeholderTextColor={COLORS.darkGray}
@@ -100,7 +101,7 @@ const JoinGroup = ({ navigation }) => {
         </View>
 
         <View style={{ flex: 1, marginTop: 10 }}>
-          <Button title="Join" onPress={() => postData()} />
+        <Button1 text="Join" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ postData} />
         </View>
       </View>
     </Background>

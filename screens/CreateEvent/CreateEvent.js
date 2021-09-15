@@ -195,9 +195,12 @@ const CreateEvent = ({ navigation,route }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ fontSize: SIZES.h2 }}>
+        <View style={{backgroundColor: COLORS.gray3,borderRadius: SIZES.radius,padding:1}}>
+        <Text style={{ fontSize: SIZES.h2 ,padding:4}}>
           You choose {mygames.length} games!
         </Text>
+        </View>
+        
         {!isNext ? (
           <Button1
             text="Next"

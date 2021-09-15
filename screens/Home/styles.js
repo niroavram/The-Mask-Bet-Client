@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
      flex:6,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: SIZES.radius,
+    borderRadius: SIZES.radius+10,
+    backgroundColor: COLORS.gray2,
+    width: '100%'
   },
   item: {
     margin: 12,

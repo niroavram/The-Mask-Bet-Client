@@ -15,6 +15,7 @@ import { COLORS, FONTS, SIZES } from "../../constants/index";
 import axios from "axios";
 import server from "../../apis/server";
 import Background from "../../components/Background";
+import Button1 from "../../components/Buttons/Button1";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
 const Signup = ({ navigation }) => {
@@ -72,7 +73,6 @@ const Signup = ({ navigation }) => {
           <TextInput
             style={styles.input}
             autoCapitalize="none"
-            // onSubmitEditing={() => this.passwordInput.focus()}
             autoCorrect={false}
             keyboardType="default"
             returnKeyType="next"
@@ -112,9 +112,10 @@ const Signup = ({ navigation }) => {
           />
         </View>
        
-        
+
         <View style={{ flex: 1 , marginTop:10}}>
-          <Button title=" Sign Up" onPress={() => postData()} />
+        <Button1 text="Sign Up" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ postData} />
+
         </View>
       </View>
     </Background>

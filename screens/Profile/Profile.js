@@ -62,11 +62,11 @@ const Coins = ()=>{
           <View style={{
     flex:6 ,
     borderRadius: 25,
-    backgroundColor: 'rgba(180, 180, 180, 0.8)',
+    backgroundColor: COLORS.white2,
     shadowColor: COLORS.gray3,
     shadowOpacity: 0.5,
     shadowRadius:25,
-    width: Dimensions.get('window').width*0.8,
+    width: Dimensions.get('window').width*0.9,
     justifyContent: 'center',
     alignItems: 'center',bottom:0
 
@@ -99,7 +99,7 @@ const Coins = ()=>{
             </View>
            
             <View style={{flex:1}}>
-            <Button title=" SignOut" onPress={()=>{signOut()}}/>
+            <Button1 text="Sign Out" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ signOut}/>
             </View>
   </View>
   <View style={{flex:1,bottom:0}}>

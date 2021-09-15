@@ -5,6 +5,7 @@ const Mask = require("../assets/images/Mask.png")
 const Cup = require("../assets/images/Cup.png")
 const CupFifa = require("../assets/images/cupFifa.png")
 const background = require("../assets/images/background_dot.png")
+const background4 = require("../assets/images/back1.jpeg")
 const background2 = require("../assets/images/background4.png")
 const background3= require("../assets/images/back.png")
 const bitcoin= require("../assets/images/Coins.png")
@@ -26,5 +27,6 @@ export default {
     background2,
     background3,
     arrow_back,
-    bitcoin
+    bitcoin,
+    background4
 }

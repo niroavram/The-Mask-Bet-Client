@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         padding: 50
       },
       inputContainer: {
-        flex: 2,
+        flex: 1,
         marginBottom: 30,
         backgroundColor: 'transparent',
         borderRadius: SIZES.radius,

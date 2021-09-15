@@ -13,6 +13,7 @@ import styles from "./styles"
 import { Ionicons } from '@expo/vector-icons';
 import {COLORS,FONTS,SIZES} from "../../constants/index"
 import axios from 'axios';
+import Button1 from '../../components/Buttons/Button1';
 import server from '../../apis/server';
 import Background from '../../components/Background';
 import Logo from '../../components/Logo';
@@ -39,17 +40,17 @@ const Signin = ({navigation}) =>{
         <Background>
                     <BackButton goBack={navigation.goBack}/>
 
-          <View style={{flex:1,bottom:0}}>
-<Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightOrange3}}>
-  Welcome !
+          <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
+<Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightGray2, textAlign:'center'}}>
+  Hey 
   </Text>   
          </View>
        
           <View style={{
     flex: 3,
     borderRadius: 25,
-    backgroundColor: 'rgba(180, 180, 180, 0.8)',
-    shadowColor: COLORS.gray3,
+    backgroundColor: COLORS.white2,
+    shadowColor: COLORS.white2,
     shadowOpacity: 0.5,
     shadowRadius:25,
     width: Dimensions.get('window').width*0.9,
@@ -114,7 +115,8 @@ const Signin = ({navigation}) =>{
                       
                 </TouchableOpacity>
             <View style={{flex:1}}>
-            <Button title=" Sign IN" onPress={()=>postData()}/>
+            <Button1 text="Sign In" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ postData} />
+
             </View>
   </View>
       </Background>    )

@@ -66,7 +66,7 @@ const Home = ({ navigation}) => {
   };
 
   return (
-    <Background style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity onPress={profilePage} style={{flex:1,flexDirection:'row',borderRadius: SIZES.radius,backgroundColor:COLORS.lightGray2,alignItems:'center'}}>
       <Ionicons name="people-circle" size={44} color={COLORS.primary} />
         <Text style={{ fontSize: SIZES.h1, color: COLORS.primary }}>
@@ -74,12 +74,12 @@ const Home = ({ navigation}) => {
         </Text>
       </TouchableOpacity>
       <Smiley  style={{flex:1}} navigation={navigation} joinPage={joinPage} />
-      <TouchableOpacity onPress={GroupEvents} style={{flex:1}}>
+      {/* <TouchableOpacity onPress={GroupEvents} style={{flex:1}}>
      
         <Text style={{ fontSize: SIZES.h1, color: COLORS.black }}>
           Group proflie
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.groupContainer}>
         <Text style={{ fontSize: SIZES.h1 }}>My Groups</Text>
 
@@ -90,7 +90,7 @@ const Home = ({ navigation}) => {
           renderItem={({ item }) => <Group item={item} navigation={navigation} />}
         />
       </View>
-    </Background>
+    </View>
   );
 };
 

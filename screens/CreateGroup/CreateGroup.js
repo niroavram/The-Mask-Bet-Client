@@ -17,6 +17,7 @@ import server from "../../apis/server";
 import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
+import Button1 from "../../components/Buttons/Button1";
 const CreateGroup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [isPublic, setIsPublic] = useState(false);
@@ -63,13 +64,13 @@ const CreateGroup = ({ navigation }) => {
 
       <View
         style={{
-          flex: 3,
+          flex: 5,
           borderRadius: 25,
           backgroundColor: COLORS.lightGray2,
           shadowColor: COLORS.gray3,
           shadowOpacity: 0.5,
           shadowRadius: 25,
-          width: Dimensions.get("window").width * 0.9,
+          width: Dimensions.get("window").width * 0.99,
           justifyContent: "center",
           alignItems: "center",
           bottom: 0,
@@ -87,12 +88,9 @@ const CreateGroup = ({ navigation }) => {
           onValueChange={(newValue) => setIsPublic(newValue)}
           value={isPublic}
         >
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
-              <Text style={{fontSize: SIZES.h1}}>Group Type</Text>
-              </View>
+         
+          
+              <View style={{flexDirection:'row'}}>
             <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
               <Text style={{ fontSize: SIZES.h2 }}>Private </Text>
               <RadioButton value={false} />
@@ -100,7 +98,8 @@ const CreateGroup = ({ navigation }) => {
             <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
               <Text style={{ fontSize: SIZES.h2 }}>Public</Text>
               <RadioButton value={true} />
-            </View>
+              </View>
+
           </View>
         </RadioButton.Group>
         <View style={styles.inputContainer}>
@@ -121,7 +120,7 @@ const CreateGroup = ({ navigation }) => {
         </View>
 
         <View style={{ flex: 1, marginTop: 10 }}>
-          <Button title="Create" onPress={() => postData()} />
+        <Button1 text="Create" backgroundColor={COLORS.primary}  width={0.9}  nextPage={ postData} />
         </View>
       </View>
     </Background>

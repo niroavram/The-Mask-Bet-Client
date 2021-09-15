@@ -20,6 +20,8 @@ const Button1 = (props) =>{
             width: Dimensions.get('window').width*width,
             height:35,
             borderRadius: SIZES.radius,
+            borderColor: COLORS.primary,
+            borderWidth: 1,
             justifyContent: "center",
             alignItems: "center", 
             margin:5}}>
