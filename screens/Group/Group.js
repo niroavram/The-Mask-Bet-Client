@@ -55,29 +55,24 @@ const Group = ({ navigation, route }) => {
   const createUserBets = () => {
     navigation.navigate("CreateUserBet");
   };
-  // const geTotoGame = () => {
-  //   server
-  //     .get(
-  //       "get-toto-game",
-  //       { _id },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': 'Bearer ' + userToken,
-  //         },
-  //       }
-  //     )
-  //     .then(function (res) {
-  //       setTotoGames(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-  // if (totoGames === null) {
-  //   geTotoGame();
-  // }
+  const geTotoGame = () => {
+    server
+      .get(
+        "get-toto-game",
+         {_id},
+         {headers: "application/json"}
+      )
+      .then(function (res) {
+        setTotoGames(res.data)
+        console.log(res)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  if (totoGames === null && _id !=null) {
+    geTotoGame();
+  }
   // console.log("_id", _id, " totoGame ", totoGames);
   // if (totoGames != null) {
   //   someActive();
@@ -93,7 +88,7 @@ const Group = ({ navigation, route }) => {
       <View
         style={{
           flex: 8,
-          backgroundColor: COLORS.lightOrange2,
+          backgroundColor: COLORS.white3,
           borderRadius: SIZES.radius,
           width: Dimensions.get("window").width * 0.9,
           justifyContent: "center",
