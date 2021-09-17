@@ -77,6 +77,7 @@ const CreateEvent = ({ navigation,route }) => {
   } }
       )
       .then(function (res) {
+        console.log(res)
         navigation.goBack()
         alert("Create is successfully!", "Now tell your friends");
       })

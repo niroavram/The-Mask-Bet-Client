@@ -22,15 +22,18 @@ const Game = (props) => {
 
 const selectedItem1 = (bet)=>{
   setIsSlected1(!isSlected1)
-  choosenBet(index,bet)
+  item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
+  choosenBet(item._id,bet)
 }
 const selectedItemX = (bet)=>{
   setIsSlectedX(!isSlectedX)
-  choosenBet(index,bet)
+  item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
+  choosenBet(item._id,bet)
 }
 const selectedItem2 = (bet)=>{
   setIsSlected2(!isSlected2)
-  choosenBet(index,bet)
+  item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
+  choosenBet(item._id,bet)
 }
 
   return (
@@ -48,7 +51,7 @@ const selectedItem2 = (bet)=>{
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            <Text style={{ fontSize: SIZES.h2, borderRightWidth:0.5,backgroundColor: COLORS.gray3,borderRadius:50 }}>{index + 1}</Text>
+            <Text style={{ fontSize: SIZES.h2, borderRightWidth:0.5,backgroundColor: COLORS.gray,borderRadius:50 }}>{index + 1}</Text>
           </View>
      
           <View

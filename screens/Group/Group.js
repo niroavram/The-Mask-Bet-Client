@@ -55,16 +55,16 @@ const Group = ({ navigation, route }) => {
   const createUserBets = () => {
     navigation.navigate("CreateUserBet");
   };
+  console.log(typeof _id)
   const geTotoGame = () => {
-    server
-      .get(
+    server.get(
         "get-toto-game",
          {_id},
          {headers: "application/json"}
       )
       .then(function (res) {
         setTotoGames(res.data)
-        console.log(res)
+        console.log(res.data)
       })
       .catch(function (error) {
         console.log(error);
