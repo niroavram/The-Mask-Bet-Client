@@ -4,8 +4,13 @@ const { width, height } = Dimensions.get("window");
 export const COLORS = {
     primary: "#3a606e", //turkiz
     primaryLight: "#b2e6d2",
+    darkWhite: "#ebebd3",
     transparentPrimray: 'rgba(227, 120, 75, 0.4)',
     orange: "#FFA133",
+    newBlue: "#607b7d",
+    orangePrimary: "#f78764",
+    white4: "#a7cdbd",
+    yellow: "#f4d35e",
     lightOrange: "#FFA133",
     lightOrange2: "#FDDED4",
     lightOrange3: '#FFD9AD',

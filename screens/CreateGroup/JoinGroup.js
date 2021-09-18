@@ -50,7 +50,13 @@ const JoinGroup = ({ navigation }) => {
       });
   };
   return (
-    <Background>
+    <View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
       <BackButton goBack={navigation.goBack} />
 
       <View style={{ flex: 1, bottom: 0 }}>
@@ -63,10 +69,6 @@ const JoinGroup = ({ navigation }) => {
         style={{
           flex: 5,
           borderRadius: 25,
-          backgroundColor: COLORS.lightGray2,
-          shadowColor: COLORS.gray3,
-          shadowOpacity: 0.5,
-          shadowRadius: 25,
           width: Dimensions.get("window").width * 0.99,
           justifyContent: "center",
           alignItems: "center",
@@ -77,9 +79,9 @@ const JoinGroup = ({ navigation }) => {
           <Logo />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: SIZES.largeTitle, color: COLORS.darkGray }}>
-            Join Group
-          </Text>
+        <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+          Now you can join any Group {"\n"}You Want! {"\n"} Just enter the group code and play {"\n"}
+        </Text>
         </View>
       
         <View style={styles.inputContainer}>
@@ -101,10 +103,10 @@ const JoinGroup = ({ navigation }) => {
         </View>
 
         <View style={{ flex: 1, marginTop: 10 }}>
-        <Button1 text="Join" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ postData} />
+        <Button1 text="Join Group" backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary}   width={0.6}  nextPage={ postData} />
         </View>
       </View>
-    </Background>
+      </View>
   );
 };
 

@@ -50,7 +50,13 @@ const Coins = ()=>{
 
 }
   return (
-        <Background>
+        <View style={{flex: 1,
+          width: '100%',
+          padding: 2,
+          alignSelf: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: COLORS.white2}}>
                     <BackButton goBack={navigation.goBack}/>
 
           <View style={{flex:1,bottom:0}}>
@@ -63,9 +69,7 @@ const Coins = ()=>{
     flex:6 ,
     borderRadius: 25,
     backgroundColor: COLORS.white2,
-    shadowColor: COLORS.gray3,
-    shadowOpacity: 0.5,
-    shadowRadius:25,
+    
     width: Dimensions.get('window').width*0.9,
     justifyContent: 'center',
     alignItems: 'center',bottom:0
@@ -76,30 +80,34 @@ const Coins = ()=>{
         <Logo />
 </View>
 <View style={{flex:1}}>
-<Text style={{fontSize: SIZES.largeTitle ,color: COLORS.darkGray}}>
- Profile
-  </Text>   
+<Text style={{fontSize: SIZES.h2 ,color: COLORS.primary, fontWeight:"bold" ,textAlign: "center"}}>
+ Hello , Nir {"\n"}
+  </Text>
+  <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+ Here you can see your profile name {"\n"}and the amount of coins you {"\n"}have achieved so far
+  </Text>      
          </View>
         
         <View style={styles.inputContainer}>
           <View style={{flexDirection:'row'}}>
-        <Text style={{fontSize: SIZES.h1 ,color: COLORS.darkGray}}>
+        <Text style={{fontSize: SIZES.h1 ,color: COLORS.primary, fontWeight:"bold"}}>
  Coins:   <Image source={images.bitcoin}
             resizeMode='contain'
             style={{
-              width:40,
-              height:40,
+              width:20,
+              height:20,
             
             }}
             />{coins}
+            {"\n"}
   </Text>  
 
             </View>
-  <Button1 text="Get Coins" backgroundColor={COLORS.orange} nextPage={Coins} width={0.3}/>
+  <Button1 text="Get Coins"  backgroundColor={COLORS.orangePrimary}  borderColor={COLORS.orangePrimary} nextPage={Coins} width={0.4}/>
             </View>
            
             <View style={{flex:1}}>
-            <Button1 text="Sign Out" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ signOut}/>
+            <Button1 text="Sign Out" backgroundColor={COLORS.yellow} borderColor={COLORS.yellow}  width={0.6}  nextPage={ signOut}/>
             </View>
   </View>
   <View style={{flex:1,bottom:0}}>
@@ -107,7 +115,7 @@ const Coins = ()=>{
   Welcome !
   </Text>    */}
          </View>
-      </Background>    )
+      </View>    )
 }
 
 export default Profile;

@@ -27,11 +27,11 @@ const smiley = ({navigation}) =>{
 
     return (
         <View style={styles.ctn}>
-              <Logo />
+            
             {/* <Text style={{fontSize: SIZES.h1}}>The Mask Bet</Text> */}
             <View style={styles.rows}>
-                <Button1 text="Create" backgroundColor={COLORS.lightOrange} nextPage={nextPage} width={0.45}/>
-                <Button1 text="Join" backgroundColor={COLORS.lightOrange} nextPage={joinPage}  width={0.45}/>
+                <Button1 text="Create Group" backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary} nextPage={nextPage} width={0.45}/>
+                <Button1 text="Join Group" backgroundColor={COLORS.orangePrimary}  borderColor={COLORS.orangePrimary} nextPage={joinPage}  width={0.45}/>
 
             </View>
             <View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         alignItems: "center",     
     },
     ctn:{
-        flex: 2,
+        flex: 1,
         alignItems: "center",     
 
     }

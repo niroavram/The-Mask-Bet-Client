@@ -37,17 +37,21 @@ const Signin = ({navigation}) =>{
   })
 }
   return (
-        <Background>
+        <View style={{flex: 1,
+          width: '100%',
+          padding: 2,
+          alignSelf: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: COLORS.white2}}>
                     <BackButton goBack={navigation.goBack}/>
 
           <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
-<Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightGray2, textAlign:'center'}}>
-  Hey 
-  </Text>   
+ 
          </View>
        
           <View style={{
-    flex: 3,
+    flex: 4,
     borderRadius: 25,
     backgroundColor: COLORS.white2,
     shadowColor: COLORS.white2,
@@ -57,16 +61,17 @@ const Signin = ({navigation}) =>{
     justifyContent: 'center',
     alignItems: 'center',bottom:0,
     borderWidth:1,
-    borderColor: COLORS.primaryLight
+    borderColor: COLORS.white2
 
   }}>
 
-        <View style={{flex:1}}>
-        <Logo />
+        <View style={{flex:5 ,alignItems:'center',justifyContent:'center'}}>
+        <Logo  width={0.3} height={0.3}/>
+        <Text style={{fontSize: SIZES.h2,color: COLORS.primary, textAlign: "center", fontWeight:"bold"}}> {"\n"}The Mask Bet</Text>
 </View>
 <View style={{flex:1}}>
-<Text style={{fontSize: SIZES.largeTitle ,color: COLORS.darkGray}}>
-  Sign In
+<Text style={{fontSize: SIZES.h1 ,color: COLORS.darkGray, fontWeight:"bold"}}>
+  
   </Text>   
          </View>
         
@@ -104,22 +109,21 @@ const Signin = ({navigation}) =>{
             <TouchableOpacity
                     onPress={() => navigation.navigate('Signup')}
                     style={[styles.signIn, {
-                        marginTop: 10,
-                        flex:1
+                        marginTop:4,
+                        flex:4
                     }]}
                 >
-                    <Text style={[styles.textSign, {
-                    }]}>Didn't have account yet? <Text style={[styles.textSign, {
+                    <Text style={{ color: COLORS.primary}}>Didn't have account yet? <Text style={[styles.textSign, {
                       color: '#009387'
                   }]}>Sign Up</Text> </Text>
                       
                 </TouchableOpacity>
-            <View style={{flex:1}}>
-            <Button1 text="Sign In" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ postData} />
+            <View style={{flex:7}}>
+            <Button1 text="Sign In"  backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary}  width={0.6}  nextPage={ postData} />
 
             </View>
   </View>
-      </Background>    )
+      </View>    )
 }
 
 export default Signin;

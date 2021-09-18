@@ -20,16 +20,16 @@ const ButtonInside = (props) =>{
 }
 const styles = StyleSheet.create({
     btn:{
-      backgroundColor: COLORS.primaryLight,
-        width:130,
-        height:35,
+      backgroundColor: COLORS.white4,
+        width:100,
+        height:30,
         borderRadius: SIZES.radius,
         justifyContent: "center",
         alignItems: "center", 
         margin:5  
     },
     text:{
-        fontSize: SIZES.h2,
+        fontSize: 19,
         color: COLORS.white
     }
   })

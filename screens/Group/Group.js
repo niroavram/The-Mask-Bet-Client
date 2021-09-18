@@ -102,49 +102,57 @@ const Group = ({ navigation, route }) => {
   // }
 
   return (
-    <Background>
+    <View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
       <BackButton goBack={navigation.goBack} />
       <View style={{ flex: 2 }}></View>
 
       <View
         style={{
-          flex: 8,
-          backgroundColor: COLORS.white3,
+          flex: 2,
           borderRadius: SIZES.radius,
           width: Dimensions.get("window").width * 0.9,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Logo />
+        <Logo  width={0.3} height={0.3} />
 
-        <Text style={{ fontSize: SIZES.h1, color: COLORS.black }}>
-          name {groupDet.name}
+        <Text style={{fontSize: SIZES.h2 , color: COLORS.primary, fontWeight:"bold" , paddingTop:10}}>
+          Group Name :  {groupDet.name}
         </Text>
-        <Text style={{ fontSize: SIZES.h1, color: COLORS.black }}>
-          Code : {groupDet.code}
+        <Text style={{ fontSize: SIZES.h2 , color: COLORS.primary, fontWeight:"bold" }}>
+          Group Code : {groupDet.code}
         </Text>
         <View></View>
       </View>
       {isAdmin?    
       <Button1
-        style={{ flex: 1 }}
+        style={{ flex: 2 }}
         text="Create Event"
-        backgroundColor={COLORS.lightOrange}
+        backgroundColor={COLORS.orangePrimary} 
+        borderColor={COLORS.orangePrimary}
         nextPage={createEventPage}
-        width={0.8}
+        width={0.6}
       />:<View></View>}
   
       <Button1
-        style={{ flex: 1 }}
+        style={{ flex:2, justifyContent:'space-between'}}
         text="Place Your Bet"
-        backgroundColor={COLORS.lightOrange}
+        backgroundColor={COLORS.orangePrimary} 
+        borderColor={COLORS.orangePrimary}
         nextPage={createUserBets}
-        width={0.8}
+        width={0.6}
+        
       />
 
       <BottomBar />
-    </Background>
+    </View>
   );
 };
 
