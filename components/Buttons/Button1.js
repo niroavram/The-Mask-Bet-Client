@@ -13,14 +13,14 @@ import {
 import { COLORS, FONTS, SIZES } from '../../constants';
 
 const Button1 = (props) =>{
-    const {text,backgroundColor,textColor,width,nextPage}=props
+    const {text,backgroundColor,borderColor, textColor,width,nextPage}=props
     return (
         <TouchableOpacity onPress={nextPage} style={{
             backgroundColor: backgroundColor,
             width: Dimensions.get('window').width*width,
             height:35,
             borderRadius: SIZES.radius,
-            borderColor: COLORS.primary,
+            borderColor: borderColor|| COLORS.primary,
             borderWidth: 1,
             justifyContent: "center",
             alignItems: "center", 

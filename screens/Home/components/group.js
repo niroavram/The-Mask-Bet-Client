@@ -9,7 +9,7 @@ import {
     Button,
     Dimensions
 } from 'react-native';
-import { images, SIZES } from '../../../constants';
+import { COLORS, images, SIZES } from '../../../constants';
 import styles from '../styles';
 import ButtonInside from '../../../components/Buttons/ButtonInside';
 const group = (props) =>{
@@ -27,7 +27,7 @@ const group = (props) =>{
                         top:-20
                       }}
                 />
-                    <Text style={{fontSize: SIZES.h1 , top:-10}} >{item.name}</Text>
+                    <Text style={{fontSize: SIZES.h2 , top:-10, fontWeight:"bold", color:COLORS.primary}} >{item.name}</Text>
                     {/* <View style={styles.btn}>
                     <Text style={{fontSize: SIZES.h3,padding:5}}>Check Group</Text>
                     </View> */}

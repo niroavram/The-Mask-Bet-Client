@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
         padding: 50
       },
       inputContainer: {
-        flex: 2,
-        marginBottom: 30,
+        flex: 3,
+        marginBottom: 60,
         backgroundColor: 'transparent',
         borderRadius: SIZES.radius,
         alignItems: 'baseline',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         bottom: 0
       },
       input: {
-        fontSize: 20,
+        fontSize: 16,
         color: COLORS.darkGray2,
         borderColor: COLORS.primary,
         borderWidth: 1,

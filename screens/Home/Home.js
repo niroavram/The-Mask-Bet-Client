@@ -67,21 +67,26 @@ const Home = ({ navigation}) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={profilePage} style={{flex:1,flexDirection:'row',borderRadius: SIZES.radius,backgroundColor:COLORS.lightGray2,alignItems:'center'}}>
-      <Ionicons name="people-circle" size={44} color={COLORS.primary} />
-        <Text style={{ fontSize: SIZES.h1, color: COLORS.primary }}>
-          Hey, Nir
-        </Text>
-      </TouchableOpacity>
-      <Smiley  style={{flex:1}} navigation={navigation} joinPage={joinPage} />
+      
+        <TouchableOpacity onPress={profilePage} style={{  flex:1, flexDirection:'row-reverse',alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
+        </TouchableOpacity>
+        <View flexDirection={'row'}  flex={1} justifyContent= {"center" } >
+      <Logo  width={0.15} height={0.15}  paddingleft={10} />
+      </View>
+      <Smiley  style={{flex:3}} navigation={navigation} joinPage={joinPage} />
       {/* <TouchableOpacity onPress={GroupEvents} style={{flex:1}}>
      
         <Text style={{ fontSize: SIZES.h1, color: COLORS.black }}>
           Group proflie
         </Text>
       </TouchableOpacity> */}
+      <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+        Here you can see the groups{"\n"} you are part of them {"\n"}
+          </Text>
       <View style={styles.groupContainer}>
-        <Text style={{ fontSize: SIZES.h1 }}>My Groups</Text>
+        <Text style={{ fontSize: SIZES.h1 ,color: COLORS.primary, fontWeight:"bold", paddingTop:5, paddingBottom:5}}>My Groups</Text>
+         
 
         <FlatList
           numColumns={2}

@@ -53,7 +53,13 @@ const CreateGroup = ({ navigation }) => {
       });
   };
   return (
-    <Background>
+    <View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
       <BackButton goBack={navigation.goBack} />
 
       <View style={{ flex: 1, bottom: 0 }}>
@@ -66,10 +72,6 @@ const CreateGroup = ({ navigation }) => {
         style={{
           flex: 5,
           borderRadius: 25,
-          backgroundColor: COLORS.lightGray2,
-          shadowColor: COLORS.gray3,
-          shadowOpacity: 0.5,
-          shadowRadius: 25,
           width: Dimensions.get("window").width * 0.99,
           justifyContent: "center",
           alignItems: "center",
@@ -80,9 +82,9 @@ const CreateGroup = ({ navigation }) => {
           <Logo />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: SIZES.largeTitle, color: COLORS.darkGray }}>
-            Create Group
-          </Text>
+        <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+          Here you can create your own Group {"\n"}Choose the Name of your Group {"\n"} And decide Whether it be {"\n"}Public or Private
+        </Text>
         </View>
         <RadioButton.Group
           onValueChange={(newValue) => setIsPublic(newValue)}
@@ -92,11 +94,11 @@ const CreateGroup = ({ navigation }) => {
           
               <View style={{flexDirection:'row'}}>
             <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
-              <Text style={{ fontSize: SIZES.h2 }}>Private </Text>
+              <Text style={{ fontSize: SIZES.h2 , color: COLORS.primary, fontWeight:"bold"}}>Private </Text>
               <RadioButton value={false} />
             </View>
             <View style={{ padding: SIZES.padding,justifyContent:'center',alignItems:'center' }}>
-              <Text style={{ fontSize: SIZES.h2 }}>Public</Text>
+              <Text style={{ fontSize: SIZES.h2, color: COLORS.primary, fontWeight:"bold" }}>Public</Text>
               <RadioButton value={true} />
               </View>
 
@@ -110,7 +112,7 @@ const CreateGroup = ({ navigation }) => {
             autoCorrect={false}
             keyboardType="default"
             returnKeyType="next"
-            placeholder="Name"
+            placeholder="Enter your group name"
             selectionColor="white"
             keyboardAppearance="dark"
             placeholderTextColor={COLORS.darkGray}
@@ -120,10 +122,10 @@ const CreateGroup = ({ navigation }) => {
         </View>
 
         <View style={{ flex: 1, marginTop: 10 }}>
-        <Button1 text="Create" backgroundColor={COLORS.primary}  width={0.9}  nextPage={ postData} />
+        <Button1 text="Create Group" backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary}  width={0.6}  nextPage={ postData} />
         </View>
       </View>
-    </Background>
+    </View>
   );
 };
 

@@ -25,31 +25,30 @@ const bottomBar = () => {
 
   return (
       <View  style={{
-        borderRadius: 25,
-        backgroundColor: COLORS.primaryLight,
         shadowColor: COLORS.gray3,
         shadowOpacity: 0.5,
         shadowRadius: 25,
         width: Dimensions.get("window").width * 0.9,
-        justifyContent: "center",
         alignItems: "center",
-        bottom: 0,
+        bottom: 10,
+        top: 10,
         flex:1,
         flexDirection:'row'
       }}>
-     <TouchableOpacity style={{flex:1,alignItems:'center'}}>
+        <View style={{flex:1, flexDirection:'row',alignItems:'center', backgroundColor: COLORS.white4,borderRadius: 25, top:5, Button:10}}>
+     <TouchableOpacity style={{flex:1,alignItems:'center', marginTop:5}}>
     <Image
       source={images.Home}
       style={{
         width: wid * 0.1,
-        height: wid * 0.1,
+        height: wid * 0.09,
         borderRadius: 50,
         padding: SIZES.padding,
       }}
     />
  
  </TouchableOpacity>
- <TouchableOpacity style={{flex:1,alignItems:'center',borderWidth:1,borderColor: COLORS.red}}>
+ <TouchableOpacity style={{flex:1,alignItems:'center'}}>
      <View    style={{
         width: wid * 0.3,
         height: wid * 0.13,
@@ -60,6 +59,7 @@ const bottomBar = () => {
     <Text
       style={{
         color: COLORS.red,
+        fontWeight:'bold',
         fontSize: SIZES.h1,
       }}
     >LIVE</Text>
@@ -67,8 +67,9 @@ const bottomBar = () => {
  </TouchableOpacity>
  <TouchableOpacity style={{flex:1,alignItems:'center'}}>
 
- <AntDesign name="team" size={45} color="black" />
+ <AntDesign name="team" size={45} color={COLORS.primary} />
  </TouchableOpacity>
+ </View>
       </View>
   
 

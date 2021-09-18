@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         bottom: 0
       },
       input: {
-        fontSize: 20,
+        fontSize: 16,
         color: COLORS.darkGray2,
         borderColor: COLORS.primary,
         borderWidth: 1,
