@@ -22,17 +22,17 @@ const Game = (props) => {
 
 const selectedItem1 = (bet)=>{
   setIsSlected1(!isSlected1)
-  item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
+  // item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
   choosenBet(item._id,bet)
 }
 const selectedItemX = (bet)=>{
   setIsSlectedX(!isSlectedX)
-  item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
+  // item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
   choosenBet(item._id,bet)
 }
 const selectedItem2 = (bet)=>{
   setIsSlected2(!isSlected2)
-  item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
+  // item.bet[bet]===0? item.bet[bet]=1:item.bet[bet]=0
   choosenBet(item._id,bet)
 }
 

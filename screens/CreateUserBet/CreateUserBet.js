@@ -23,92 +23,17 @@ import { Switch, TextInput } from "react-native-paper";
 import moment from "moment";
 import Game from "./components/Game";
 import axios from 'axios'
-const totoGamos = {
-  isActive: true,
-  totalPrice: 0,
-  round: 1,
-  events: [
-    {
-      gamesEvent: [
-        {
-          startHomeTeam: 0,
-          startAwayTeam: 0,
-          bet: [0, 0, 0],
-          _id: "6140726605c0e0001639c673",
-          homeTeam: "Strasbourg",
-          awayTeam: "Metz",
-          gameApi: "61388a3d5e2ec36b205314ee",
-          startGame: "2021-09-17T19:00:00.000Z",
-          __v: 0,
-        },
-        {
-          startHomeTeam: 0,
-          startAwayTeam: 0,
-          bet: [0, 0, 0],
-          _id: "6140726605c0e0001639c674",
-          homeTeam: "Lens",
-          awayTeam: "Lille",
-          gameApi: "61388a3d5e2ec36b205314f1",
-          startGame: "2021-09-18T15:00:00.000Z",
-          __v: 0,
-        },
-        {
-          startHomeTeam: 0,
-          startAwayTeam: 0,
-          bet: [0, 0, 0],
-          _id: "6140726605c0e0001639c675",
-          homeTeam: "Saint Etienne",
-          awayTeam: "Bordeaux",
-          gameApi: "61388a3d5e2ec36b205314f2",
-          startGame: "2021-09-18T19:00:00.000Z",
-          __v: 0,
-        },
-        {
-          startHomeTeam: 0,
-          startAwayTeam: 0,
-          bet: [0, 0, 0],
-          _id: "6140726600e0001639c676",
-          homeTeam: "Nice",
-          awayTeam: "Monaco",
-          gameApi: "61388a3d5e2ec36b205314f3",
-          startGame: "2021-09-19T11:00:00.000Z",
-          __v: 0,
-        },
-        {
-          startHomeTeam: 0,
-          startAwayTeam: 0,
-          bet: [0, 0, 0],
-          _id: "6140726605c0e00639c67",
-          homeTeam: "Angers",
-          awayTeam: "Nantes",
-          gameApi: "61388a3d5e2ec36b205314f4",
-          startGame: "2021-09-19T13:00:00.000Z",
-          __v: 0,
-        },
-   
-      ],
-    },
-  ],
-  userBets: [],
-  _id: "6140726605c0e000169c678",
-  firstGame: "2021-09-17T19:00:00.000Z",
-  lastGame: "2021-09-19T13:00:00.000Z",
-  isMask: true,
-  doubles: 3,
-  triangles: 1,
-  price: 30,
-  __v: 0,
-};
-const CreateUserBet = ({ navigation }) => {
+
+const CreateUserBet = ({ navigation,route }) => {
   const [mygames, setMyGames] = useState([]);
   const [isNext, setIsNext] = useState(false);
   const [mask, setMask] = useState("Jordan");
-  const [isActive, setIsActive] = useState(false);
+  const [event, setEvent] = useState(route.params.event[0]);
   const [userToken, setUserToken] = useState(null);
-  const [doubles, setDoubles] = useState(3);
-  const [triangles, setTraingles] = useState(0);
-  const [gamesEvent, setGamesEvents] = useState([]);
-  const [userBets, setUserBet] = useState(totoGamos.events[0].gamesEvent);
+  const [doubles, setDoubles] = useState(route.params.event[0].doubles);
+  const [triangles, setTraingles] = useState(route.params.event[0].triangles);
+  const [gamesEvent, setGamesEvents] = useState(route.params.event[0].gamesEvent);
+  const [userBets, setUserBet] = useState(null);
   const [group_id, setgroup_id] = useState("610639d3cb8f6f0015bf77b5");
   useEffect(() => {
     getUser();
@@ -121,13 +46,15 @@ const CreateUserBet = ({ navigation }) => {
       alert(error);
     }
   };
-
+if(userBets===null){
+  setUserBet(gamesEvent)
+}
  
-
+// console.log(userBets)
   const postUserBet = () => {
 
     server.put("create-userbets",
-        { mask, doubles: totoGamos.doubles, triangles, eventId: "61419b9f63689e00168d30fb", gameEvents: userBets },
+        { mask, doubles, triangles, eventId: event._id, gameEvents: userBets },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -136,7 +63,7 @@ const CreateUserBet = ({ navigation }) => {
         }
       )
       .then(function (res) {
-        console.log(res);
+        navigation.goBack
         alert("Create is successfully!", "Now tell your friends");
       })
       .catch(function (error) {
@@ -150,7 +77,6 @@ const CreateUserBet = ({ navigation }) => {
   };
 
   const choosenBet = (game_id,indexBet) => {
-
     let gamesUpdate = userBets.map(game=>{
       if(game._id===game_id){
         game.bet[indexBet] === 1?game.bet[indexBet] =0:game.bet[indexBet] =1
@@ -197,13 +123,13 @@ const CreateUserBet = ({ navigation }) => {
         }}
       >
         <View style={{flexDirection: 'row', alignContent:'center', marginTop:10}}>
-          <Text style={{ flex:1 ,fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold", marginLeft:50 }}> Doubles : {totoGamos.doubles}</Text>
-          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round : {totoGamos.events.length}</Text>
+          <Text style={{ flex:1 ,fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold", marginLeft:50 }}> Doubles : {event.doubles}</Text>
+          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round : {event.events.length}</Text>
         </View>
         <FlatList 
               numColumns={1}
               keyExtractor={(item) => item._id}
-              data={totoGamos.events[0].gamesEvent}
+              data={event.gamesEvent}
               renderItem={({ item,index }) => (
                 <Game
                   item={item}
@@ -227,11 +153,11 @@ const CreateUserBet = ({ navigation }) => {
       <View style={{flex:1,alignItems:'center'}}>
           <View style={{ flexDirection:'row',marginTop:10 ,marginBottom: 10}}>  
               <Text style={{ fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold" }}>   First Game : </Text> 
-              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(totoGamos.firstGame).format("dddd, h:mm a")}  </Text>
+              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(event.firstGame).format("dddd, h:mm a")}  </Text>
           </View>
           <View style={{ flexDirection:'row',marginBottom: 10}}>
               <Text style={{ fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold" }}> Last Game : </Text> 
-              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(totoGamos.lastGame).format("dddd, h:mm a")}</Text>
+              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(event.lastGame).format("dddd, h:mm a")}</Text>
               
             </View>
             <View>

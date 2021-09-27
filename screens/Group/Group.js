@@ -23,7 +23,7 @@ import { set } from "react-native-reanimated";
 
 const Group = ({ navigation, route }) => {
   const [groupDet, setgroupDet] = React.useState("");
-  const [group, setgroup] = useState(null);
+  const [group, setGroup] = useState(null);
   const [totoGames, setTotoGames] = useState(null);
   const[totoGame_id, setTotoGameId] = useState(null);
   const [isAdmin, setisAdmin] = useState(false);
@@ -31,6 +31,7 @@ const Group = ({ navigation, route }) => {
   const [group_id, setId] = useState(null);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [eventId, seteventId] = useState(null);
   const [pages, setPages] = useState({home:true,event:false,games:false,players:false});
 
 const pageManager = (pageBofore,nextPage)=>{
@@ -66,12 +67,31 @@ const pageManager = (pageBofore,nextPage)=>{
     setTotoGameActive(totoGames.filter((a) => a.isActive))
   }
   };
+// if(TotoGameActive!=null ){
+//   if( TotoGameActive.events.length >0 && eventId === null){
+//     console.log( Math.max.apply(Math, TotoGameActive.events.map(function(o) { return Date.parse(o.lastGame); })))
+//   }
+ 
+  
+// }
   const getMyGroup = (g) => {
     server
       .get("my-toto-group",{headers: { Authorization: "Bearer " + userToken }} )
       .then(function (res) {
-        setgroup(res.data.totogroup);
-      })
+setGroup(...res.data.totogroup.filter(group=>group._id===group_id))
+
+})
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const getLastEvent = () => {
+    server
+      .get("lastEvent",{eventId},{headers: { Authorization: "Bearer " + userToken }} )
+      .then(function (res) {
+setGroup(...res.data.totogroup.filter(group=>group._id===group_id))
+
+})
       .catch(function (error) {
         console.log(error);
       });
@@ -79,9 +99,7 @@ const pageManager = (pageBofore,nextPage)=>{
   if(group === null && group_id != null){
     getMyGroup();
   }
-  
-console.log(group)
-  const createEventPage = () => {
+    const createEventPage = () => {
     if(TotoGameActive.length>0){
       setTotoGameId(TotoGameActive[0]._id)
       console.log(totoGame_id)
@@ -92,8 +110,16 @@ console.log(group)
       postTotoGame()
       }
   };
+  const d =  (date)=>{
+    return new Date(date)
+  }
   const createUserBets = () => {
-    navigation.navigate("CreateUserBet");
+    const activeGame = (group.totoGames).filter(game=>game.isActive)
+    // console.log(Date.parse("2021-10-02T13:30:00.000Z"))
+
+    // console.log(d("2021-10-02T13:30:00.000Z"))
+    // console.log(activeGame[0].events.filter(event=> Date.parse(event.lastGame)>Date.now()))
+    navigation.navigate("CreateUserBet", {event: activeGame[0].events.filter(event=> Date.parse(event.lastGame)>Date.now())});
   };
   const postTotoGame = () => {
     server.post(
