@@ -17,6 +17,7 @@ import { COLORS, FONTS, SIZES } from "../../constants/index";
 import server from "../../apis/server";
 import Background from "../../components/Background";
 import Button1 from "../../components/Buttons/Button1";
+import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
 import { Switch, TextInput } from "react-native-paper";
 import moment from "moment";
@@ -144,6 +145,9 @@ const CreateUserBet = ({ navigation }) => {
       });
   };
 
+  const profilePage = () => {
+    navigation.navigate('Profile')  
+  };
 
   const choosenBet = (game_id,indexBet) => {
 
@@ -162,33 +166,41 @@ const CreateUserBet = ({ navigation }) => {
   };
 // console.log(userBets)
   return (
-    <Background>
+    <View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
       <BackButton goBack={navigation.goBack} />
+      <TouchableOpacity onPress={profilePage} style={{  flex:1, flexDirection:'row-reverse', marginTop:50, alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
+        </TouchableOpacity>
+        <View flexDirection={'row'}  flex={1} justifyContent= {"center" } >
+      <Logo  width={0.15} height={0.15}  paddingleft={10} />
+      </View>
+
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ fontSize: SIZES.largeTitle, color: COLORS.primary }}>
+        <Text style={{ fontSize: SIZES.h1, color: COLORS.primary, fontWeight:"bold" }}>
           Place Your Bet
         </Text>
       </View>
       <View
         style={{
-          flex: 6,
+          flex: 5,
           borderRadius: 25,
-          backgroundColor: COLORS.lightGray1,
-          borderWidth: 1,
-          shadowColor: COLORS.gray3,
-          shadowOpacity: 0.5,
-          shadowRadius: 25,
           width: Dimensions.get("window").width * 0.99,
           justifyContent: "center",
           alignItems: "center",
           maxHeight: Dimensions.get("window").height * 0.75,
         }}
       >
-        <View style={{flexDirection: 'row',flex:1}}>
-          <Text style={{ fontSize: SIZES.h1, color: COLORS.darkGray }}> Doubles  {totoGamos.doubles}</Text>
-          <Text style={{ fontSize: SIZES.h1, color: COLORS.darkGray }}> Round {totoGamos.events.length}</Text>
+        <View style={{flexDirection: 'row', alignContent:'center', marginTop:10}}>
+          <Text style={{ flex:1 ,fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold", marginLeft:50 }}> Doubles : {totoGamos.doubles}</Text>
+          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round : {totoGamos.events.length}</Text>
         </View>
-        <FlatList
+        <FlatList 
               numColumns={1}
               keyExtractor={(item) => item._id}
               data={totoGamos.events[0].gamesEvent}
@@ -203,13 +215,8 @@ const CreateUserBet = ({ navigation }) => {
       </View>
       <View
         style={{
-          flex: 2,
+          flex: 3,
           borderRadius: 25,
-          backgroundColor: COLORS.gray3,
-          borderWidth: 1,
-          shadowColor: COLORS.primaryLight,
-          shadowOpacity: 0.5,
-          shadowRadius: 25,
           width: Dimensions.get("window").width * 0.9,
           justifyContent: "center",
           alignItems: "center",
@@ -217,14 +224,23 @@ const CreateUserBet = ({ navigation }) => {
           marginTop: 10,
         }}
       >
-<View style={{flex:1}}>
-          <Text style={{ fontSize: SIZES.h2, color: COLORS.darkGray }}> First Game   {moment(totoGamos.firstGame).format("dddd, h:mm a")}  </Text>
-          <Text style={{ fontSize: SIZES.h2, color: COLORS.darkGray }}> Last Game   {moment(totoGamos.lastGame).format("dddd, h:mm a")}</Text>
-          <Button1 text="Create" backgroundColor={COLORS.primary}  width={0.8}  nextPage={postUserBet} />
-        </View>
+      <View style={{flex:1,alignItems:'center'}}>
+          <View style={{ flexDirection:'row',marginTop:10 ,marginBottom: 10}}>  
+              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold" }}>   First Game : </Text> 
+              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(totoGamos.firstGame).format("dddd, h:mm a")}  </Text>
+          </View>
+          <View style={{ flexDirection:'row',marginBottom: 10}}>
+              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold" }}> Last Game : </Text> 
+              <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(totoGamos.lastGame).format("dddd, h:mm a")}</Text>
+              
+            </View>
+            <View>
+            <Button1 text="Create" backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary}  width={0.6}  nextPage={postUserBet} />
+            </View>
+      </View>
 
       </View>
-    </Background>
+    </View>
   );
 };
 

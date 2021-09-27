@@ -35,55 +35,56 @@ const Signup = ({ navigation }) => {
       });
   };
   return (
-    <Background>
-      <BackButton goBack={navigation.goBack} />
+    <View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
+      <BackButton goBack={navigation.goBack}/>
 
-      <View style={{ flex: 1, bottom: 0 }}>
-        <Text
-          style={{ fontSize: SIZES.largeTitle, color: COLORS.lightOrange3 }}
-        >
-          Welcome !
-        </Text>
-      </View>
+      <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
 
-      <View
-        style={{
-          flex: 3,
-          borderRadius: 25,
-          backgroundColor: COLORS.lightGray2,
-          shadowColor: COLORS.gray3,
-          shadowOpacity: 0.5,
-          shadowRadius: 25,
-          width: Dimensions.get("window").width * 0.9,
-          justifyContent: "center",
-          alignItems: "center",
-          bottom: 0,
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          <Logo />
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: SIZES.largeTitle, color: COLORS.darkGray }}>
-            Sign Up
-          </Text>
-        </View>
+     </View>
+   
+      <View style={{
+flex: 6,
+borderRadius: 25,
+backgroundColor: COLORS.white2,
+shadowColor: COLORS.white2,
+shadowOpacity: 0.5,
+shadowRadius:25,
+width: Dimensions.get('window').width*0.9,
+justifyContent: 'center',
+alignItems: 'center',bottom:0,
+borderWidth:1,
+borderColor: COLORS.white2
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="default"
-            returnKeyType="next"
-            placeholder="Name"
-            selectionColor="white"
-            keyboardAppearance="dark"
-            placeholderTextColor={COLORS.darkGray}
-            onChangeText={setName}
-            value={username}
-          />
-          <TextInput
+}}>
+
+    <View style={{flex:5 ,alignItems:'center',justifyContent:'center'}}>
+    <Logo  width={0.3} height={0.3}/>
+    <Text style={{fontSize: SIZES.h1,color: COLORS.primary, textAlign: "center", fontWeight:"bold"}}>{"\n"} Welcome To {"\n"} The Mask Bet</Text>
+</View>
+
+    
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="default"
+        returnKeyType="next"
+        placeholder="Name"
+        selectionColor="white"
+        keyboardAppearance="dark"
+        placeholderTextColor={COLORS.darkGray}
+        onChangeText={setName}
+        value={username}
+      />
+
+       <TextInput
             style={styles.input}
             autoCapitalize="none"
             // onSubmitEditing={() => this.passwordInput.focus()}
@@ -96,7 +97,7 @@ const Signup = ({ navigation }) => {
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setEmail}
             value={email}
-          />
+          />   
 
           <TextInput
             style={styles.input}
@@ -109,17 +110,15 @@ const Signup = ({ navigation }) => {
             value={password}
             secureTextEntry
             onChangeText={setPassword}
-          />
+          />  
         </View>
-       
 
-        <View style={{ flex: 1 , marginTop:10}}>
-        <Button1 text="Sign Up" backgroundColor={COLORS.primary}  width={0.8}  nextPage={ postData} />
-
+        <View style={{flex:3}}>
+        <Button1 text="Sign Up" backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary}  width={0.6}  nextPage={ postData} />
         </View>
-      </View>
-    </Background>
-  );
-};
+</View>
+  </View>    )
+}
+
 
 export default Signup;
