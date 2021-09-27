@@ -33,6 +33,7 @@ const CreateEvent = ({ navigation,route }) => {
   const [triangles, setTraingles] = useState(0);
   const [price, setPrice] = useState(30);
   const [totogame_id, setgroup_id] = useState(route.params.totogame);
+  console.log(totogame_id)
   useEffect(() => {
     getUser();
   });

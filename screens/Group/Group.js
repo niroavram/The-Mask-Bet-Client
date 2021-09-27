@@ -23,6 +23,7 @@ import { set } from "react-native-reanimated";
 
 const Group = ({ navigation, route }) => {
   const [groupDet, setgroupDet] = React.useState("");
+  const [group, setgroup] = useState(null);
   const [totoGames, setTotoGames] = useState(null);
   const[totoGame_id, setTotoGameId] = useState(null);
   const [isAdmin, setisAdmin] = useState(false);
@@ -65,7 +66,21 @@ const pageManager = (pageBofore,nextPage)=>{
     setTotoGameActive(totoGames.filter((a) => a.isActive))
   }
   };
-
+  const getMyGroup = (g) => {
+    server
+      .get("my-toto-group",{headers: { Authorization: "Bearer " + userToken }} )
+      .then(function (res) {
+        setgroup(res.data.totogroup);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  if(group === null && group_id != null){
+    getMyGroup();
+  }
+  
+console.log(group)
   const createEventPage = () => {
     if(TotoGameActive.length>0){
       setTotoGameId(TotoGameActive[0]._id)
@@ -74,8 +89,8 @@ const pageManager = (pageBofore,nextPage)=>{
     }
 
     else {
-      postTotoGame
-      navigation.navigate("CreateEvent", { totogame: totoGame_id })}
+      postTotoGame()
+      }
   };
   const createUserBets = () => {
     navigation.navigate("CreateUserBet");
@@ -90,9 +105,7 @@ const pageManager = (pageBofore,nextPage)=>{
   } }
       )
       .then(function (res) {
-        console.log(res)
-        navigation.navigate("")
-        alert("Create is successfully!", "Now tell your friends");
+        navigation.navigate("CreateEvent", { totogame: res.data.totoGames[res.data.totoGames.length-1]})
       })
       .catch(function (error) {
         console.log(mygames.length )
