@@ -18,9 +18,10 @@ import Logo from '../../components/Logo';
 import BackButton from '../../components/Buttons/BackButton';
 import Btn from '../../components/Btn';
 import Games from './components/games';
+import BottomBar from '../Group/compopents/bottomBar';
 import Players from './components/player';
 
-const GroupEvents = ({navigation,route}) =>{
+const GroupEvents = (props) =>{
 
 // const [groupDet,setgroupDet]= React.useState("")
 //  useEffect(()=>{
@@ -41,14 +42,15 @@ const GroupEvents = ({navigation,route}) =>{
 
 // userbets.every(removeGame);
 
-
+const {navigation,pageManager,pages} = props
   return (
-        <Background>
-        <BackButton goBack={navigation.goBack}/>
+<View style={{flex:1}}>
+
+      <BackButton goBack={navigation.goBack}/>
         <Logo />
         {/* <Text> {groupa.name}</Text>
         <Text>Code : {groupa.code}</Text> */}
-        <View style={{flexDirection: "row", alignItems:"center", justifyContent:"space-between",}}>
+        <View style={{flexDirection: "row", alignItems:"center", justifyContent:"space-between",flex:2}}>
             <Text style={{fontSize: SIZES.h3, color: COLORS.black, flex:1}}>
             Round  
             </Text>
@@ -59,11 +61,18 @@ const GroupEvents = ({navigation,route}) =>{
             Doubles:
             </Text>
         </View>
+        <View style={{flex:5}}>
         <Games/>
         <Players/>
+        </View>
+        
+        <View style={{flex:2}}>
+        <BottomBar pageManager={pageManager} pages={pages} />
 
+        </View>
     
-      </Background>    )
+        </View>  
+           )
 }
 
 export default GroupEvents;

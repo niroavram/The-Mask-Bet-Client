@@ -30,10 +30,9 @@ const CreateEvent = ({ navigation,route }) => {
   const [isActive, setIsActive] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [doubles, setDoubles] = useState(3);
-  const [triangles, setTraingles] = useState(1);
+  const [triangles, setTraingles] = useState(0);
   const [price, setPrice] = useState(30);
-  const [group_id, setgroup_id] = useState(route.params.group_id);
-
+  const [totogame_id, setgroup_id] = useState(route.params.totogame);
   useEffect(() => {
     getUser();
   });
@@ -70,7 +69,7 @@ const CreateEvent = ({ navigation,route }) => {
   const postEvent = () => {
     server.post(
         'create-newevent',
-       { isMask, doubles, triangles, price,  group_id, isActive,  mygames },
+       { isMask, doubles, triangles, price,  totogame_id, isActive,  mygames },
         { headers: { 
           'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + userToken , 
@@ -169,8 +168,8 @@ const CreateEvent = ({ navigation,route }) => {
                   }}
                   keyboardType="numeric"
                   label="Price"
-                  value={doubles.toString()}
-                  onChangeText={onChangeDoubles}
+                  value={price.toString()}
+                  onChangeText={setPrice}
                 />
               </View>
             </View>
