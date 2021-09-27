@@ -8,7 +8,8 @@ import {
   Button,
   Dimensions,
 } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'; 
 import { COLORS, images, SIZES } from "../../../constants";
 const bottomBar = (props) => {
   var wid = Dimensions.get("window").width;
@@ -57,22 +58,13 @@ const bottomBar = (props) => {
         flexDirection:'row'
       }}>
         <View style={{flex:1, flexDirection:'row',alignItems:'center', backgroundColor: COLORS.white4,borderRadius: 25, top:5, Button:10}}>
-     <TouchableOpacity onPress={()=>pbef("home")} style={{flex:1,alignItems:'center', marginTop:5}}>
-    <Image
-      source={images.Home}
-      style={{
-        width: wid * 0.1,
-        height: wid * 0.09,
-        borderRadius: 50,
-        padding: SIZES.padding,
-      }}
-    />
- 
+     <TouchableOpacity onPress={()=>pbef("home")} style={{flex:1,alignItems:'center'}}>
+     <FontAwesome name="home" size={45} color={COLORS.primary} />
  </TouchableOpacity>
  <TouchableOpacity onPress={()=>pbef("event")} style={{flex:1,alignItems:'center'}}>
      <View    style={{
         width: wid * 0.3,
-        height: wid * 0.13,
+        height: wid * 0.10,
         borderRadius: 50,
         alignItems:'center',
         justifyContent:'center'
@@ -88,7 +80,7 @@ const bottomBar = (props) => {
  </TouchableOpacity>
  <TouchableOpacity onPress={()=>pbef("players")} style={{flex:1,alignItems:'center'}}>
 
- <AntDesign name="team" size={45} color={COLORS.primary} />
+ <Ionicons name="ios-people-sharp" size={45} color={COLORS.primary} />
  </TouchableOpacity>
  </View>
       </View>

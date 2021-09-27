@@ -15,7 +15,7 @@ import moment from "moment";
 
 const Game = (props) => {
   const { item, index, choosenBet } = props;
-  var wid = Dimensions.get("window").width;
+  var wid = Dimensions.get("window").width* 0.95;
   const [isSlected1, setIsSlected1] = useState(false);
   const [isSlectedX, setIsSlectedX] = useState(false);
   const [isSlected2, setIsSlected2] = useState(false);
@@ -41,9 +41,8 @@ const selectedItem2 = (bet)=>{
           key={index}
           style={{
             flexDirection: "row",
-            borderWidth: 0.5,
             borderRadius: SIZES.radius,
-            backgroundColor: COLORS.gray2,
+            backgroundColor: COLORS.darkWhite,
             marginTop: 4,
             width: wid
           }}
@@ -51,20 +50,20 @@ const selectedItem2 = (bet)=>{
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            <Text style={{ fontSize: SIZES.h2, borderRightWidth:0.5,backgroundColor: COLORS.gray,borderRadius:50 }}>{index + 1}</Text>
+            <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, borderRightWidth:0.5,borderRadius:50 }}>{index + 1}</Text>
           </View>
      
           <View
-            style={{ flex: 5, justifyContent: "center" }}
+            style={{ flex: 4, justifyContent: "center" }}
           >
-            <Text style={{ fontSize: SIZES.h3,textAlign:'left' }}>{item.homeTeam}</Text>
-            <Text style={{ fontSize: SIZES.h3,textAlign: 'left' }}>{item.awayTeam}</Text>
+            <Text style={{ fontSize: SIZES.h3,textAlign:'left', fontWeight:"bold" , color:COLORS.primary }}>{item.homeTeam}</Text>
+            <Text style={{ fontSize: SIZES.h3,textAlign: 'left', fontWeight:"bold" , color:COLORS.primary }}>{item.awayTeam}</Text>
           </View>
           <View
             style={{ flex: 3, alignItems: "center", justifyContent: "center" }}
           >
-            <Text style={{ fontSize: SIZES.h5 }}>
-              {moment(item.startGame).format("ddd, h:mm a")}
+            <Text style={{ fontSize: SIZES.h5 ,color:COLORS.primary}}>
+              {moment(item.startGame).format("ddd, HH:mm ")}
             </Text>
           </View>
           <View
@@ -81,13 +80,14 @@ const selectedItem2 = (bet)=>{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                borderWidth: 0.5,
                 borderRadius: SIZES.radius,
                 backgroundColor:
-                  isSlected1? COLORS.primaryLight : COLORS.gray,
+                  isSlected1? COLORS.yellow : COLORS.white4,
+                marginRight:5,
+                marginleft:5,
               }}
             >
-              <Text style={{ fontSize: SIZES.h2 }}>1</Text>
+              <Text style={{ fontSize: SIZES.h3  , fontWeight:"bold" , color:COLORS.primary}}>1</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => selectedItemX(1)}
@@ -95,13 +95,14 @@ const selectedItem2 = (bet)=>{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                borderWidth: 0.5,
                 borderRadius: SIZES.radius,
                 backgroundColor:
-                isSlectedX? COLORS.primaryLight : COLORS.gray,
+                isSlectedX? COLORS.yellow : COLORS.white4,
+                marginRight:5,
+                marginleft:5
               }}
             >
-              <Text style={{ fontSize: SIZES.h2 }}>X</Text>
+              <Text style={{ fontSize: SIZES.h3, fontWeight:"bold" , color:COLORS.primary }}>X</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => selectedItem2(2)}
@@ -109,13 +110,13 @@ const selectedItem2 = (bet)=>{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                borderWidth: 0.5,
                 borderRadius: SIZES.radius,
                 backgroundColor:
-                isSlected2? COLORS.primaryLight : COLORS.gray,
+                isSlected2? COLORS.yellow : COLORS.white4,
+                marginRight:5,
               }}
             >
-              <Text style={{ fontSize: SIZES.h2 }}>2</Text>
+              <Text style={{ fontSize: SIZES.h3, fontWeight:"bold", color:COLORS.primary }}>2</Text>
             </TouchableOpacity>
           </View>
         </View>
