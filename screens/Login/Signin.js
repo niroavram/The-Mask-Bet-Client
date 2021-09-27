@@ -44,7 +44,7 @@ const Signin = ({navigation}) =>{
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: COLORS.white2}}>
-                    <BackButton goBack={navigation.goBack}/>
+          <BackButton goBack={navigation.goBack}/>
 
           <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
  
