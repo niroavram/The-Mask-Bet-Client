@@ -20,6 +20,7 @@ import Btn from '../../components/Btn';
 import Games from './components/games';
 import BottomBar from '../Group/compopents/bottomBar';
 import Players from './components/player';
+import { event } from 'react-native-reanimated';
 
 const GroupEvents = (props) =>{
 
@@ -43,27 +44,55 @@ const GroupEvents = (props) =>{
 // userbets.every(removeGame);
 
 const {navigation,pageManager,pages,TotoGameActive} = props
-  return (
-<View style={{flex:1}}>
+//console.log(TotoGameActive);
 
+const profilePage = () => {
+  navigation.navigate('Profile')  
+};
+  return (
+<View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
       <BackButton goBack={navigation.goBack}/>
-        <Logo />
+      <TouchableOpacity onPress={profilePage} style={{ flexDirection:'row-reverse', marginTop:50, alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
+        </TouchableOpacity>
+        <View style ={{flex:1,  justifyContent:"center" }} >
+      <Logo  width={0.15} height={0.15}  paddingleft={10} />
+      </View>
         {/* <Text> {groupa.name}</Text>
         <Text>Code : {groupa.code}</Text> */}
-        <View style={{flexDirection: "row", alignItems:"center", justifyContent:"space-between",flex:2}}>
-            <Text style={{fontSize: SIZES.h3, color: COLORS.black, flex:1}}>
-            Round  
+        <View style={{flexDirection: "row", alignItems:"center", justifyContent:"space-between",flex:1, left:20}}>
+            <Text style={{fontSize: SIZES.h3, color: COLORS.black,fontWeight:'bold', flex:1}}>
+           Round: {TotoGameActive[0].events.length} 
             </Text>
-            <Text style={{fontSize: SIZES.h3, color: COLORS.black, flex:1}}>
-            Score: 
+            <Text style={{fontSize: SIZES.h3, color: COLORS.black,fontWeight:'bold', flex:1}}>
+            Price: {TotoGameActive[0].events[TotoGameActive[0].events.length-1].price}
             </Text>
-            <Text style={{fontSize: SIZES.h3, color: COLORS.black, flex:1}}>
-            Doubles:
+            <Text style={{fontSize: SIZES.h3, color: COLORS.black,fontWeight:'bold', flex:1}}>
+            Doubles: {TotoGameActive[0].events[TotoGameActive[0].events.length-1].doubles}
             </Text>
         </View>
-        <View style={{flex:5}}>
-        <Games/>
-        <Players/>
+        <View style={{flex:6,}}>
+        <Games
+          gameEvents={TotoGameActive[0].events[TotoGameActive[0].events.length-1].gamesEvent}
+          />
+        <View style={{flex:1, backgroundColor:COLORS.white2, flexDirection:'row' }}>
+              <Text  style={{ fontSize: SIZES.h3 ,left:20 , color:COLORS.primary, fontWeight:'bold', top:40}}>
+                  Players
+              </Text>
+            </View>
+            <View style={{flex:6, }}>
+            <Players
+            userBets={TotoGameActive[0].events[TotoGameActive[0].events.length-1].userBets}
+            />
+            </View>
+        
+
         </View>
         
         <View style={{flex:2}}>

@@ -7,6 +7,7 @@ import {
     TextInput,
     FlatList,
     Button,
+    Alert,
     Dimensions
 } from 'react-native';
 import styles from "./styles"
