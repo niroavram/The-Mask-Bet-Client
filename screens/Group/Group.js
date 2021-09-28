@@ -9,6 +9,7 @@ import GroupEvents from "../GroupEvents/GroupEvents";
 import server from "../../apis/server";
 import BottomBar from "./compopents/bottomBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Players from "./Players";
 const Group = ({ navigation, route }) => {
   const [groupDet, setgroupDet] = React.useState("");
   const [group, setGroup] = useState(null);
@@ -125,10 +126,10 @@ const Group = ({ navigation, route }) => {
   const createUserBets = () => {
     const activeGame = group.totoGames.filter((game) => game.isActive);
 
-    navigation.navigate("CreateUserBet", {
-      event: activeGame[0].events.filter(
-        (event) => Date.parse(event.lastGame) > Date.now()
-      ),
+    navigation.navigate("CreateUserBet", { event:  activeGame[0].events[ activeGame[0].events.length-1] , group: group
+      // event: activeGame[0].events.filter(
+      //   (event) => Date.parse(event.lastGame) > Date.now()
+      // ),
     });
   };
   const postTotoGame = () => {
@@ -227,7 +228,9 @@ const Group = ({ navigation, route }) => {
 
           <BottomBar pageManager={pageManager} pages={pages} />
         </View>
-      ) : (
+      ) :pages.players?<Players  navigation={navigation}
+      pageManager={pageManager}
+      pages={pages} players={group.myUsers}/>:(
         <GroupEvents
           navigation={navigation}
           pageManager={pageManager}

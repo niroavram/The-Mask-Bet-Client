@@ -29,11 +29,11 @@ const CreateUserBet = ({ navigation,route }) => {
   const [mygames, setMyGames] = useState([]);
   const [isNext, setIsNext] = useState(false);
   const [mask, setMask] = useState("Jordan");
-  const [event, setEvent] = useState(route.params.event[0]);
+  const [event, setEvent] = useState(route.params.event);
   const [userToken, setUserToken] = useState(null);
-  const [doubles, setDoubles] = useState(route.params.event[0].doubles);
-  const [triangles, setTraingles] = useState(route.params.event[0].triangles);
-  const [gamesEvent, setGamesEvents] = useState(route.params.event[0].gamesEvent);
+  const [doubles, setDoubles] = useState(route.params.event.doubles);
+  const [triangles, setTraingles] = useState(route.params.event.triangles);
+  const [gamesEvent, setGamesEvents] = useState(route.params.event.gamesEvent);
   const [userBets, setUserBet] = useState(null);
   const [group_id, setgroup_id] = useState("610639d3cb8f6f0015bf77b5");
   useEffect(() => {
@@ -64,12 +64,10 @@ if(userBets===null){
         }
       )
       .then(function (res) {
-        navigation.goBack
-        Alert.alert("The Mask bet","Create is successfully!, Now tell your friends");
+        navigation.navigate("Group",{groupin: route.params.group})
       })
       .catch(function (error) {
-        Alert.alert("The Mask bet",error);
-        console.log(error);
+console.log(error)
       });
   };
 
