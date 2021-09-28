@@ -23,7 +23,7 @@ const Leagues = (props) => {
 
   var games = item.upcoming;
   var size = games.length || 0;
-  var wid = Dimensions.get("window").width;
+  var wid = Dimensions.get("window").width * 0.9;
   const checkDateGame = (dateGame) => {
     var game = Date.parse(dateGame);
     var is = true;
@@ -42,32 +42,34 @@ const Leagues = (props) => {
         onPress={selctedItem}
           style={{
             flexDirection: "row",
-            borderWidth: 0.5,
+            marginTop: 4,
             borderRadius: SIZES.radius,
             alignItems: "center",
-            backgroundColor: isSlected ? COLORS.gray2 : COLORS.lightGray1,
+            backgroundColor: isSlected ? COLORS.white4 : COLORS.darkWhite,
             padding: 6,
           }}
         >
           {item.flag.includes(".svg") ? (
             <View style={{ borderRadius: 15, flex: 1 }}>
-              <SvgUri uri={item.flag} width="40" height="40" />
+              <SvgUri uri={item.flag} width="40" height="40"  />
             </View>
           ) : (
-            <Image
-              source={{ uri: item.flag }}
-              style={{ width: 1, height: 1, padding: SIZES.padding }}
-            />
+            <View style={{ borderRadius: 15, flex: 1 }}>
+              <Image
+                source={{ uri: item.flag }}
+                style={{ width:wid * 0.13, height:wid * 0.13, right:2,  }}
+              />
+              </View>
           )}
-          <Text style={{ fontSize: SIZES.h2, flex: 6 }}>
-            {" "}
+          <Text style={{ fontSize: SIZES.h3, flex: 6, color:COLORS.primary, fontWeight:"bold" }}>
+          &nbsp;&nbsp; {" "}
             {item.league_name}
           </Text>
-          <View style={{ flex: 2 }}>
+          <View style={{ flex: 1 }}>
             {isSlected ? (
-              <Ionicons name="chevron-down" size={32} color="black" />
+              <Ionicons style={{ marginLeft:5}} name="chevron-down" size={32} color="black" />
             ) : (
-              <FontAwesome5 name="chevron-up" size={27} color="black" />
+              <FontAwesome5 style={{ marginLeft:5}} name="chevron-up" size={25} color="black" />
             )}
           </View>
         </TouchableOpacity>
