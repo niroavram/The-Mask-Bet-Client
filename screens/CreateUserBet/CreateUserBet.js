@@ -44,7 +44,7 @@ const CreateUserBet = ({ navigation,route }) => {
       let user = await AsyncStorage.getItem("userToken");
       setUserToken(user);
     } catch (error) {
-      Alert.alert("The Mask bet",error);
+      alert(error);
     }
   };
 if(userBets===null){
@@ -68,8 +68,8 @@ if(userBets===null){
         Alert.alert("The Mask bet","Create is successfully!, Now tell your friends");
       })
       .catch(function (error) {
-        Alert.alert("The Mask bet",error);
-        console.log(error);
+        alert(error);
+       // console.log(error);
       });
   };
 
