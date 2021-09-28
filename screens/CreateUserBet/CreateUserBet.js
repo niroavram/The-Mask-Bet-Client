@@ -22,6 +22,7 @@ import BackButton from "../../components/Buttons/BackButton";
 import { Switch, TextInput } from "react-native-paper";
 import moment from "moment";
 import Game from "./components/Game";
+import Alert from "react-native";
 import axios from 'axios'
 
 const CreateUserBet = ({ navigation,route }) => {
@@ -43,7 +44,7 @@ const CreateUserBet = ({ navigation,route }) => {
       let user = await AsyncStorage.getItem("userToken");
       setUserToken(user);
     } catch (error) {
-      alert(error);
+      Alert.alert("The Mask bet",error);
     }
   };
 if(userBets===null){
@@ -64,10 +65,10 @@ if(userBets===null){
       )
       .then(function (res) {
         navigation.goBack
-        alert("Create is successfully!", "Now tell your friends");
+        Alert.alert("The Mask bet","Create is successfully!, Now tell your friends");
       })
       .catch(function (error) {
-        alert(error, "Sss");
+        Alert.alert("The Mask bet",error);
         console.log(error);
       });
   };

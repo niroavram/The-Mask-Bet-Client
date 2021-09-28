@@ -45,7 +45,7 @@ const pageManager = (pageBofore,nextPage)=>{
       setUserToken(user);
       setUserId(user_id)
     } catch (error) {
-      alert(error);
+      Alert.alert("The Mask bet",error);
     }
   };
 
@@ -135,7 +135,7 @@ setGroup(...res.data.totogroup.filter(group=>group._id===group_id))
       })
       .catch(function (error) {
         console.log(mygames.length )
-        alert("Bad move", "try again");
+        Alert.alert("The Mask bet","Bad move, try again");
         console.log(error);
       });
   };

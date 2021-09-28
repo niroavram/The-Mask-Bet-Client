@@ -7,7 +7,8 @@ import {COLORS, SIZES} from "../../constants"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 50
+        padding: 50,
+        color:COLORS.primary
       },
       inputContainer: {
         flex: 2,
@@ -15,22 +16,23 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         borderRadius: SIZES.radius,
         alignItems: 'baseline',
+        color:COLORS.primary
       },
       inputIcon: {
         paddingRight: 10,
         bottom: 0
       },
       input: {
-        fontSize: 20,
-        color: COLORS.darkGray2,
-        borderColor: COLORS.primary,
-        borderWidth: 1,
-        fontWeight: '700',
-        height: 48,
+        fontSize: 15,
+        color: COLORS.primary,
+    
+        
+        fontWeight: 'bold',
+        height: 20,
         borderRadius: SIZES.radius,
         left:4,
-        width:Dimensions.get('window').width*0.8 ,
-        padding: 10,
+        width:Dimensions.get('window').width*0.2,
+        
         margin:10
 
 

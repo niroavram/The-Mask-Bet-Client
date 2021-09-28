@@ -22,6 +22,7 @@ import Button1 from "../../components/Buttons/Button1";
 import BackButton from "../../components/Buttons/BackButton";
 import Leagues from "./components/Leagues";
 import { Switch, TextInput } from "react-native-paper";
+import { Alert } from "react-native";
 
 const CreateEvent = ({ navigation,route }) => {
   const [leagues, setLeauges] = useState(null);
@@ -43,7 +44,7 @@ const CreateEvent = ({ navigation,route }) => {
       let user = await AsyncStorage.getItem("userToken");
       setUserToken(user);
     } catch (error) {
-      alert(error);
+      Alert.alert("The Mask bet",error);
     }
   };
 
@@ -53,13 +54,19 @@ const CreateEvent = ({ navigation,route }) => {
 
   const nextPage = () => {
     mygames.length < 5
-      ? alert("You must choose minimum 5 games")
+      ? Alert.alert("The Mask bet","You must choose minimum 5 games")
+      : mygames.length > 9
+      ? Alert.alert("The Mask bet","You can choose maximum 9 games")
       : setIsNext(!isNext);
+      
   };
+  
+    
+  
   const onChangeDoubles = (doubles) => {
     console.log(doubles);
     var text = "The max of doubles is " + mygames.length;
-    doubles > mygames.length ? alert(text) : setDoubles(doubles);
+    doubles > mygames.length ? Alert.alert("The Mask bet",text) : setDoubles(doubles);
   };
 
   const addGame = (game) => {
@@ -80,11 +87,11 @@ const CreateEvent = ({ navigation,route }) => {
       .then(function (res) {
         console.log(res)
         navigation.goBack()
-        alert("Create is successfully!", "Now tell your friends");
+        Alert.alert("The Mask bet","Create is successfully!, Now tell your friends");
       })
       .catch(function (error) {
         console.log(mygames.length )
-        alert("Bad move", "try again");
+        Alert.alert("The Mask bet","Bad move, try again");
         console.log(error);
       });
   };
@@ -124,10 +131,7 @@ const CreateEvent = ({ navigation,route }) => {
         <View style ={{flex:1,  justifyContent:"center" }} >
       <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
-      <View style={{  alignItems: "center", justifyContent: "center" }}>
-      <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
-      Choose the games you want to bet on {"\n"} And start playing </Text>
-      </View>
+      
      
       
 
@@ -144,26 +148,39 @@ const CreateEvent = ({ navigation,route }) => {
           }}
         >
           {isNext ? (
-            <View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={{ fontSize: SIZES.h2 }}>Is Mask </Text>
+            <View style ={{flex:1,  justifyContent:"center" ,flexDirection: "column"}}>
+              <View style={{ flex:2, alignItems: "center", justifyContent: "center" }}>
+                <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+                Choose If you want to play with Mask on,  {"\n"} Choose the number of doubles  {"\n"} And decide the price of the game  {"\n"}</Text>
+              </View>
+              <View style={{flex:3, flexDirection: "row" , top:50, justifyContent: "center"}}>
+                <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, fontWeight:"bold", right:10 }}>Is Mask </Text>
                 <Switch value={isMask} onValueChange={switchON} />
               </View>
               <View
                 style={{
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
+                  flex:2
                 }}
               >
-                <Text style={{ fontSize: SIZES.h2 }}>Doubles </Text>
+                <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, fontWeight:"bold", top:23 }}>Doubles </Text>
                 <TextInput
                   style={{
-                    minWidth: 100,
-                    maxHeight: 50,
-                    borderRadius: SIZES.radius,
+                    minWidth: 60,
+                    maxHeight: 40,
+                    color:COLORS.primary,
+                    fontWeight:'bold',
+                    placeholderTextColor:COLORS.primary,
+                    fontSize:18,
+                    textAlign:'center'
+                
+
+                    
+
                   }}
                   keyboardType="numeric"
-                  label="doubles"
+                  //label="doubles"
                   value={doubles.toString()}
                   onChangeText={onChangeDoubles}
                 />
@@ -171,24 +188,38 @@ const CreateEvent = ({ navigation,route }) => {
               <View
                 style={{
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
+                  flex:7
                 }}
               >
-                <Text style={{ fontSize: SIZES.h2 }}>Price </Text>
+                <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, fontWeight:"bold" , top:23}}>Price </Text>
                 <TextInput
                   style={{
-                    minWidth: 100,
-                    maxHeight: 50,
-                    borderRadius: SIZES.radius,
+                    minWidth: 80,
+                    maxHeight: 40,
+                    color:COLORS.primary,
+                    fontWeight:'bold',
+                    placeholderTextColor:COLORS.primary,
+                    fontSize:16,
+                    textAlign:'center'
+
                   }}
                   keyboardType="numeric"
-                  label="Price"
+                  //label="Price"
                   value={price.toString()}
                   onChangeText={setPrice}
                 />
               </View>
             </View>
           ) : (
+
+            < >
+            
+              <View style={{  alignItems: "center", justifyContent: "center" }}>
+              <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+              Choose the games you want to bet on {"\n"} And start playing </Text>
+              </View>
+            
             <FlatList
               numColumns={1}
               keyExtractor={(item) => item._id}
@@ -201,6 +232,7 @@ const CreateEvent = ({ navigation,route }) => {
                 />
               )}
             />
+            </>
           )}
         </View>
      
@@ -233,13 +265,15 @@ const CreateEvent = ({ navigation,route }) => {
               text="Back"
               backgroundColor={COLORS.orangePrimary}
               nextPage={nextPage}
-              width={0.6}
+              width={0.4}
+              borderColor={COLORS.orangePrimary}
             />
             <Button1
               text="Create"
               backgroundColor={COLORS.orangePrimary}
               nextPage={() => postEvent()}
-              width={0.6}
+              width={0.4}
+              borderColor={COLORS.orangePrimary}
             />
           </View>
         )}

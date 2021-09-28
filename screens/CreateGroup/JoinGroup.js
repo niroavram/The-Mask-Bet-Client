@@ -18,6 +18,7 @@ import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
 import Button1 from "../../components/Buttons/Button1";
+import Alert from "react-native";
 const JoinGroup = ({ navigation }) => {
   const [code, setCode] = useState("");
   const [userToken, setUser] = React.useState(null);
@@ -30,7 +31,7 @@ const JoinGroup = ({ navigation }) => {
       let user = await AsyncStorage.getItem("userToken");
       setUser(user);
     } catch (error) {
-      alert(error);
+      Alert.alert("The Mask bet",error);
     }
   };
 
@@ -43,7 +44,7 @@ const JoinGroup = ({ navigation }) => {
       )
       .then(function (res) {
         navigation.navigate('Group',{group: res})
-        alert("Join successfuly!");
+        Alert.alert("The Mask bet","Join successfuly!");
       })
       .catch(function (error) {
         console.log(error);

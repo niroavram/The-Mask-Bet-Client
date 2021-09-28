@@ -7,7 +7,8 @@ import {
   TextInput,
   FlatList,
   Button,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -27,7 +28,7 @@ const Signup = ({ navigation }) => {
     server
       .post("signup", { username, email, password })
       .then(function (res) {
-        alert("Sign Up is successfully!");
+        Alert.alert("The Mask bet","Sign Up is successfully!");
         navigation.navigate('Signin')
       })
       .catch(function (error) {
