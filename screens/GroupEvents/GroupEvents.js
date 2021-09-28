@@ -42,7 +42,7 @@ const GroupEvents = (props) =>{
 
 // userbets.every(removeGame);
 
-const {navigation,pageManager,pages} = props
+const {navigation,pageManager,pages,TotoGameActive} = props
   return (
 <View style={{flex:1}}>
 

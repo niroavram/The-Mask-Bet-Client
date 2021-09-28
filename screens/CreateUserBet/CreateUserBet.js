@@ -124,7 +124,7 @@ if(userBets===null){
       >
         <View style={{flexDirection: 'row', alignContent:'center', marginTop:10}}>
           <Text style={{ flex:1 ,fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold", marginLeft:50 }}> Doubles : {event.doubles}</Text>
-          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round : {event.events.length}</Text>
+          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round :4</Text>
         </View>
         <FlatList 
               numColumns={1}
