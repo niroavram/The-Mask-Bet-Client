@@ -37,35 +37,53 @@ const Game = ({game,addGame,removeGame}) => {
     <TouchableOpacity
     onPress={selctItem}
   style={{
-    borderWidth: 0.5,
+    marginTop: 4,
     borderRadius: SIZES.radius,
     justifyContent: "center",
-    backgroundColor: isSlected? COLORS.primaryLight :COLORS.lightGray1,
+    backgroundColor: isSlected? COLORS.yellow :COLORS.darkGreen,
+    height:90
   }}>
- <View style={{ flexDirection: "row", alignItems: "center" }}>
+ <View style={{ flexDirection: "row", alignItems: "center", flex:1}}>
+  <View style={{ flexDirection: "row", alignItems: "center", flex:1}}>  
     <Image
       source={{ uri: game.homeFlag }}
       style={{
-        width: wid * 0.1,
+        width:wid * 0.1,
         height: wid * 0.1,
         borderRadius: 50,
-        padding: SIZES.padding,
+        left:6,
+        top:1,
+        
+        
       }}
     />
-    <Text style={{ fontSize: SIZES.h3 }}> {game.homeTeam} </Text>
-    <Text style={{ fontSize: SIZES.h4, position: 'absolute', right: 50}}>{moment(game.dateGame).format("dddd Do MMM")} </Text>
+    </View>
+    <View style={{ flexDirection: "row", alignItems: "center", flex:3,  flexWrap:"wrap", top:3}}>
+      <Text style={{ fontSize: SIZES.h3, color:COLORS.primary , fontWeight:"bold",  flexDirection:"row"}}> {game.homeTeam} </Text>
+    </View>
+    <View style={{ flexDirection: "row", alignItems: "center", flex:3,  flexWrap:"wrap", top:3}}>
+      <Text style={{ fontSize: SIZES.h4, position: 'absolute', right: 5, color:COLORS.primary}}>{moment(game.dateGame).format("dddd Do MMM")} </Text>
+    </View>  
   </View>
-  <View style={{ flexDirection: "row", alignItems: "center" }}>
+  <View style={{ flexDirection: "row", alignItems: "center", flex:1}}>
+  <View style={{ flexDirection: "row", alignItems: "center", flex:1 }}>
     <Image
       source={{ uri: game.awayFlag }}
       style={{
         width: wid * 0.1,
         height: wid * 0.1,
-        padding: SIZES.padding,
+        left:6,
+        
+        
       }}
     />
-    <Text style={{ fontSize: SIZES.h3 }}> {game.awayTeam}</Text>
-    <Text style={{ fontSize: SIZES.h4, position: 'absolute', right: 50}}>{moment(game.dateGame).format("h:mm a")} </Text>
+    </View>
+    <View style={{ flexDirection: "row", alignItems: "center", flex:4,  flexWrap:"wrap"}}>
+      <Text style={{ fontSize: SIZES.h3 , color:COLORS.primary, fontWeight:"bold"}}> {game.awayTeam}</Text>
+    </View>
+    <View style={{ flexDirection: "row", alignItems: "center", flex:2,  flexWrap:"wrap"}}>
+      <Text style={{ fontSize: SIZES.h4, position: 'absolute', right: 5, color:COLORS.primary}}>{moment(game.dateGame).format("h:mm a")} </Text>
+    </View>     
   </View> 
  </TouchableOpacity>
 

@@ -17,6 +17,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS, FONTS, SIZES } from "../../constants/index";
 import server from "../../apis/server";
 import Background from "../../components/Background";
+import Logo from "../../components/Logo";
 import Button1 from "../../components/Buttons/Button1";
 import BackButton from "../../components/Buttons/BackButton";
 import Leagues from "./components/Leagues";
@@ -87,6 +88,10 @@ const CreateEvent = ({ navigation,route }) => {
         console.log(error);
       });
   };
+
+  const profilePage = () => {
+    navigation.navigate('Profile')  
+  };
   // const postEvent = () =>{
 
   //   console.log( "isMask",typeof isMask, "doubles", typeof doubles,"triangles",typeof triangles,"price",typeof price,"group_id",typeof group_id,"isActive",typeof isActive )
@@ -105,24 +110,33 @@ const CreateEvent = ({ navigation,route }) => {
     getLeagues();
   }
   return (
-    <Background>
+    <View style={{flex: 1,
+      width: '100%',
+      padding: 2,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.white2}}>
       <BackButton goBack={navigation.goBack} />
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ fontSize: SIZES.largeTitle, color: COLORS.primary }}>
-          Create Event
-        </Text>
+      <TouchableOpacity onPress={profilePage} style={{ flexDirection:'row-reverse', marginTop:50, alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
+        </TouchableOpacity>
+        <View style ={{flex:1,  justifyContent:"center" }} >
+      <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
+      <View style={{  alignItems: "center", justifyContent: "center" }}>
+      <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+      Choose the games you want to bet on {"\n"} And start playing </Text>
+      </View>
+     
+      
 
-      <SafeAreaView>
+      
         <View
           style={{
-            flex: 6,
+            flex: 5,
             borderRadius: 25,
-            backgroundColor: COLORS.lightGray1,
-            borderWidth: 1,
-            shadowColor: COLORS.gray3,
-            shadowOpacity: 0.5,
-            shadowRadius: 25,
+            backgroundColor: COLORS.white2,
             width: Dimensions.get("window").width * 0.9,
             justifyContent: "center",
             alignItems: "center",
@@ -189,44 +203,48 @@ const CreateEvent = ({ navigation,route }) => {
             />
           )}
         </View>
-      </SafeAreaView>
+     
       <View
         style={{
           flex: 1,
           alignItems: "center",
         }}
       >
-        <View style={{backgroundColor: COLORS.gray3,borderRadius: SIZES.radius,padding:1}}>
-        <Text style={{ fontSize: SIZES.h2 ,padding:4}}>
+        <View style={{margin:5}}>
+        <Text style={{ fontSize: SIZES.h2 , color:COLORS.primary, fontWeight:"bold"}}>
           You choose {mygames.length} games!
         </Text>
         </View>
         
         {!isNext ? (
-          <Button1
-            text="Next"
-            backgroundColor={COLORS.lightOrange}
-            nextPage={nextPage}
-            width={0.3}
+          <View style={{ flexDirection: "row"}}>
+            <Button1
+              text="Next"
+              backgroundColor={COLORS.orangePrimary} 
+              borderColor={COLORS.orangePrimary}
+              nextPage={nextPage}
+              width={0.6}
+              
           />
+          </View>
         ) : (
           <View style={{ flexDirection: "row" }}>
             <Button1
               text="Back"
-              backgroundColor={COLORS.red}
+              backgroundColor={COLORS.orangePrimary}
               nextPage={nextPage}
-              width={0.3}
+              width={0.6}
             />
             <Button1
               text="Create"
-              backgroundColor={COLORS.lightOrange}
+              backgroundColor={COLORS.orangePrimary}
               nextPage={() => postEvent()}
-              width={0.3}
+              width={0.6}
             />
           </View>
         )}
       </View>
-    </Background>
+    </View>
   );
 };
 

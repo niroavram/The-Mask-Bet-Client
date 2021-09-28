@@ -71,7 +71,7 @@ const Home = ({ navigation}) => {
         <TouchableOpacity onPress={profilePage} style={{  flex:1, flexDirection:'row-reverse',alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
           <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
-        <View flexDirection={'row'}  flex={1} justifyContent= {"center" } >
+        <View style ={{flexDirection:'row' , flex:1, justifyContent:"center" }}>
       <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
       <Smiley  style={{flex:3}} navigation={navigation} joinPage={joinPage} />
