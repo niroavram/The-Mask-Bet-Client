@@ -36,7 +36,7 @@ const Home = ({ navigation}) => {
       let user = await AsyncStorage.getItem("userToken");
       setUser(user);
     } catch (error) {
-      alert(error);
+      Alert.alert("The Mask bet",error);
     }
   };
   const [displayJoin, setDisplayJoin] = React.useState(false);

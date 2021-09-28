@@ -39,7 +39,7 @@ const Group = ({ navigation, route }) => {
       setUserToken(user);
       setUserId(user_id);
     } catch (error) {
-      alert(error);
+      Alert.alert("The Mask bet",error);
     }
   };
 
@@ -149,8 +149,8 @@ const Group = ({ navigation, route }) => {
         });
       })
       .catch(function (error) {
-        console.log(mygames.length);
-        alert("Bad move", "try again");
+        console.log(mygames.length )
+        Alert.alert("The Mask bet","Bad move, try again");
         console.log(error);
       });
   };

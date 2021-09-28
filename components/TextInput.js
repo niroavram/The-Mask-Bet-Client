@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { TextInput as Input } from 'react-native-paper'
-import { COLORS } from '../constants'
+import { COLORS, theme } from '../constants'
 
 export default function TextInput({ errorText, description, ...props }) {
   return (
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: theme.colors.surface,
+    color: COLORS.primary
   },
   description: {
     fontSize: 13,

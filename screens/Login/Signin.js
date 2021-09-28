@@ -33,7 +33,7 @@ const Signin = ({navigation}) =>{
       signIn(res.data)
   })
   .catch(function(error){
-    alert("Invalid Email Or Password")
+    Alert.alert("The Mask bet","Invalid Email Or Password")
   })
 }
   return (
