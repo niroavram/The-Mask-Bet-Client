@@ -10,11 +10,14 @@ import server from "../../apis/server";
 import BottomBar from "./compopents/bottomBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Players from "./Players";
+import { Avatar } from "react-native-paper";
+window.navigator.userAgent = 'react-native'
+import io from 'socket.io-client/dist/socket.io'
+
 const Group = ({ navigation, route }) => {
   const [groupDet, setgroupDet] = React.useState("");
   const [group, setGroup] = useState(null);
   const [totoGames, setTotoGames] = useState(null);
-  const [totoGame_id, setTotoGameId] = useState(null);
   const [isAdmin, setisAdmin] = useState(false);
   const [TotoGameActive, setTotoGameActive] = useState(null);
   const [group_id, setId] = useState(null);
@@ -43,15 +46,17 @@ const Group = ({ navigation, route }) => {
       Alert.alert("The Mask bet",error);
     }
   };
-
+  
   useEffect(() => {
-    groupDetGet();
-    getUser();
+    Promise.all([
+      groupDetGet(),
+      getUser(),
+    ])
   });
   const groupDetGet = () => {
-    route.params.groupin
-      ? setgroupDet(route.params.groupin)
-      : setgroupDet(route.params.group.data.totogroup);
+    route.params.group
+      ? setgroupDet(route.params.group)
+      : setgroupDet(route.params.groupin.data.totogroup);
     setId(groupDet._id);
     setTotoGames(groupDet.totoGames);
     if (groupDet.admins != undefined || null) {
@@ -60,9 +65,10 @@ const Group = ({ navigation, route }) => {
   };
 
   if (group != null && TotoGameActive === null) {
-    setTotoGameActive(totoGames.filter((a) => a.isActive));
+    setTotoGameActive((group.totoGames).filter((a) => a.isActive));
   }
-  const getMyGroup = (g) => {
+
+  const getMyGroup = () => {
     server
       .get("my-toto-group", {
         headers: { Authorization: "Bearer " + userToken },
@@ -71,66 +77,57 @@ const Group = ({ navigation, route }) => {
         setGroup(
           ...res.data.totogroup.filter((group) => group._id === group_id)
         );
+        if(group!=null){
+          setTotoGameActive( group.totoGames.filter((a) => a.isActive));
+        }
+        console.log("1")
+        // console.log(group)
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  // if (TotoGameActive != null) {
-  //   if (TotoGameActive[0].events.length > 0 && eventId === null) {
-  //     seteventId(
-  //       TotoGameActive[0].events[TotoGameActive[0].events.length - 1]._id
-  //     );
-  //   }
-
-  //   // const lastEvent = (a) => {
-  //   //   server
-  //   //     .get(
-  //   //       "lastEvent",
-  //   //       { eventId: eventId.toString() },
-  //   //       { headers: { 
-  //   //         'Content-Type': 'application/json'}}
-  //   //     )
-  //   //     .then(function (res) {
-  //   //       console.log(res.data, "no ");
-  //   //       setEvent(res.data)
-  //   //     })
-  //   //     .catch(function (error) {
-  //   //       console.log("error");
-  //   //     });
-  //   // };
+  // setInterval(()=>{getMyGroup();},1000*30);
 
 
-  //   // if (eventId != null && event === null) {
-  //   //   lastEvent();
-  //   //   // setInterval(function() {
-  //   //   //   getLastEvent();
-  //   //   //   }, 1000*10);
-  //   //   console.log(eventId,"hey")
-  //   }
+
+      // setInterval(function() {
+      //   server
+      //   .get("my-toto-group", {
+      //     headers: { Authorization: "Bearer " + userToken },
+      //   })
+      //   .then(function (res) {
+      //     setGroup(
+      //       ...res.data.totogroup.filter((group) => group._id === group_id)
+      //     );
+      //     if(group!=null){
+      //       setTotoGameActive( group.totoGames.filter((a) => a.isActive));
+      //     }
+      //     console.log("1")
+      //     // console.log(group)
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
+      //   }, 1000*10);
+    
   
-
-
   if (group === null && group_id != null) {
     getMyGroup();
   }
   const createEventPage = () => {
+    clearInterval()
     if (TotoGameActive.length > 0) {
-      setTotoGameId(TotoGameActive[0]._id);
-      navigation.navigate("CreateEvent", { totogame: totoGame_id });
+      navigation.navigate("CreateEvent", { totogame: TotoGameActive[0]._id, group: group });
     } else {
       postTotoGame();
     }
   };
 
   const createUserBets = () => {
+    clearInterval()
     const activeGame = group.totoGames.filter((game) => game.isActive);
-
-    navigation.navigate("CreateUserBet", { event:  activeGame[0].events[ activeGame[0].events.length-1] , group: group
-      // event: activeGame[0].events.filter(
-      //   (event) => Date.parse(event.lastGame) > Date.now()
-      // ),
-    });
+    navigation.navigate("CreateUserBet", { event:  activeGame[0].events[ activeGame[0].events.length-1] , group: group});
   };
   const postTotoGame = () => {
     server
@@ -145,14 +142,13 @@ const Group = ({ navigation, route }) => {
         }
       )
       .then(function (res) {
+        setTotoGameActive(res.data.totoGames[res.data.totoGames.length - 1])
         navigation.navigate("CreateEvent", {
-          totogame: res.data.totoGames[res.data.totoGames.length - 1],
+          totogame: res.data.totoGames[res.data.totoGames.length - 1], group: group
         });
       })
       .catch(function (error) {
-        console.log(mygames.length )
         Alert.alert("The Mask bet","Bad move, try again");
-        console.log(error);
       });
   };
 
@@ -216,8 +212,7 @@ const Group = ({ navigation, route }) => {
           ) : (
             <View></View>
           )}
-
-          <Button1
+          {TotoGameActive!=null && TotoGameActive.length>0? <Button1
             style={{ flex: 2, justifyContent: "space-between" }}
             text="Place Your Bet"
             backgroundColor={COLORS.orangePrimary}
@@ -225,7 +220,8 @@ const Group = ({ navigation, route }) => {
             nextPage={createUserBets}
             width={0.6}
           />
-
+: <View></View>}
+         
           <BottomBar pageManager={pageManager} pages={pages} />
         </View>
       ) :pages.players?<Players  navigation={navigation}

@@ -13,6 +13,8 @@ import { COLORS, SIZES } from "../../../constants";
 const Players = (props) => {
   var wid = Dimensions.get("window").width;
   const [index, setIndex] = useState(0);
+  const{userBets,gamesEvent}= props;
+
   const [isSlected, setIsSlected] = useState(false);
   const selctItem = () => {
       if(isSlected){
@@ -23,9 +25,7 @@ const Players = (props) => {
         
       }
   };
-const{userBets}= props;
 
-  
   const [isChangeUserColor, setIsChangeUserColor] = useState(false);
   // const ChangeUserColor = () => {
   //   if (myUser[0].id == 1 ){
@@ -51,7 +51,7 @@ const{userBets}= props;
               {userBets.map((user, index)=>{
                 return (
                   <View  key ={index} style={{flexDirection:"row", marginTop:10, borderRadius: SIZES.radius,backgroundColor: COLORS.darkWhite, justifyContent:'center', flexWrap:'wrap'}}>
-                    <Text  style={{ flex:3, fontSize: SIZES.h3,fontWeight:'bold', color:COLORS.primary, borderRadius:50 , marginTop:10, left:5,  }}>{user.created_by.email}</Text>
+                    <Text  style={{ flex:3, fontSize: SIZES.h3,fontWeight:'bold', color:COLORS.primary, borderRadius:50 , marginTop:10, left:5,  }}>{user.mask}</Text>
                     {user.gameEvents.map((gameEvent,_id)=>{
                       return (
                         <View  key ={gameEvent._id} style={{flex: 1,flexDirection:"column", height:wid *0.05 , alignItems:'center',justifyContent:'center', borderRadius: SIZES.radius, backgroundColor:COLORS.white4, margin:3,marginTop:10, }}>

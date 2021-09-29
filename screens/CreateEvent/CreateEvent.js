@@ -35,7 +35,8 @@ const CreateEvent = ({ navigation,route }) => {
   const [triangles, setTraingles] = useState(0);
   const [price, setPrice] = useState(30);
   const [totogame_id, setgroup_id] = useState(route.params.totogame);
-  console.log(totogame_id)
+  const [group, setgroup] = useState(route.params.group);
+
   useEffect(() => {
     getUser();
   });
@@ -85,8 +86,7 @@ const CreateEvent = ({ navigation,route }) => {
   } }
       )
       .then(function (res) {
-        console.log(res)
-        navigation.goBack()
+        navigation.navigate("Group",{group: route.params.group})
         Alert.alert("The Mask bet","Create is successfully!, Now tell your friends");
       })
       .catch(function (error) {
@@ -174,13 +174,8 @@ const CreateEvent = ({ navigation,route }) => {
                     placeholderTextColor:COLORS.primary,
                     fontSize:18,
                     textAlign:'center'
-                
-
-                    
-
                   }}
                   keyboardType="numeric"
-                  //label="doubles"
                   value={doubles.toString()}
                   onChangeText={onChangeDoubles}
                 />

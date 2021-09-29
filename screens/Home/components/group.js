@@ -15,7 +15,7 @@ import ButtonInside from '../../../components/Buttons/ButtonInside';
 const group = (props) =>{
     let {item,navigation} = props
     const groupPage = ()=>{
-        navigation.navigate('Group',{groupin: item})
+        navigation.navigate('Group',{group: item})
     }
     return (
         <TouchableOpacity style={styles.item} onPress={groupPage}>

@@ -28,7 +28,7 @@ import axios from 'axios'
 const CreateUserBet = ({ navigation,route }) => {
   const [mygames, setMyGames] = useState([]);
   const [isNext, setIsNext] = useState(false);
-  const [mask, setMask] = useState("Jordan");
+  const [mask, setMask] = useState("Mask");
   const [event, setEvent] = useState(route.params.event);
   const [userToken, setUserToken] = useState(null);
   const [doubles, setDoubles] = useState(route.params.event.doubles);
@@ -64,7 +64,7 @@ if(userBets===null){
         }
       )
       .then(function (res) {
-        navigation.navigate("Group",{groupin: route.params.group})
+        navigation.navigate("Group",{group: route.params.group})
       })
       .catch(function (error) {
 console.log(error)
@@ -150,6 +150,22 @@ console.log(error)
         }}
       >
       <View style={{flex:1,alignItems:'center'}}>
+      <View style={{flexDirection: "row",justifyContent: "center",flex:2}}>
+                <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, fontWeight:"bold", top:23 }}>Mask </Text>
+                <TextInput
+                  style={{
+                    minWidth: 60,
+                    maxHeight: 40,
+                    color:COLORS.primary,
+                    fontWeight:'bold',
+                    placeholderTextColor:COLORS.primary,
+                    fontSize:18,
+                    textAlign:'center'
+                  }}
+                  value={mask}
+                  onChangeText={setMask}
+                />
+              </View>
           <View style={{ flexDirection:'row',marginTop:10 ,marginBottom: 10}}>  
               <Text style={{ fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold" }}>   First Game : </Text> 
               <Text style={{ fontSize: SIZES.h3, color: COLORS.primary }}> {moment(event.firstGame).format("dddd, h:mm a")}  </Text>
@@ -163,7 +179,6 @@ console.log(error)
             <Button1 text="Create" backgroundColor={COLORS.orangePrimary} borderColor={COLORS.orangePrimary}  width={0.6}  nextPage={postUserBet} />
             </View>
       </View>
-
       </View>
     </View>
   );

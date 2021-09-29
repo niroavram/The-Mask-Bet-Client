@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
+  Alert,
   TextInput,
   Button,
   Dimensions,
@@ -18,7 +18,6 @@ import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
 import Button1 from "../../components/Buttons/Button1";
-import Alert from "react-native";
 const CreateGroup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [isPublic, setIsPublic] = useState(false);
@@ -46,7 +45,7 @@ const CreateGroup = ({ navigation }) => {
         { headers: { Authorization: "Bearer " + userToken } }
       )
       .then(function (res) {
-        navigation.navigate('Group',{group: res})
+        navigation.navigate('Group',{groupin: res})
         Alert.alert("The Mask bet","Saves successfuly!");
       })
       .catch(function (error) {
