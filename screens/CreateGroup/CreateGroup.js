@@ -45,7 +45,7 @@ const CreateGroup = ({ navigation }) => {
         { headers: { Authorization: "Bearer " + userToken } }
       )
       .then(function (res) {
-        navigation.navigate('Group',{groupin: res})
+        navigation.navigate('Group',{group: res.data.totogroup})
         Alert.alert("The Mask bet","Saves successfuly!");
       })
       .catch(function (error) {
@@ -86,7 +86,7 @@ const CreateGroup = ({ navigation }) => {
           Here you can create your own Group {"\n"}Choose the Name of your Group {"\n"} And decide Whether it be {"\n"}Public or Private
         </Text>
         </View>
-        <RadioButton.Group
+        {/* <RadioButton.Group
           onValueChange={(newValue) => setIsPublic(newValue)}
           value={isPublic}
         >
@@ -103,7 +103,7 @@ const CreateGroup = ({ navigation }) => {
               </View>
 
           </View>
-        </RadioButton.Group>
+        </RadioButton.Group> */}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}

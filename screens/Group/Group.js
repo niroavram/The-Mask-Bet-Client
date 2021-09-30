@@ -10,7 +10,7 @@ import server from "../../apis/server";
 import BottomBar from "./compopents/bottomBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Players from "./Players";
-import { Avatar } from "react-native-paper";
+import { Feather } from '@expo/vector-icons';
 window.navigator.userAgent = 'react-native'
 import io from 'socket.io-client/dist/socket.io'
 
@@ -23,8 +23,10 @@ const Group = ({ navigation, route }) => {
   const [group_id, setId] = useState(null);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [eventId, seteventId] = useState(null);
-  const [event, setEvent] = useState(null);
+  const [buttonCheck, setBottunCheck] = useState(0);
+  const [isPlaceBet, setIsPlaceBet] = useState(false);
+  const [isCreateEvent, setIsCreateEvent] = useState(false);
+
   const [pages, setPages] = useState({
     home: true,
     event: false,
@@ -50,7 +52,7 @@ const Group = ({ navigation, route }) => {
   useEffect(() => {
     Promise.all([
       groupDetGet(),
-      getUser(),
+      getUser()
     ])
   });
   const groupDetGet = () => {
@@ -63,7 +65,18 @@ const Group = ({ navigation, route }) => {
       setisAdmin(groupDet.admins.some((id) => (id = userId)));
     }
   };
-
+  if(buttonCheck!=3 && group!=null){
+    if(group.totoGames.length===0||(TotoGameActive!=null &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].firstGame)<Date.now())){
+      setIsCreateEvent(true)
+    }
+    if(TotoGameActive!=null&&TotoGameActive.length>0&&TotoGameActive[0].isActive&&TotoGameActive[0].events.length>0
+      &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].firstGame)>Date.now()&&
+      (TotoGameActive[0].events[TotoGameActive[0].events.length-1].userBets.length<1 ||!TotoGameActive[0].events[TotoGameActive[0].events.length-1].userBets.some(user=>user.created_by._id===userId))){ 
+        console.log(  )
+        setIsPlaceBet(true)
+      }
+      setBottunCheck(buttonCheck+1)
+  }
   if (group != null && TotoGameActive === null) {
     setTotoGameActive((group.totoGames).filter((a) => a.isActive));
   }
@@ -80,37 +93,14 @@ const Group = ({ navigation, route }) => {
         if(group!=null){
           setTotoGameActive( group.totoGames.filter((a) => a.isActive));
         }
-        console.log("1")
+        setBottunCheck(0)
         // console.log(group)
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  // setInterval(()=>{getMyGroup();},1000*30);
 
-
-
-      // setInterval(function() {
-      //   server
-      //   .get("my-toto-group", {
-      //     headers: { Authorization: "Bearer " + userToken },
-      //   })
-      //   .then(function (res) {
-      //     setGroup(
-      //       ...res.data.totogroup.filter((group) => group._id === group_id)
-      //     );
-      //     if(group!=null){
-      //       setTotoGameActive( group.totoGames.filter((a) => a.isActive));
-      //     }
-      //     console.log("1")
-      //     // console.log(group)
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
-      //   }, 1000*10);
-    
   
   if (group === null && group_id != null) {
     getMyGroup();
@@ -151,7 +141,6 @@ const Group = ({ navigation, route }) => {
         Alert.alert("The Mask bet","Bad move, try again");
       });
   };
-
   return (
     <View style={{ flex: 1 }}>
       {pages.home ? (
@@ -167,6 +156,9 @@ const Group = ({ navigation, route }) => {
           }}
         >
           <BackButton goBack={navigation.goBack} />
+      <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute', top: 45, right: 15,}} >
+      <Feather name="refresh-cw" size={40} color={COLORS.primary} />
+      </TouchableOpacity>
           <View style={{ flex: 2 }}></View>
 
           <View
@@ -200,7 +192,7 @@ const Group = ({ navigation, route }) => {
             </Text>
             <View></View>
           </View>
-          {isAdmin ? (
+          {isAdmin && isCreateEvent ? (
             <Button1
               style={{ flex: 2 }}
               text="Create Event"
@@ -212,7 +204,7 @@ const Group = ({ navigation, route }) => {
           ) : (
             <View></View>
           )}
-          {TotoGameActive!=null && TotoGameActive.length>0? <Button1
+          {isPlaceBet? <Button1
             style={{ flex: 2, justifyContent: "space-between" }}
             text="Place Your Bet"
             backgroundColor={COLORS.orangePrimary}
@@ -222,7 +214,7 @@ const Group = ({ navigation, route }) => {
           />
 : <View></View>}
          
-          <BottomBar pageManager={pageManager} pages={pages} />
+          <BottomBar pageManager={pageManager} pages={pages}  />
         </View>
       ) :pages.players?<Players  navigation={navigation}
       pageManager={pageManager}
@@ -232,6 +224,7 @@ const Group = ({ navigation, route }) => {
           pageManager={pageManager}
           pages={pages}
           TotoGameActive={TotoGameActive}
+          getMyGroup={getMyGroup}
         />
       )}
     </View>

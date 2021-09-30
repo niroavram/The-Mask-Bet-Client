@@ -42,11 +42,12 @@ const JoinGroup = ({ navigation }) => {
         { headers: { Authorization: "Bearer " + userToken } }
       )
       .then(function (res) {
-        navigation.navigate('Group',{groupin: res})
+        navigation.navigate('Group',{group: res.data.totogroup})
         Alert.alert("The Mask bet","Join successfuly!");
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error)
+        Alert.alert("The Mask bet","User already inside this group")
       });
   };
   return (

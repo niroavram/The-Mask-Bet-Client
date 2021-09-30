@@ -50,8 +50,7 @@ const CreateUserBet = ({ navigation,route }) => {
 if(userBets===null){
   setUserBet(gamesEvent)
 }
- 
-// console.log(userBets)
+
   const postUserBet = () => {
 
     server.put("create-userbets",
@@ -113,7 +112,7 @@ console.log(error)
       </View>
       <View
         style={{
-          flex: 5,
+          flex: 9,
           borderRadius: 25,
           width: Dimensions.get("window").width * 0.99,
           justifyContent: "center",
@@ -140,7 +139,7 @@ console.log(error)
       </View>
       <View
         style={{
-          flex: 3,
+          flex: 5,
           borderRadius: 25,
           width: Dimensions.get("window").width * 0.9,
           justifyContent: "center",

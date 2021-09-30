@@ -8,6 +8,7 @@ import {
   FlatList,
   Button,
   Alert,
+  ScrollView
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, FONTS, SIZES } from "../../constants/index";
@@ -20,13 +21,13 @@ import Btn from "../../components/Btn";
 import Games from "./components/games";
 import BottomBar from "../Group/compopents/bottomBar";
 import Players from "./components/player";
-import { event } from "react-native-reanimated";
+import { Feather } from '@expo/vector-icons';
 
 const GroupEvents = (props) => {
   const [hasAchance, setHasAchance] = useState([]);
   const [losers, setLosers] = useState([]);
   const [isBuckerDone, setIsBucketDone] = useState(null);
-  const { navigation, pageManager, pages, TotoGameActive } = props;
+  const { navigation, pageManager, pages, TotoGameActive,getMyGroup } = props;
 
   const bucketUsers = (event) => {
     let user = event.userBets;
@@ -35,15 +36,21 @@ const GroupEvents = (props) => {
     let index = 0;
     let lose = []
     let win = []
-    console.log("object")
     for (let i = 0; i < user.length; i++) {
       index = 0;
       isLoser = false;
       while (index < games.length - 1 && !isLoser) {
-        if (user[i].gameEvents[index].gameApi.scoreHomeTeam === null) {
+        if (games[index].gameApi.scoreHomeTeam === null) {
           index = games.length;
-        } else if (user[i].gameEvents[index].startGame != games[index].startGame) {
-          isLoser = true;
+        } else {
+          var result = games[index].gameApi.scoreHomeTeam - games[index].gameApi.scoreHomeTeam
+              if(result>0){
+                user[i].gameEvents[index].bet[0]===1?isLoser=true:isLoser=false
+              }else if( result<0){
+                user[i].gameEvents[index].bet[2]===1?isLoser=true:isLoser=false
+              }else{
+                user[i].gameEvents[index].bet[1]===1?isLoser=true:isLoser=false
+              }
         }
         index++;
       }
@@ -91,6 +98,9 @@ const GroupEvents = (props) => {
           alignItems={"right"}
           paddingtop={10}
         />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={getMyGroup} style={{position: 'absolute', top: 50, right: 55,}} >
+      <Feather name="refresh-cw" size={40} color={COLORS.primary} />
       </TouchableOpacity>
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
@@ -141,7 +151,7 @@ const GroupEvents = (props) => {
         </Text>
       </View>
       <View style={{ flex: 15}}>
-        <View style={{ flex: 2}}>
+        <View style={{ flex: 1}}>
         <Games
           gameEvents={
             TotoGameActive[0].events[TotoGameActive[0].events.length - 1]
@@ -169,12 +179,24 @@ const GroupEvents = (props) => {
             Has A Chance
           </Text>
         </View>
-        <View style={{ flex: 6 }}>
+        <FlatList
+              numColumns={1}
+              keyExtractor={(item) => item._id}
+              data={hasAchance}
+              renderItem={({ item }) => (
+                <Players
+                  item={item}
+                  gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
+                  isWinner={true}
+                />
+                )}
+                />
+        {/* <View style={{ flex: 6 }}>
           <Players
             userBets={hasAchance}
             gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
           />
-        </View>
+        </View> */}
         <View
           style={{
             flex: 1,
@@ -194,12 +216,24 @@ const GroupEvents = (props) => {
             Mmmmmm Maybe Next Time
           </Text>
         </View>
-        <View style={{ flex: 6 }}>
+        <FlatList
+              numColumns={1}
+              keyExtractor={(item) => item._id}
+              data={losers}
+              renderItem={({ item }) => (
+                <Players
+                  item={item}
+                  gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
+                  isWinner={false}
+                />
+                )}
+                />
+        {/* <View style={{ flex: 6 }}>
           <Players
             userBets={losers}
             gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
           />
-        </View>
+        </View> */}
       </View>
 
       <View style={{ flex: 2 }}>
