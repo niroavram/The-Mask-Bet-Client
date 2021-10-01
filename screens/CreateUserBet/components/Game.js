@@ -56,11 +56,11 @@ const selectedItem2 = (bet)=>{
           <View
             style={{ flex: 4, justifyContent: "center" }}
           >
-            <Text style={{ fontSize: SIZES.h3,textAlign:'left', fontWeight:"bold" , color:COLORS.primary }}>{item.homeTeam}</Text>
-            <Text style={{ fontSize: SIZES.h3,textAlign: 'left', fontWeight:"bold" , color:COLORS.primary }}>{item.awayTeam}</Text>
+            <Text style={{ fontSize: 12,textAlign:'left', fontWeight:"bold" , color:COLORS.primary }}>{item.homeTeam} - </Text>
+            <Text style={{ fontSize: 12,textAlign: 'left', fontWeight:"bold" , color:COLORS.primary }}>{item.awayTeam}</Text>
           </View>
           <View
-            style={{ flex: 3, alignItems: "center", justifyContent: "center" }}
+            style={{ flex: 2, alignItems: "center", justifyContent: "center" }}
           >
             <Text style={{ fontSize: SIZES.h5 ,color:COLORS.primary}}>
               {moment(item.startGame).format("ddd, HH:mm ")}
@@ -68,7 +68,7 @@ const selectedItem2 = (bet)=>{
           </View>
           <View
             style={{
-              flex: 5,
+              flex: 4,
               alignItems: "center",
               justifyContent: "center",
               flexDirection: "row",

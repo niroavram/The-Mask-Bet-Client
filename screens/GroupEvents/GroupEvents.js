@@ -80,27 +80,11 @@ const GroupEvents = (props) => {
       }}
     >
       <BackButton goBack={navigation.goBack} />
-      <TouchableOpacity
-        onPress={profilePage}
-        style={{
-          flexDirection: "row-reverse",
-          marginTop: 50,
-          alignSelf: "flex-end",
-          justifyContent: "space-around",
-          borderRadius: SIZES.radius,
-          width: 50,
-        }}
-      >
-        <Ionicons
-          name="ios-person-sharp"
-          size={33}
-          color={COLORS.primary}
-          alignItems={"right"}
-          paddingtop={10}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={getMyGroup} style={{position: 'absolute', top: 50, right: 55,}} >
-      <Feather name="refresh-cw" size={40} color={COLORS.primary} />
+      <TouchableOpacity onPress={profilePage} style={{  flex:2, flexDirection:'row-reverse', marginTop:50, alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} paddingtop={10}/>
+        </TouchableOpacity>
+      <TouchableOpacity onPress={getMyGroup} style={{position: 'absolute',top: 55}} >
+      <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
       </TouchableOpacity>
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
@@ -162,7 +146,7 @@ const GroupEvents = (props) => {
   
         <View
           style={{
-            flex: 1,
+            flex: 2,
             backgroundColor: COLORS.white2,
             flexDirection: "row",
           }}
@@ -199,7 +183,7 @@ const GroupEvents = (props) => {
         </View> */}
         <View
           style={{
-            flex: 1,
+            flex: 2,
             backgroundColor: COLORS.white2,
             flexDirection: "row",
           }}
