@@ -46,8 +46,11 @@ const GameScore=(home,away)=>{
 
 if(win===null && gameApi!=null){
     setWin(1)
-    var bet = GameScore(gameApi.gameApi.scoreHomeTeam,gameApi.gameApi.scoreAwayTeam)
-    setIsWin((GameResult(game.bet)).includes(bet))
+    if(Date.parse(gameApi.startGame)<Date.now()){
+      var bet = GameScore(gameApi.gameApi.scoreHomeTeam,gameApi.gameApi.scoreAwayTeam)
+      setIsWin((GameResult(game.bet)).includes(bet))
+    }
+
 }
   return (
 

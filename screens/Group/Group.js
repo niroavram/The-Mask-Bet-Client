@@ -11,8 +11,7 @@ import BottomBar from "./compopents/bottomBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Players from "./Players";
 import { Feather } from '@expo/vector-icons';
-window.navigator.userAgent = 'react-native'
-import io from 'socket.io-client/dist/socket.io'
+
 
 const Group = ({ navigation, route }) => {
   const [groupDet, setgroupDet] = React.useState("");
@@ -68,9 +67,11 @@ const Group = ({ navigation, route }) => {
     }
   };
   if(buttonCheck!=3 && group!=null){
-    if (TotoGameActive!=null)
-     { if (TotoGameActive[0].events.length > 1) {setTotalPrice(TotoGameActive[0].events.reduce(function(a,b){ return a.price + b.price},0))}
-     else (setTotalPrice(TotoGameActive[0].events[0].price)) }
+    // if (TotoGameActive!=null && TotoGameActive[0].events.length>0){ 
+    //   if (TotoGameActive[0].events.length > 1) {
+    //     // setTotalPrice(TotoGameActive[0].events.reduce(function(a,b){ return a.price + b.price},0))
+    //   }
+    //  else (setTotalPrice(TotoGameActive[0].events[0].price)) }
     
     if(group.totoGames.length===0||(TotoGameActive!=null &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].firstGame)<Date.now())){
       setIsCreateEvent(true)

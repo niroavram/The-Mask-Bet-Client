@@ -61,7 +61,7 @@ const GroupEvents = (props) => {
     setLosers(lose)
   };
 
-  if (isBuckerDone === null) {
+  if (isBuckerDone === null && TotoGameActive!=null||undefined && TotoGameActive[0].events.length>0) {
     bucketUsers(TotoGameActive[0].events[TotoGameActive[0].events.length - 1]);
   }
   const profilePage = () => {
@@ -89,136 +89,153 @@ const GroupEvents = (props) => {
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
       </View>
-
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flex: 2,
-          left: 20, }}
-      >
-        <Text
-          style={{
-            fontSize: SIZES.h3,
-            color: COLORS.black,
-            fontWeight: "bold",
-            flex: 1,
-          }}
-        >
-          Round: {TotoGameActive[0].events.length}
-        </Text>
-        <Text
-          style={{
-            fontSize: SIZES.h3,
-            color: COLORS.black,
-            fontWeight: "bold",
-            flex: 1,
-          }}
-        >
-          Price:{" "}
-          {TotoGameActive[0].events[TotoGameActive[0].events.length - 1].price}
-        </Text>
-        <Text
-          style={{
-            fontSize: SIZES.h3,
-            color: COLORS.black,
-            fontWeight: "bold",
-            flex: 1,
-          }}
-        >
-          Doubles:{" "}
-          {
-            TotoGameActive[0].events[TotoGameActive[0].events.length - 1]
-              .doubles
-          }
-        </Text>
-      </View>
-      <View style={{ flex: 15}}>
-        <View style={{ flex: 1}}>
-        <Games
-          gameEvents={
-            TotoGameActive[0].events[TotoGameActive[0].events.length - 1]
-              .gamesEvent
-          }
-        />
-        </View>
-  
-        <View
-          style={{
-            flex: 2,
-            backgroundColor: COLORS.white2,
-            flexDirection: "row",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: SIZES.h3,
-              left: 20,
-              color: COLORS.primary,
-              fontWeight: "bold",
-              top: 40,
-            }}
-          >
-            Has A Chance
-          </Text>
-        </View>
-        <FlatList
-              numColumns={1}
-              keyExtractor={(item) => item._id}
-              data={hasAchance}
-              renderItem={({ item }) => (
-                <Players
-                  item={item}
-                  gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
-                  isWinner={true}
-                />
-                )}
-                />
-        {/* <View style={{ flex: 6 }}>
-          <Players
-            userBets={hasAchance}
-            gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
-          />
-        </View> */}
-        <View
-          style={{
-            flex: 2,
-            backgroundColor: COLORS.white2,
-            flexDirection: "row",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: SIZES.h3,
-              left: 20,
-              color: COLORS.primary,
-              fontWeight: "bold",
-              top: 40,
-            }}
-          >
-            Mmmmmm Maybe Next Time
-          </Text>
-        </View>
-        <FlatList
-              numColumns={1}
-              keyExtractor={(item) => item._id}
-              data={losers}
-              renderItem={({ item }) => (
-                <Players
-                  item={item}
-                  gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
-                  isWinner={false}
-                />
-                )}
-                />
-        {/* <View style={{ flex: 6 }}>
-          <Players
-            userBets={losers}
-            gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
-          />
-        </View> */}
-      </View>
+      {TotoGameActive!=null||undefined && TotoGameActive[0].events.length>0?
+       <View style={{flex: 14}} >
+       <View
+         style={{
+           flexDirection: "row",
+           alignItems: "center",
+           justifyContent: "space-between",
+           flex: 2,
+           left: 20, }}
+       >
+         <Text
+           style={{
+             fontSize: SIZES.h3,
+             color: COLORS.black,
+             fontWeight: "bold",
+             flex: 1,
+           }}
+         >
+           Round: {TotoGameActive!=null? TotoGameActive[0].events.length:0}
+         </Text>
+         <Text
+           style={{
+             fontSize: SIZES.h3,
+             color: COLORS.black,
+             fontWeight: "bold",
+             flex: 1,
+           }}
+         >
+           Price:{" "}
+           {TotoGameActive[0].events[TotoGameActive[0].events.length - 1].price}
+         </Text>
+         <Text
+           style={{
+             fontSize: SIZES.h3,
+             color: COLORS.black,
+             fontWeight: "bold",
+             flex: 1,
+           }}
+         >
+           Doubles:{" "}
+           {
+             TotoGameActive[0].events[TotoGameActive[0].events.length - 1]
+               .doubles
+           }
+         </Text>
+       </View>
+       <View style={{ flex: 15}}>
+         <View style={{ flex: 1}}>
+         <Games
+           gameEvents={
+             TotoGameActive[0].events[TotoGameActive[0].events.length - 1]
+               .gamesEvent
+           }
+         />
+         </View>
+   
+         <View
+           style={{
+             flex: 2,
+             backgroundColor: COLORS.white2,
+             flexDirection: "row",
+           }}
+         >
+           <Text
+             style={{
+               fontSize: SIZES.h3,
+               left: 20,
+               color: COLORS.primary,
+               fontWeight: "bold",
+               top: 40,
+             }}
+           >
+             Has A Chance
+           </Text>
+         </View>
+         <FlatList
+               numColumns={1}
+               keyExtractor={(item) => item._id}
+               data={hasAchance}
+               renderItem={({ item }) => (
+                 <Players
+                   item={item}
+                   gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
+                   isWinner={true}
+                 />
+                 )}
+                 />
+         {/* <View style={{ flex: 6 }}>
+           <Players
+             userBets={hasAchance}
+             gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
+           />
+         </View> */}
+         <View
+           style={{
+             flex: 2,
+             backgroundColor: COLORS.white2,
+             flexDirection: "row",
+           }}
+         >
+           <Text
+             style={{
+               fontSize: SIZES.h3,
+               left: 20,
+               color: COLORS.primary,
+               fontWeight: "bold",
+               top: 40,
+             }}
+           >
+             Mmmmmm Maybe Next Time
+           </Text>
+         </View>
+         <FlatList
+               numColumns={1}
+               keyExtractor={(item) => item._id}
+               data={losers}
+               renderItem={({ item }) => (
+                 <Players
+                   item={item}
+                   gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
+                   isWinner={false}
+                 />
+                 )}
+                 />
+         {/* <View style={{ flex: 6 }}>
+           <Players
+             userBets={losers}
+             gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
+           />
+         </View> */}
+       </View>
+       </View>:
+       <View style={{flex:12}} >
+   <Text
+             style={{
+               fontSize: SIZES.largeTitle,
+               left: 20,
+               color: COLORS.primary,
+               fontWeight: "bold",
+               top: 40,
+             }}
+           >
+           There is no event yet
+           </Text>
+       </View>
+    }
+     
 
       <View style={{ flex: 2 }}>
         <BottomBar pageManager={pageManager} pages={pages} />
