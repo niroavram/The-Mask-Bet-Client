@@ -15,6 +15,7 @@ import CreateGroup from "./screens/CreateGroup/CreateGroup";
 import CreateEvent from "./screens/CreateEvent/CreateEvent";
 import CreateUserBet from "./screens/CreateUserBet/CreateUserBet";
 import Group from "./screens/Group/Group";
+import Rules from "./screens/Ruels/Ruels";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GroupEvents from "./screens/GroupEvents/GroupEvents";
 const Stack = createStackNavigator();
@@ -132,6 +133,7 @@ const App = () => {
     <Stack.Screen name="Group" component={Group} />
     <Stack.Screen name="GroupEvents" component={GroupEvents} />
     <Stack.Screen name="CreateUserBet" component={CreateUserBet} />
+    <Stack.Screen name="Rules" component={Rules} />
 
 
 

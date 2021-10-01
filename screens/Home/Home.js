@@ -17,6 +17,7 @@ import server from "../../apis/server";
 import Background from "../../components/Background";
 import Hello from "../newOne/hello";
 import { Ionicons } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Home = ({ navigation}) => {
   const [myGroupss, setMyGroupss] = useState(null)
@@ -48,6 +49,11 @@ const Home = ({ navigation}) => {
   const profilePage = () => {
     navigation.navigate('Profile')  
   };
+
+  const rulesGame = () => {
+    navigation.navigate('Rules')  
+  };
+
   const getMyGroups = () => {
     server
       .get("my-toto-group",{headers: { Authorization: "Bearer " + userToken }} )
@@ -68,9 +74,14 @@ const Home = ({ navigation}) => {
   return (
     <View style={styles.container}>
       
-        <TouchableOpacity onPress={profilePage} style={{  flex:1, flexDirection:'row-reverse',alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+      <View style={{flex:1, flexDirection:'row'}}>
+      <TouchableOpacity onPress={rulesGame} style={{flex:1, justifyContent:"space-around", borderRadius: SIZES.radius, width:50,left:20 }}>
+          <SimpleLineIcons name="book-open" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={profilePage} style={{  flex:1, left: 145, justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
           <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
+        </View>
         <View style ={{flexDirection:'row' , flex:1, justifyContent:"center" }}>
       <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
