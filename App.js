@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View,I18nManager } from "react-native";
 import Tabs from "./navigation/Tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "./components/context";
@@ -19,7 +19,7 @@ import Rules from "./screens/Ruels/Ruels";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GroupEvents from "./screens/GroupEvents/GroupEvents";
 const Stack = createStackNavigator();
-
+I18nManager.allowRTL(false)
 const App = () => {
   // const [isLoading, setIsLoading] = React.useState(true);
   // const [userToken, setUserTsoken] = React.useState(null);

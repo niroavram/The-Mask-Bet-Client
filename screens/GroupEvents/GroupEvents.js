@@ -23,7 +23,7 @@ import BottomBar from "../Group/compopents/bottomBar";
 import Players from "./components/player";
 import { Feather } from '@expo/vector-icons';
 
-const GroupEvents = (props) => {
+const GroupEvents = (props) => { 
   const [hasAchance, setHasAchance] = useState([]);
   const [losers, setLosers] = useState([]);
   const [isBuckerDone, setIsBucketDone] = useState(null);
@@ -60,9 +60,9 @@ const GroupEvents = (props) => {
     setHasAchance(win)
     setLosers(lose)
   };
-
-  if (isBuckerDone === null && TotoGameActive!=null||undefined && TotoGameActive[0].events.length>0) {
+  if (isBuckerDone === null && TotoGameActive.length>0 ) {
     bucketUsers(TotoGameActive[0].events[TotoGameActive[0].events.length - 1]);
+
   }
   const profilePage = () => {
     navigation.navigate("Profile");
@@ -89,7 +89,7 @@ const GroupEvents = (props) => {
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
       </View>
-      {TotoGameActive!=null||undefined && TotoGameActive[0].events.length>0?
+      {TotoGameActive.length>0 && TotoGameActive[0].events.length>0?
        <View style={{flex: 14}} >
        <View
          style={{
@@ -176,12 +176,7 @@ const GroupEvents = (props) => {
                  />
                  )}
                  />
-         {/* <View style={{ flex: 6 }}>
-           <Players
-             userBets={hasAchance}
-             gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
-           />
-         </View> */}
+  
          <View
            style={{
              flex: 2,
@@ -213,12 +208,6 @@ const GroupEvents = (props) => {
                  />
                  )}
                  />
-         {/* <View style={{ flex: 6 }}>
-           <Players
-             userBets={losers}
-             gamesEvent={TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent}
-           />
-         </View> */}
        </View>
        </View>:
        <View style={{flex:12}} >
@@ -234,7 +223,7 @@ const GroupEvents = (props) => {
            There is no event yet
            </Text>
        </View>
-    }
+}
      
 
       <View style={{ flex: 2 }}>
