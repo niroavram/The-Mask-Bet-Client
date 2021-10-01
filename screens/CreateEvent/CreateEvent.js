@@ -9,6 +9,7 @@ import {
   ScrollView,
   FlatList,
   Dimensions,
+  I18nManager
 } from "react-native";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,6 +24,7 @@ import BackButton from "../../components/Buttons/BackButton";
 import Leagues from "./components/Leagues";
 import { Switch, TextInput } from "react-native-paper";
 import { Alert } from "react-native";
+I18nManager.allowRTL(false)
 
 const CreateEvent = ({ navigation,route }) => {
   const [leagues, setLeauges] = useState(null);

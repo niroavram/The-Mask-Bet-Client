@@ -7,6 +7,7 @@ import {
   TextInput,
   FlatList,
   Button,
+  I18nManager
 } from "react-native";
 import { COLORS, SIZES } from "../../constants";
 import styles from "./styles";
@@ -15,18 +16,14 @@ import Smiley from "./components/smiley";
 import Logo from "../../components/Logo";
 import server from "../../apis/server";
 import Background from "../../components/Background";
-import Hello from "../newOne/hello";
 import { Ionicons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+I18nManager.allowRTL(false)
+
 const Home = ({ navigation}) => {
   const [myGroupss, setMyGroupss] = useState(null)
-  const [myGroups, setMyGroups] = useState([
-    { name: "Maccabi", id: 1 },
-    { name: "Killes", id: 2 },
-    { name: "Zehavi", id: 3 },
-    { name: "Haifa", id: 4 },
-  ]);
+
   const [userToken, setUser] = React.useState(null);
 
   useEffect(() => {

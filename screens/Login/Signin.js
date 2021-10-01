@@ -8,7 +8,7 @@ import {
     FlatList,
     Button,
     Alert,
-    Dimensions
+    Dimensions,I18nManager
 } from 'react-native';
 import styles from "./styles"
 import { Ionicons } from '@expo/vector-icons';
@@ -21,6 +21,8 @@ import Logo from '../../components/Logo';
 import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
+I18nManager.allowRTL(false)
+
 const Signin = ({navigation}) =>{
   const [email, setEmail]=useState("niroavram@gmail.com")
   const [password, setPassword]=useState("Nir12112")

@@ -8,7 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
   FlatList,
-  Dimensions,
+  Dimensions,I18nManager
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { RadioButton } from "react-native-paper";
@@ -23,7 +23,7 @@ import { Switch, TextInput } from "react-native-paper";
 import moment from "moment";
 import Game from "./components/Game";
 import Alert from "react-native";
-import axios from 'axios'
+I18nManager.allowRTL(false)
 
 const CreateUserBet = ({ navigation,route }) => {
   const [mygames, setMyGames] = useState([]);

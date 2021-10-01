@@ -6,7 +6,7 @@ import {
   Alert,
   TextInput,
   Button,
-  Dimensions,
+  Dimensions,I18nManager
 } from "react-native";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +18,8 @@ import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
 import Button1 from "../../components/Buttons/Button1";
+I18nManager.allowRTL(false)
+
 const CreateGroup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [isPublic, setIsPublic] = useState(false);

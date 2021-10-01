@@ -3,8 +3,8 @@ import {
     View,
     Text,
     TouchableOpacity,
-    ScrollViewComponent,
-    
+    ScrollView,
+    I18nManager
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import {COLORS,FONTS,SIZES,images} from "../../constants/index"
@@ -16,7 +16,8 @@ import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
 import Button1 from '../../components/Buttons/Button1';
-import { ScrollView } from 'react-native-gesture-handler';
+I18nManager.allowRTL(false)
+
 const Rules = ({navigation}) =>{
     
     const profilePage = () => {
@@ -48,18 +49,23 @@ const Rules = ({navigation}) =>{
         
         
         <View style={{flex:10}}>
-        <View style={{flex:1}}>
+        <View style={{flex:2}}>
         <Text style={{fontSize:SIZES.h3 ,color: COLORS.primary, fontWeight:"bold", textAlign:"center"}}>
             A football guessing game between friends 
         </Text>    
         <Text style={{fontSize:SIZES.h3 ,color: COLORS.primary, fontWeight:"bold", textAlign:"center"}}>  
             The purpose is to catch all the games 
         </Text>
+
         </View> 
-        <View style={{flex:9}}>     
+        <View style={{flex:1}}>
         <Text style={{fontSize:18 ,color: COLORS.primary, fontWeight:"bold", textAlign:"left", left:10}}>
             Game's Rules:
         </Text>
+        </View>
+        <View style={{flex:13}}>
+        <ScrollView >     
+       
         <Text style={{fontSize:15 ,color: COLORS.primary, textAlign:"left", left:10}}>
         <Text style={{fontWeight:"bold", left:10}}>1.</Text> You can create a new group and invited your{"\n"} 
             &nbsp;&nbsp;&nbsp; freinds by sharing the Group code. You can also{"\n"} 
@@ -90,7 +96,8 @@ const Rules = ({navigation}) =>{
             &nbsp;&nbsp;&nbsp;&nbsp; page the results of the games, and see who still {"\n"}
             &nbsp;&nbsp;&nbsp;&nbsp; has a chance to win and who is losing.
         </Text>
-        </View>   
+        </ScrollView>   
+        </View>
         </View>      
         
            

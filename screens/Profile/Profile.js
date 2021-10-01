@@ -7,7 +7,8 @@ import {
     TextInput,
     FlatList,
     Button,
-    Dimensions
+    Dimensions,
+    I18nManager
 } from 'react-native';
 import styles from "./styles"
 import { Ionicons } from '@expo/vector-icons';
@@ -20,6 +21,8 @@ import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
 import Button1 from '../../components/Buttons/Button1';
+I18nManager.allowRTL(false)
+
 const Profile = ({navigation}) =>{
   const [email, setEmail]=useState("")
   const [password, setPassword]=useState("")

@@ -13,7 +13,6 @@ import {
 import { SIZES,COLORS } from '../../../constants';
 import Button1 from '../../../components/Buttons/Button1';
 import Logo from '../../../components/Logo';
-import hello from '../../newOne/hello';
 const smiley = ({navigation}) =>{
     const [displayJoin, setDisplayJoin] = React.useState(false);
     const nextPage = () =>{

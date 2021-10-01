@@ -8,7 +8,8 @@ import {
   FlatList,
   Button,
   Dimensions,
-  Alert
+  Alert,
+  I18nManager
 } from "react-native";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -19,6 +20,8 @@ import Background from "../../components/Background";
 import Button1 from "../../components/Buttons/Button1";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
+I18nManager.allowRTL(false)
+
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

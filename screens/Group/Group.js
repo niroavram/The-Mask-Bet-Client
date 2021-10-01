@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, Image, Dimensions,I18nManager } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, FONTS, SIZES } from "../../constants/index";
 import Button1 from "../../components/Buttons/Button1";
@@ -11,6 +11,7 @@ import BottomBar from "./compopents/bottomBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Players from "./Players";
 import { Feather } from '@expo/vector-icons';
+I18nManager.allowRTL(false)
 
 
 const Group = ({ navigation, route }) => {
