@@ -26,6 +26,8 @@ const Group = ({ navigation, route }) => {
   const [buttonCheck, setBottunCheck] = useState(0);
   const [isPlaceBet, setIsPlaceBet] = useState(false);
   const [isCreateEvent, setIsCreateEvent] = useState(false);
+  const [TotalPrice, setTotalPrice] = useState(0);
+
 
   const [pages, setPages] = useState({
     home: true,
@@ -66,6 +68,10 @@ const Group = ({ navigation, route }) => {
     }
   };
   if(buttonCheck!=3 && group!=null){
+    if (TotoGameActive!=null)
+     { if (TotoGameActive[0].events.length > 1) {setTotalPrice(TotoGameActive[0].events.reduce(function(a,b){ return a.price + b.price},0))}
+     else (setTotalPrice(TotoGameActive[0].events[0].price)) }
+    
     if(group.totoGames.length===0||(TotoGameActive!=null &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].firstGame)<Date.now())){
       setIsCreateEvent(true)
     }
@@ -114,6 +120,10 @@ const Group = ({ navigation, route }) => {
     }
   };
 
+  const profilePage = () => {
+    navigation.navigate('Profile')  
+  };
+
   const createUserBets = () => {
     clearInterval()
     const activeGame = group.totoGames.filter((game) => game.isActive);
@@ -156,8 +166,11 @@ const Group = ({ navigation, route }) => {
           }}
         >
           <BackButton goBack={navigation.goBack} />
-      <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute', top: 45, right: 15,}} >
-      <Feather name="refresh-cw" size={40} color={COLORS.primary} />
+        <TouchableOpacity onPress={profilePage} style={{  flex:1, flexDirection:'row-reverse', marginTop:50, alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} paddingtop={10}/>
+        </TouchableOpacity>
+      <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute', top: 55}} >
+      <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
       </TouchableOpacity>
           <View style={{ flex: 2 }}></View>
 
@@ -189,6 +202,15 @@ const Group = ({ navigation, route }) => {
               }}
             >
               Group Code : {groupDet.code}
+            </Text>
+            <Text
+              style={{
+                fontSize: SIZES.h2,
+                color: COLORS.primary,
+                fontWeight: "bold",
+              }}
+            >
+              Total Price : {TotalPrice}
             </Text>
             <View></View>
           </View>

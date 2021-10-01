@@ -17,7 +17,7 @@ const Players = (props) => {
 
   return (
             <View style={{ width: wid * 0.98}}>    
-                  <View   style={{flexDirection:"row", borderRadius: SIZES.radius-10,borderWidth:0.5,backgroundColor: isWinner? COLORS.darkWhite : COLORS.red2, justifyContent:'center', flexWrap:'wrap'}}>
+                  <View   style={{flexDirection:"row", borderRadius: SIZES.radius-10,backgroundColor: isWinner? COLORS.darkGreen : COLORS.red2, justifyContent:'center', flexWrap:'wrap', marginBottom:20}}>
                     <Text  style={{ flex:3, fontSize: SIZES.h3,fontWeight:'bold', color:COLORS.primary, borderRadius:50 , marginTop:10, left:5}}>{item.mask}</Text>
                     <View style={{flex:10}} >
                     <FlatList

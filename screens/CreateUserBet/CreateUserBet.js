@@ -105,7 +105,7 @@ console.log(error)
       <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
 
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex: 2, alignItems: "center", justifyContent: "center" }}>
         <Text style={{ fontSize: SIZES.h1, color: COLORS.primary, fontWeight:"bold" }}>
           Place Your Bet
         </Text>
@@ -122,7 +122,7 @@ console.log(error)
       >
         <View style={{flexDirection: 'row', alignContent:'center', marginTop:10}}>
           <Text style={{ flex:1 ,fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold", marginLeft:50 }}> Doubles : {event.doubles}</Text>
-          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round :4</Text>
+          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round : {event.length}</Text>
         </View>
         <FlatList 
               numColumns={1}
@@ -149,7 +149,7 @@ console.log(error)
         }}
       >
       <View style={{flex:1,alignItems:'center'}}>
-      <View style={{flexDirection: "row",justifyContent: "center",flex:2}}>
+      <View style={{flexDirection: "row",justifyContent: "center"}}>
                 <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, fontWeight:"bold", top:23 }}>Mask </Text>
                 <TextInput
                   style={{
