@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
     View,
     Text,
@@ -8,7 +8,7 @@ import {
     FlatList,
     Button,
     Dimensions,
-    I18nManager
+    I18nManager,
 } from 'react-native';
 import styles from "./styles"
 import { Ionicons } from '@expo/vector-icons';
@@ -21,32 +21,31 @@ import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
 import Button1 from '../../components/Buttons/Button1';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 I18nManager.allowRTL(false)
 
 const Profile = ({navigation}) =>{
-  const [email, setEmail]=useState("")
-  const [password, setPassword]=useState("")
-  const [s, setPad]=useState("ss")
- 
-  // const getDataUsingAsyncAwaitGetCall = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       'https://the-mask-bet-server.herokuapp.com/leagues',
-  //     );
-  //     alert(JSON.stringify(response.data));
-  //     setPad(JSON.stringify(response))
-  //   } catch (error) {
-  //     // handle error
-  //     alert(error.message);
-  //   }
-  // };
+
+  const [username, setUser] = useState(" ");
+  useEffect(() => {
+    Promise.all([
+      getUser()
+    ])
+  });
+  const getUser = async () => {
+    try {
+      let user = await AsyncStorage.getItem("userName");
+      setUser(user);
+    } catch (error) {
+      // alert("Opsss miss you");
+      console.log(error)
+    }
+  };
+
   const {signOut} = React.useContext(AuthContext)
   const [coins,setCoins] =  React.useState(5400)
-  const postData = ()=>{
 
-    signOut()
-
-}
 const Coins = ()=>{
 
     setCoins(10000)
@@ -63,9 +62,7 @@ const Coins = ()=>{
                     <BackButton goBack={navigation.goBack}/>
 
           <View style={{flex:1,bottom:0}}>
-{/* <Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightOrange3}}>
-  Welcome !
-  </Text>    */}
+
          </View>
        
           <View style={{
@@ -84,7 +81,7 @@ const Coins = ()=>{
 </View>
 <View style={{flex:1}}>
 <Text style={{fontSize: SIZES.h2 ,color: COLORS.primary, fontWeight:"bold" ,textAlign: "center"}}>
- Hello , Nir {"\n"}
+ Hello , {username} {"\n"}
   </Text>
   <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
  Here you can see your profile name {"\n"}and the amount of coins you {"\n"}have achieved so far
@@ -114,9 +111,7 @@ const Coins = ()=>{
             </View>
   </View>
   <View style={{flex:1,bottom:0}}>
-{/* <Text style={{fontSize: SIZES.largeTitle ,color: COLORS.lightOrange3}}>
-  Welcome !
-  </Text>    */}
+
          </View>
       </View>    )
 }

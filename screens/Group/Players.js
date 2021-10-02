@@ -92,7 +92,7 @@ const Players = (props) => {
               renderItem={({ item,index }) => (
              <View style={{marginTop: 5, padding :10, borderRadius: SIZES.radius,backgroundColor: item._id===userId? COLORS.orangePrimary:COLORS.darkWhite,}}>
                     <Text style={{fontSize: SIZES.h3 ,width:Dimensions.get("window").width *0.8, fontWeight:'bold',  color: COLORS.primary ,textAlign: "center"} }>
-                        {item.email}
+                        {item.username}
                     </Text>
              </View>
                 )}

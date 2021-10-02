@@ -17,6 +17,7 @@ import Logo from "../../components/Logo";
 import server from "../../apis/server";
 import Background from "../../components/Background";
 import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 I18nManager.allowRTL(false)
@@ -64,9 +65,7 @@ const Home = ({ navigation}) => {
   if (myGroupss === null) {
     getMyGroups();
   }
-  const GroupEvents = () => {
-    navigation.navigate('GroupEvents')  
-  };
+ 
 
   return (
     <View style={styles.container}>
@@ -78,8 +77,11 @@ const Home = ({ navigation}) => {
         <TouchableOpacity onPress={profilePage} style={{  flex:1, left: 145, justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
           <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
+        <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute',right:180}} >
+      <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
+      </TouchableOpacity>
         </View>
-        <View style ={{flexDirection:'row' , flex:1, justifyContent:"center" }}>
+        <View style ={{flexDirection:'row' , flex:1, justifyContent:"center" , top:-15}}>
       <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
       <Smiley  style={{flex:3}} navigation={navigation} joinPage={joinPage} />

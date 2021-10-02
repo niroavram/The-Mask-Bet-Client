@@ -69,7 +69,8 @@ const App = () => {
       console.log(user)
       try {
         await AsyncStorage.setItem('userToken', foundUser.token)
-        await AsyncStorage.setItem('userId', user._id);
+        await AsyncStorage.setItem('userId', user._id),AsyncStorage.setItem('userName', user.username);
+
       } catch(e) {
         console.log(e);
       }
@@ -80,6 +81,8 @@ const App = () => {
       try {
         await AsyncStorage.removeItem('userToken');
         await AsyncStorage.removeItem('useeId');
+        await AsyncStorage.removeItem('userName');
+
       } catch(e) {
         console.log(e);
       }

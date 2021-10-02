@@ -28,7 +28,7 @@ const Group = ({ navigation, route }) => {
   const [isCreateEvent, setIsCreateEvent] = useState(false);
   const [TotalPrice, setTotalPrice] = useState(0);
 
-
+  const wid =  Dimensions.get("window").width
   const [pages, setPages] = useState({
     home: true,
     event: false,
@@ -68,13 +68,16 @@ const Group = ({ navigation, route }) => {
     }
   };
   if(buttonCheck!=3 && group!=null){
-    // if (TotoGameActive!=null && TotoGameActive[0].events.length>0){ 
-    //   if (TotoGameActive[0].events.length > 1) {
-    //     // setTotalPrice(TotoGameActive[0].events.reduce(function(a,b){ return a.price + b.price},0))
-    //   }
-    //  else (setTotalPrice(TotoGameActive[0].events[0].price)) }
+    if (TotoGameActive!=null && TotoGameActive.length>0 &&TotoGameActive[0].events.length>0){ 
+        var eventsToto = TotoGameActive[0].events
+        var sum = 0 
+        for(let i=0; i<eventsToto.length;i++){
+          sum+=eventsToto[i].price
+        }
+        setTotalPrice(sum)
+     }
     
-    if(group.totoGames.length===0||(TotoGameActive!=null &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].firstGame)<Date.now())){
+    if(group.totoGames.length===0||(TotoGameActive!=null &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].lastGame)<Date.now())){
       setIsCreateEvent(true)
     }
     if(TotoGameActive!=null&&TotoGameActive.length>0&&TotoGameActive[0].isActive&&TotoGameActive[0].events.length>0
@@ -215,22 +218,22 @@ const Group = ({ navigation, route }) => {
 
 <View style={{flex:1, flexDirection:"row", }}>
           <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center',  }}>
-            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,marginLeft:4, marginRight:4,}}>
-            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary, textAlign:'center', fontWeight:'bold',  paddingTop:5}}>Total Price</Text>
+            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,justifyContent: 'center',alignItems:'center',width: wid*0.28}}>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary, textAlign:'center', fontWeight:'bold', }}>Total Price</Text>
             </View>
             <Text style={{ flex:1 ,fontSize: SIZES.h3,textAlign:'center', color:COLORS.primary, paddingTop:10}}>  {TotalPrice}</Text>
             </View>
             <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
-            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,marginLeft:8, marginRight:8}}>
-            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center' ,backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold', marginBottom:10, paddingTop:5}}>Round</Text>
+            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,justifyContent: 'center',alignItems:'center',width: wid*0.28}}>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center' ,backgroundColor:COLORS.darkWhite,  fontWeight:'bold'}}>Round</Text>
             </View>
-            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',color:COLORS.primary, paddingTop:10}}>  {TotoGameActive!=null? TotoGameActive[0].events.length:0}</Text>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',color:COLORS.primary, paddingTop:10}}>  {TotoGameActive!=null&& TotoGameActive.length> 0? TotoGameActive[0].events.length:0}</Text>
             </View>
             <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
-            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,marginLeft:8, marginRight:8,}}>
-            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center',backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold', marginBottom:10, paddingTop:5}}>Dubles</Text>
+            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,justifyContent: 'center',alignItems:'center',width: wid*0.28}}>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center',backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold'}}>Dubles</Text>
             </View>
-            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',  color:COLORS.primary, paddingTop:10}}>{TotoGameActive!=null? TotoGameActive[0].events[TotoGameActive[0].events.length - 1].doubles:0}</Text>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',  color:COLORS.primary, paddingTop:10}}>{TotoGameActive!=null && TotoGameActive.length> 0? TotoGameActive[0].events[TotoGameActive[0].events.length - 1].doubles:0}</Text>
             </View>
             </View>
             
