@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -13,6 +13,10 @@ const Games = ({gameEvents}) => {
     bet+="("+home+"-"+away+") "
     return bet
 }  
+
+
+
+
 const GameScore=(home,away)=>{  
   var score = home - away
   var bet = ""
@@ -32,20 +36,25 @@ const GameScore=(home,away)=>{
       flex:1,
       
     }}>
+      
         <View style={{flex:3}}>
-            <Text  style={{ fontSize:13 ,left:10, top:27,  color:COLORS.primary, fontWeight:'bold' }}>
+            <Text  style={{ fontSize:13 ,left:10, top:25,  color:COLORS.primary, fontWeight:'bold' }}>
                 Result game
             </Text>
         </View>
         
         <View style={{flex:8, flexDirection:"row",}}>
+  
         {/* <Text style={{  ontSize: SIZES.h3, color:COLORS.primary, borderRightWidth:0.5,borderRadius:50 ,  backgroundColor:COLORS.orange}}> yyyy</Text> */} 
           {gameEvents.map((game, index)=>{
              return (<View  key ={index} style={{flex: 3,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
-            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary, borderRadius:50 ,left:10, top:5}}> {index + 1}</Text>
+             
+            <Text style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary, borderRadius:50 ,left:10, top:5}}> {index + 1}</Text>
+            
             <Text style={{ flex:1 ,fontSize: SIZES.h3,left:10, color:COLORS.primary,borderRadius:50}}> {game.gameApi.scoreHomeTeam===null?"-":GameScore(game.gameApi.scoreHomeTeam,game.gameApi.scoreAwayTeam)}</Text>
             {/* <Text style={{ flex:1 ,fontSize: SIZES.h3, color:COLORS.primary,borderRadius:50 }}> {game.gameApi.scoreHomeTeam===null?"-":GameResult(game.gameApi.scoreHomeTeam,game.gameApi.scoreAwayTeam)}</Text> */}
             </View>
+            
              )
             })}
             </View>
