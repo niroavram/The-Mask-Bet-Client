@@ -179,7 +179,7 @@ const Group = ({ navigation, route }) => {
 
           <View
             style={{
-              flex: 2,
+              flex: 8,
               borderRadius: SIZES.radius,
               width: Dimensions.get("window").width * 0.9,
               justifyContent: "center",
@@ -190,55 +190,50 @@ const Group = ({ navigation, route }) => {
             </View>
             <View
             style={{
-              flex: 5,
+              flex: 4,
               borderRadius: SIZES.radius,
               width: Dimensions.get("window").width * 0.9,
               justifyContent: "center",
               alignItems: "center",
+              flexDirection:'column'
             }}
           >
+            <Text style={{flex:1, fontSize:28,color: COLORS.primary, fontWeight:'bold'}}>{groupDet.name}</Text>
+            <Text style={{flex:2, fontSize: SIZES.h2,color: COLORS.primary}}>{groupDet.code}</Text>
+            </View>
+            <View
+            style={{
+              flex: 2,
+              borderRadius: SIZES.radius,
+              width: Dimensions.get("window").width * 0.9,
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection:'column',
+              
+            }}
+          >
+
+<View style={{flex:1, flexDirection:"row", }}>
+          <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center',  }}>
+            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,marginLeft:4, marginRight:4,}}>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary, textAlign:'center', fontWeight:'bold',  paddingTop:5}}>Total Price</Text>
+            </View>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3,textAlign:'center', color:COLORS.primary, paddingTop:10}}>  {TotalPrice}</Text>
+            </View>
+            <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
+            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,marginLeft:8, marginRight:8}}>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center' ,backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold', marginBottom:10, paddingTop:5}}>Round</Text>
+            </View>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',color:COLORS.primary, paddingTop:10}}>  {TotoGameActive!=null? TotoGameActive[0].events.length:0}</Text>
+            </View>
+            <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
+            <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,marginLeft:8, marginRight:8,}}>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center',backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold', marginBottom:10, paddingTop:5}}>Dubles</Text>
+            </View>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',  color:COLORS.primary, paddingTop:10}}>{TotoGameActive!=null? TotoGameActive[0].events[TotoGameActive[0].events.length - 1].doubles:0}</Text>
+            </View>
+            </View>
             
-            
-            <View style={{flexDirection:'row', left:40}}>
-            <View style={{flex:1, }}>
-            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Group Name : </Text>
-            </View>
-            <View style={{flex:1}}>
-              <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {groupDet.name}</Text>
-            </View>
-            </View>
-            <View style={{flexDirection:'row', left:40}}>
-            <View style={{flex:1, }}>
-            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Group Code : </Text>
-            </View>
-            <View style={{flex:1}}>
-              <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {groupDet.code}</Text>
-            </View>
-            </View>
-            <View style={{flexDirection:'row', left:40}}>
-            <View style={{flex:1, }}>
-            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Total Price : </Text>
-            </View>
-            <View style={{flex:1, alignItems:'center', right:50}}>
-              <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {TotalPrice}</Text>
-            </View>
-            </View>
-            <View style={{flexDirection:'row', left:40}}>
-            <View style={{flex:1, }}>
-            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Round Number : </Text>
-            </View>
-            <View style={{flex:1,alignItems:'center',  right:50}}>
-            <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {TotoGameActive!=null? TotoGameActive[0].events.length:0}</Text>
-            </View>
-            </View>
-            <View style={{flexDirection:'row', left:40, }}>
-            <View style={{flex:1, }}>
-            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Doubles amount : </Text>
-            </View>
-            <View style={{flex:1, alignItems:'center',  right:50}}>
-            <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {TotoGameActive!=null? TotoGameActive[0].events[TotoGameActive[0].events.length - 1].doubles:0}</Text>
-            </View>
-            </View>
             
             
             
@@ -247,7 +242,7 @@ const Group = ({ navigation, route }) => {
           </View>
           {isAdmin && isCreateEvent ? (
             <Button1
-              style={{ flex: 2 }}
+              style={{ flex: 4 }}
               text="Create Event"
               backgroundColor={COLORS.orangePrimary}
               borderColor={COLORS.orangePrimary}
@@ -268,7 +263,7 @@ const Group = ({ navigation, route }) => {
 : <View></View>}
           <View
             style={{
-              flex: 2,
+              flex: 3,
               borderRadius: SIZES.radius,
               width: Dimensions.get("window").width * 0.9,
               justifyContent: "center",
