@@ -18,6 +18,8 @@ import Group from "./screens/Group/Group";
 import Rules from "./screens/Ruels/Ruels";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GroupEvents from "./screens/GroupEvents/GroupEvents";
+import GamePage from "./screens/GamePage/GamePage";
+
 const Stack = createStackNavigator();
 I18nManager.allowRTL(false)
 const App = () => {
@@ -137,6 +139,7 @@ const App = () => {
     <Stack.Screen name="GroupEvents" component={GroupEvents} />
     <Stack.Screen name="CreateUserBet" component={CreateUserBet} />
     <Stack.Screen name="Rules" component={Rules} />
+    <Stack.Screen name="GamePage" component={GamePage} />
 
 
 

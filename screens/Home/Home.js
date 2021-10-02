@@ -20,6 +20,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Feather } from '@expo/vector-icons';
 I18nManager.allowRTL(false)
 
 const Home = ({ navigation}) => {
@@ -74,7 +75,10 @@ const Home = ({ navigation}) => {
       <TouchableOpacity onPress={rulesGame} style={{flex:1, justifyContent:"space-around", borderRadius: SIZES.radius, width:50,left:20 }}>
           <SimpleLineIcons name="book-open" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
-        <TouchableOpacity onPress={profilePage} style={{  flex:1, left: 145, justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+        <TouchableOpacity  style={{flex:1,justifyContent:"space-around",left:50}} >
+      <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
+      </TouchableOpacity>
+        <TouchableOpacity onPress={profilePage} style={{  flex:1, left: 80, justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
           <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute',right:180}} >
