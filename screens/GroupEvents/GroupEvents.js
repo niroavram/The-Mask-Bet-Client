@@ -28,6 +28,8 @@ const GroupEvents = (props) => {
   const [losers, setLosers] = useState([]);
   const [isBuckerDone, setIsBucketDone] = useState(null);
   const { navigation, pageManager, pages, TotoGameActive,getMyGroup } = props;
+  const [gamesEvent, setGamesEvents] = useState([]);
+
 
   const bucketUsers = (event) => {
     let user = event.userBets;
@@ -62,8 +64,13 @@ const GroupEvents = (props) => {
   };
   if (isBuckerDone === null && TotoGameActive.length>0 ) {
     bucketUsers(TotoGameActive[0].events[TotoGameActive[0].events.length - 1]);
+    setGamesEvents(TotoGameActive[0].events[TotoGameActive[0].events.length - 1].gamesEvent)
 
   }
+  const GamePage = () => {
+    navigation.navigate("GamePage");
+  };
+  
   const profilePage = () => {
     navigation.navigate("Profile");
   };
@@ -86,9 +93,12 @@ const GroupEvents = (props) => {
       <TouchableOpacity onPress={getMyGroup} style={{position: 'absolute',top: 55}} >
       <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
       </TouchableOpacity>
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View style={{ flex: 2, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
       </View>
+      <TouchableOpacity onPress={GamePage} style={{backgroundColor:COLORS.orangePrimary,  flex:1, flexDirection:'row', alignItems:"center", justifyContent:"center", borderRadius: SIZES.radius, width:'50%', height:30 }}>
+        <Text style={{fontSize: SIZES.h2,color: COLORS.white,}}> See all Games</Text>
+        </TouchableOpacity>
       {TotoGameActive.length>0 && TotoGameActive[0].events.length>0?
        <View style={{flex: 14}} >
        <View
