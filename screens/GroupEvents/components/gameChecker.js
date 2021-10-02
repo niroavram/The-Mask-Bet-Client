@@ -54,8 +54,8 @@ if(win===null && gameApi!=null){
 }
   return (
 
-        <View  style={{flex: 1,flexDirection:"column", alignItems:'center',justifyContent:'center', borderRadius: SIZES.radius, backgroundColor: isWin? COLORS.orangePrimary: COLORS.gray2, margin:3,marginTop:10, height: 20, marginBottom:10 }}>
-            <Text style={{ flex:5 ,fontSize: SIZES.h3, color:COLORS.primary,  alignItems:'center',justifyContent:'center' }}> {GameResult(game.bet)}</Text>
+        <View  style={{flex: 1,flexDirection:"column", alignItems:'center',justifyContent:'center', borderRadius: SIZES.radius, backgroundColor: isWin? COLORS.yellow: COLORS.darkGreen, margin:8,marginTop:10, height: 20, marginBottom:10}}>
+            <Text style={{ flex:5 ,fontWeight:'bold',fontSize:14, color:COLORS.primary,  alignItems:'center',justifyContent:'center', paddingTop:2 }}> {GameResult(game.bet)}</Text>
         </View>
 
   );

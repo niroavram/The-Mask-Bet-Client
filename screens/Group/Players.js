@@ -69,6 +69,10 @@ const Players = (props) => {
           Players
         </Text>
       </View>
+
+      <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
+        Here you can see your group members{"\n"} 
+          </Text>
       <View
         style={{
           flex: 5,
@@ -77,6 +81,7 @@ const Players = (props) => {
           justifyContent: "center",
           alignItems: "center",
           maxHeight: Dimensions.get("window").height * 0.75,
+          
         }}
       >
       
@@ -85,8 +90,8 @@ const Players = (props) => {
               keyExtractor={(item) => item._id}
               data={players}
               renderItem={({ item,index }) => (
-             <View style={{backgroundColor: item._id===userId? COLORS.primary:COLORS.gray2}}>
-                    <Text>
+             <View style={{marginTop: 5, padding :10, borderRadius: SIZES.radius,backgroundColor: item._id===userId? COLORS.orangePrimary:COLORS.darkWhite,}}>
+                    <Text style={{fontSize: SIZES.h3 ,width:Dimensions.get("window").width *0.8, fontWeight:'bold',  color: COLORS.primary ,textAlign: "center"} }>
                         {item.email}
                     </Text>
              </View>

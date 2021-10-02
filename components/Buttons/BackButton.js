@@ -2,13 +2,11 @@ import React from 'react'
 import { TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 import { COLORS, images } from '../../constants'
+import { AntDesign } from '@expo/vector-icons'; 
 export default function BackButton({ goBack }) {
   return (
     <TouchableOpacity onPress={goBack} style={styles.container}>
-      <Image
-        style={styles.image}
-        source={images.arrow_back}
-      />
+      <AntDesign name="arrowleft" size={35}  style={{color:COLORS.primary, paddingLeft:5}} />
     </TouchableOpacity>
   )
 }

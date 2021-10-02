@@ -109,6 +109,7 @@ const Group = ({ navigation, route }) => {
       });
   };
 
+
   
   if (group === null && group_id != null) {
     getMyGroup();
@@ -186,35 +187,63 @@ const Group = ({ navigation, route }) => {
             }}
           >
             <Logo width={0.3} height={0.3} />
-            <Text
-              style={{
-                fontSize: SIZES.h2,
-                color: COLORS.primary,
-                fontWeight: "bold",
-                paddingTop: 10,
-              }}
-            >
-              Group Name : {groupDet.name}
-            </Text>
-            <Text
-              style={{
-                fontSize: SIZES.h2,
-                color: COLORS.primary,
-                fontWeight: "bold",
-              }}
-            >
-              Group Code : {groupDet.code}
-            </Text>
-            <Text
-              style={{
-                fontSize: SIZES.h2,
-                color: COLORS.primary,
-                fontWeight: "bold",
-              }}
-            >
-              Total Price : {TotalPrice}
-            </Text>
-            <View></View>
+            </View>
+            <View
+            style={{
+              flex: 5,
+              borderRadius: SIZES.radius,
+              width: Dimensions.get("window").width * 0.9,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            
+            
+            <View style={{flexDirection:'row', left:40}}>
+            <View style={{flex:1, }}>
+            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Group Name : </Text>
+            </View>
+            <View style={{flex:1}}>
+              <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {groupDet.name}</Text>
+            </View>
+            </View>
+            <View style={{flexDirection:'row', left:40}}>
+            <View style={{flex:1, }}>
+            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Group Code : </Text>
+            </View>
+            <View style={{flex:1}}>
+              <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {groupDet.code}</Text>
+            </View>
+            </View>
+            <View style={{flexDirection:'row', left:40}}>
+            <View style={{flex:1, }}>
+            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Total Price : </Text>
+            </View>
+            <View style={{flex:1, alignItems:'center', right:50}}>
+              <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {TotalPrice}</Text>
+            </View>
+            </View>
+            <View style={{flexDirection:'row', left:40}}>
+            <View style={{flex:1, }}>
+            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Round Number : </Text>
+            </View>
+            <View style={{flex:1,alignItems:'center',  right:50}}>
+            <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {TotoGameActive!=null? TotoGameActive[0].events.length:0}</Text>
+            </View>
+            </View>
+            <View style={{flexDirection:'row', left:40, }}>
+            <View style={{flex:1, }}>
+            <Text style={{fontSize:17,color: COLORS.primary,fontWeight: "bold",paddingTop:5 }}> Doubles amount : </Text>
+            </View>
+            <View style={{flex:1, alignItems:'center',  right:50}}>
+            <Text style={{fontSize: SIZES.h2,color: COLORS.primary}}> {TotoGameActive!=null? TotoGameActive[0].events[TotoGameActive[0].events.length - 1].doubles:0}</Text>
+            </View>
+            </View>
+            
+            
+            
+            
+            
           </View>
           {isAdmin && isCreateEvent ? (
             <Button1
@@ -237,8 +266,17 @@ const Group = ({ navigation, route }) => {
             width={0.6}
           />
 : <View></View>}
-         
+          <View
+            style={{
+              flex: 2,
+              borderRadius: SIZES.radius,
+              width: Dimensions.get("window").width * 0.9,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
           <BottomBar pageManager={pageManager} pages={pages}  />
+          </View>
         </View>
       ) :pages.players?<Players  navigation={navigation}
       pageManager={pageManager}

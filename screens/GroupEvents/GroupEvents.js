@@ -102,7 +102,7 @@ const GroupEvents = (props) => {
          <Text
            style={{
              fontSize: SIZES.h3,
-             color: COLORS.black,
+             color: COLORS.primary,
              fontWeight: "bold",
              flex: 1,
            }}
@@ -112,7 +112,7 @@ const GroupEvents = (props) => {
          <Text
            style={{
              fontSize: SIZES.h3,
-             color: COLORS.black,
+             color: COLORS.primary,
              fontWeight: "bold",
              flex: 1,
            }}
@@ -123,7 +123,7 @@ const GroupEvents = (props) => {
          <Text
            style={{
              fontSize: SIZES.h3,
-             color: COLORS.black,
+             color: COLORS.primary,
              fontWeight: "bold",
              flex: 1,
            }}
@@ -226,7 +226,7 @@ const GroupEvents = (props) => {
 }
      
 
-      <View style={{ flex: 2 }}>
+      <View style={{ flex: 3 }}>
         <BottomBar pageManager={pageManager} pages={pages} />
       </View>
     </View>
