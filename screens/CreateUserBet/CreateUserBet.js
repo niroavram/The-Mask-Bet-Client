@@ -6,7 +6,7 @@ import {
   Image,
   Button,
   SafeAreaView,
-  ScrollView,
+  Alert,
   FlatList,
   Dimensions,I18nManager
 } from "react-native";
@@ -22,7 +22,6 @@ import BackButton from "../../components/Buttons/BackButton";
 import { Switch, TextInput } from "react-native-paper";
 import moment from "moment";
 import Game from "./components/Game";
-import Alert from "react-native";
 
 const CreateUserBet = ({ navigation,route }) => {
   const [mygames, setMyGames] = useState([]);
@@ -67,8 +66,8 @@ if(userBets===null){
         navigation.navigate("Group",{group: route.params.group})
       })
       .catch(function (error) {
-console.log(error)
-      });
+          Alert.alert("Error","You have only 3 doubles!")
+        });
   };
 
   const profilePage = () => {
@@ -123,7 +122,6 @@ console.log(error)
       >
         <View style={{flexDirection: 'row', alignContent:'center', marginTop:10}}>
           <Text style={{ flex:1 ,fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold", marginLeft:50 }}> Doubles : {event.doubles}</Text>
-          <Text style={{ flex:1, fontSize: SIZES.h3, color: COLORS.primary, fontWeight:"bold"}}> Round : {event.length}</Text>
         </View>
         <FlatList 
               numColumns={1}

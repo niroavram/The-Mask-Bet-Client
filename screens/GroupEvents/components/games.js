@@ -38,7 +38,7 @@ const GameScore=(home,away)=>{
     }}>
       
         <View style={{flex:3}}>
-            <Text  style={{ fontSize:13 ,left:10, top:25,  color:COLORS.primary, fontWeight:'bold' }}>
+            <Text  style={{ fontSize:13 ,top:10,left:10,height:55, color:COLORS.primary, fontWeight:'bold' }}>
                 Result game
             </Text>
         </View>
@@ -47,7 +47,7 @@ const GameScore=(home,away)=>{
   
         {/* <Text style={{  ontSize: SIZES.h3, color:COLORS.primary, borderRightWidth:0.5,borderRadius:50 ,  backgroundColor:COLORS.orange}}> yyyy</Text> */} 
           {gameEvents.map((game, index)=>{
-             return (<View  key ={index} style={{flex: 3,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
+             return (<View  key ={index} style={{flex: 3,flexDirection:"column",height:55, alignSelf:'center',justifyContent:'center'}}>
              
             <Text style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary, borderRadius:50 ,left:10, top:5}}> {index + 1}</Text>
             

@@ -91,9 +91,7 @@ const CreateEvent = ({ navigation,route }) => {
         Alert.alert("The Mask bet","Create is successfully!, Now tell your friends");
       })
       .catch(function (error) {
-        console.log(mygames.length )
         Alert.alert("The Mask bet","Bad move, try again");
-        console.log(error);
       });
   };
 
@@ -155,8 +153,8 @@ const CreateEvent = ({ navigation,route }) => {
                 Choose If you want to play with Mask on,  {"\n"} Choose the number of doubles  {"\n"} And decide the price of the game  {"\n"}</Text>
               </View>
               <View style={{flex:3, flexDirection: "row" , top:50, justifyContent: "center"}}>
-                <Text style={{ fontSize: SIZES.h3, color:COLORS.primary, fontWeight:"bold", right:10 }}>Is Mask </Text>
-                <Switch value={isMask} onValueChange={switchON} />
+                <Text style={{ fontSize: SIZES.h2, color:COLORS.primary, fontWeight:"bold", right:10 }}>Is Mask </Text>
+                <Switch  value={isMask} onValueChange={switchON} />
               </View>
               <View
                 style={{

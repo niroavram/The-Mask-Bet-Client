@@ -4,8 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  TextInput,
-  Button,
   Dimensions,
 } from "react-native";
 import moment from "moment";

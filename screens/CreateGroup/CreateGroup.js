@@ -114,7 +114,7 @@ const CreateGroup = ({ navigation }) => {
             keyboardType="default"
             returnKeyType="next"
             placeholder="Enter your group name"
-            selectionColor="white"
+            selectionColor={COLORS.primary}
             keyboardAppearance="dark"
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setName}

@@ -80,7 +80,7 @@ borderColor: COLORS.white2
         keyboardType="default"
         returnKeyType="next"
         placeholder="Name"
-        selectionColor="white"
+        selectionColor={COLORS.primary}
         keyboardAppearance="dark"
         placeholderTextColor={COLORS.darkGray}
         onChangeText={setName}
@@ -95,7 +95,7 @@ borderColor: COLORS.white2
             keyboardType="default"
             returnKeyType="next"
             placeholder="Email"
-            selectionColor="white"
+            selectionColor={COLORS.primary}
             keyboardAppearance="dark"
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setEmail}
@@ -108,7 +108,7 @@ borderColor: COLORS.white2
             // ref={input => (this.passwordInput = input)}
             placeholder="Password"
             placeholderTextColor={COLORS.gray2}
-            selectionColor="white"
+            selectionColor={COLORS.primary}
             keyboardAppearance="dark"
             value={password}
             secureTextEntry

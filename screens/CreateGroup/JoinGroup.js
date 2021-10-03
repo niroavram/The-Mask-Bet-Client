@@ -94,7 +94,7 @@ const JoinGroup = ({ navigation }) => {
             keyboardType="default"
             returnKeyType="next"
             placeholder="Enter Group Code"
-            selectionColor="white"
+            selectionColor={COLORS.primary}
             keyboardAppearance="dark"
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setCode}

@@ -127,10 +127,10 @@ setIsGamePage(!isGamePage)  };
           paddingtop={15}
         />
       </TouchableOpacity>
-      <View style={{ flex: 2, justifyContent: "center" }}>
+      <View style={{ flex: 1, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
       </View>
-      <View style={{ flex: 3, justifyContent: "center" }}>
+      <View style={{ flex: 2, justifyContent: "center" }}>
         <Text style={{ fontSize: SIZES.h2,fontWeight:'bold' ,color: COLORS.primary,textAlign:'center'}} >Games</Text>
       </View>
       {isGamePage ? (

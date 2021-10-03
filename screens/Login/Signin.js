@@ -23,9 +23,8 @@ import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
 
 const Signin = ({navigation}) =>{
-  const [email, setEmail]=useState("niroavram@gmail.com")
-  const [password, setPassword]=useState("Nir12112")
-  const [s, setPad]=useState("ss")
+  const [email, setEmail]=useState("")
+  const [password, setPassword]=useState("")
  
 
   const {signIn} = React.useContext(AuthContext)
@@ -85,7 +84,7 @@ const Signin = ({navigation}) =>{
             keyboardType="default"
             returnKeyType="next"
             placeholder="Email"
-            selectionColor='black'
+            selectionColor={COLORS.primary}
             keyboardAppearance='dark'
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setEmail}
@@ -99,7 +98,7 @@ const Signin = ({navigation}) =>{
             keyboardType="default"
             returnKeyType="next"
             placeholder="Password"
-            selectionColor='black'
+            selectionColor={COLORS.primary}
             keyboardAppearance='dark'
             secureTextEntry
             placeholderTextColor={COLORS.darkGray}
