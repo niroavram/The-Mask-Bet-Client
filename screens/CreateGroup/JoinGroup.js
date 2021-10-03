@@ -46,7 +46,6 @@ const JoinGroup = ({ navigation }) => {
         Alert.alert("The Mask bet","Join successfuly!");
       })
       .catch(function (error) {
-        console.log(error)
         Alert.alert("The Mask bet","User already inside this group")
       });
   };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Image, Dimensions,I18nManager } from "react-native";
+import { View, Text, TouchableOpacity, Image, Dimensions,I18nManager,Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, FONTS, SIZES } from "../../constants/index";
 import Button1 from "../../components/Buttons/Button1";
@@ -26,6 +26,9 @@ const Group = ({ navigation, route }) => {
   const [isPlaceBet, setIsPlaceBet] = useState(false);
   const [isCreateEvent, setIsCreateEvent] = useState(false);
   const [TotalPrice, setTotalPrice] = useState(0);
+  const [Round, setRound] = useState(0);
+  const [Doubles, setDoubles] = useState(0);
+
 
   const wid =  Dimensions.get("window").width
   const [pages, setPages] = useState({
@@ -74,15 +77,17 @@ const Group = ({ navigation, route }) => {
           sum+=eventsToto[i].price
         }
         setTotalPrice(sum)
+        setDoubles(eventsToto[eventsToto.length-1].doubles)
+        setRound(eventsToto.length)
+
      }
     
-    if(group.totoGames.length===0||(TotoGameActive!=null &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].lastGame)<Date.now())){
+    if(group.totoGames.length===0||(TotoGameActive!=null&&TotoGameActive.length>0&&TotoGameActive[0].events.length>0 &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].lastGame)<Date.now())){
       setIsCreateEvent(true)
     }
     if(TotoGameActive!=null&&TotoGameActive.length>0&&TotoGameActive[0].isActive&&TotoGameActive[0].events.length>0
       &&Date.parse(TotoGameActive[0].events[TotoGameActive[0].events.length-1].firstGame)>Date.now()&&
       (TotoGameActive[0].events[TotoGameActive[0].events.length-1].userBets.length<1 ||!TotoGameActive[0].events[TotoGameActive[0].events.length-1].userBets.some(user=>user.created_by._id===userId))){ 
-        console.log(  )
         setIsPlaceBet(true)
       }
       setBottunCheck(buttonCheck+1)
@@ -91,7 +96,7 @@ const Group = ({ navigation, route }) => {
     setTotoGameActive((group.totoGames).filter((a) => a.isActive));
   }
 
-  const getMyGroup = () => {
+  const getMyGroup = () => { 
     server
       .get("my-toto-group", {
         headers: { Authorization: "Bearer " + userToken },
@@ -117,7 +122,6 @@ const Group = ({ navigation, route }) => {
     getMyGroup();
   }
   const createEventPage = () => {
-    clearInterval()
     if (TotoGameActive.length > 0) {
       navigation.navigate("CreateEvent", { totogame: TotoGameActive[0]._id, group: group });
     } else {
@@ -156,6 +160,9 @@ const Group = ({ navigation, route }) => {
         Alert.alert("The Mask bet","Bad move, try again");
       });
   };
+  setTimeout(() => {
+    getMyGroup();
+  }, 4000);
   return (
     <View style={{ flex: 1 }}>
       {pages.home ? (
@@ -178,19 +185,7 @@ const Group = ({ navigation, route }) => {
       <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
       </TouchableOpacity>
           <View style={{ flex: 2 }}></View>
-
           <View
-            style={{
-              flex: 8,
-              borderRadius: SIZES.radius,
-              width: Dimensions.get("window").width * 0.9,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Logo width={0.3} height={0.3} />
-            </View>
-            <View
             style={{
               flex: 4,
               borderRadius: SIZES.radius,
@@ -201,8 +196,20 @@ const Group = ({ navigation, route }) => {
             }}
           >
             <Text style={{flex:1, fontSize:28,color: COLORS.primary, fontWeight:'bold'}}>{groupDet.name}</Text>
-            <Text style={{flex:2, fontSize: SIZES.h2,color: COLORS.primary}}>{groupDet.code}</Text>
+            <Text style={{flex:2, fontSize: SIZES.h2,color: COLORS.primary}}>Code: {groupDet.code}</Text>
             </View>
+          <View
+            style={{
+              flex: 5,
+              borderRadius: SIZES.radius,
+              width: Dimensions.get("window").width * 0.9,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Logo width={0.3} height={0.3} />
+            </View>
+          
             <View
             style={{
               flex: 2,
@@ -214,7 +221,7 @@ const Group = ({ navigation, route }) => {
               
             }}
           >
-
+ 
 <View style={{flex:1, flexDirection:"row", }}>
           <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center',  }}>
             <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,justifyContent: 'center',alignItems:'center',width: wid*0.28}}>
@@ -226,13 +233,13 @@ const Group = ({ navigation, route }) => {
             <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,justifyContent: 'center',alignItems:'center',width: wid*0.28}}>
             <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center' ,backgroundColor:COLORS.darkWhite,  fontWeight:'bold'}}>Round</Text>
             </View>
-            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',color:COLORS.primary, paddingTop:10}}>  {TotoGameActive!=null&& TotoGameActive.length> 0? TotoGameActive[0].events.length:0}</Text>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',color:COLORS.primary, paddingTop:10}}>  {Round}</Text>
             </View>
             <View  style={{flex: 1,flexDirection:"column", alignSelf:'center',justifyContent:'center'}}>
             <View style={{borderRadius: SIZES.radius, backgroundColor:COLORS.darkWhite, flex:1,justifyContent: 'center',alignItems:'center',width: wid*0.28}}>
-            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center',backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold'}}>Dubles</Text>
+            <Text  style={{  flex:1, fontSize: SIZES.h3,  color:COLORS.primary,textAlign:'center',backgroundColor:COLORS.darkWhite,marginLeft:8, marginRight:8,  fontWeight:'bold'}}>Doubles</Text>
             </View>
-            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',  color:COLORS.primary, paddingTop:10}}>{TotoGameActive!=null && TotoGameActive.length> 0? TotoGameActive[0].events[TotoGameActive[0].events.length - 1].doubles:0}</Text>
+            <Text style={{ flex:1 ,fontSize: SIZES.h3, textAlign:'center',  color:COLORS.primary, paddingTop:10}}>{Doubles}</Text>
             </View>
             </View>
             

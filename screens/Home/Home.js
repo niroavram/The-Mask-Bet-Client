@@ -64,7 +64,9 @@ const Home = ({ navigation}) => {
   if (myGroupss === null) {
     getMyGroups();
   }
- 
+  setTimeout(() => {
+    getMyGroups();
+  }, 4000);
 
   return (
     <View style={styles.container}>

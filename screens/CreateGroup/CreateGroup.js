@@ -50,7 +50,7 @@ const CreateGroup = ({ navigation }) => {
         Alert.alert("The Mask bet","Saves successfuly!");
       })
       .catch(function (error) {
-        console.log(error);
+        Alert.alert("The Mask bet","This name already in used");
       });
   };
   return (

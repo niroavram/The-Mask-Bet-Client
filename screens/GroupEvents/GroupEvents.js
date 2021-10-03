@@ -130,8 +130,22 @@ setIsGamePage(!isGamePage)  };
       <View style={{ flex: 2, justifyContent: "center" }}>
         <Logo width={0.15} height={0.15} paddingleft={10} />
       </View>
+      <View style={{ flex: 3, justifyContent: "center" }}>
+        <Text style={{ fontSize: SIZES.h2,fontWeight:'bold' ,color: COLORS.primary,textAlign:'center'}} >Games</Text>
+      </View>
       {isGamePage ? (
         <View style={{ flex: 30 ,width: Dimensions.get("window").width}}>
+          <TouchableOpacity onPress={getGamePage} style={{ 
+            backgroundColor: COLORS.red2,
+            width: Dimensions.get('window').width,
+            height:35,
+            borderRadius: SIZES.radius,
+            justifyContent: "center",
+            alignItems: "center", }} >
+        <Text style={{ fontSize: SIZES.h3,fontWeight:'bold' ,color: COLORS.primary,textAlign:'center'}} >Back To Event</Text>
+
+          </TouchableOpacity>
+        <ScrollView>
            { gamesEvent !=null?gamesEvent.map((gameEvent,index) => {
             return  (
               <GameResult
@@ -141,7 +155,7 @@ setIsGamePage(!isGamePage)  };
             
               />
             )}):<View></View>}
-              </View>
+              </ScrollView></View>
       ) : (
         <View style={{ flex: 30 }}>
           <TouchableOpacity
@@ -149,17 +163,16 @@ setIsGamePage(!isGamePage)  };
             style={{
               backgroundColor: COLORS.orangePrimary,
               flex: 1,
-              flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
               borderRadius: SIZES.radius,
               width: "50%",
-              height: 30,
+              height: 15,
+              padding:5
             }}
           >
-            <Text style={{ fontSize: SIZES.h2, color: COLORS.white }}>
-              {" "}
-              See all Games
+            <Text style={{ fontSize: SIZES.h3, color: COLORS.white,textAlign:'center'}}>
+              See All Games
             </Text>
           </TouchableOpacity>
           {TotoGameActive.length > 0 && TotoGameActive[0].events.length > 0 ? (
