@@ -8,10 +8,12 @@ import { COLORS, SIZES } from "../../../constants";
 const gameChecker = (props) => {
   var wid = Dimensions.get("window").width;
   const [index, setIndex] = useState(0);
-  const{game,gamesEvent}= props;
+  const{game,gamesEvent,firstGame}= props;
   const [gameApi, setGameApi] = useState(null);
   const [win, setWin] = useState(null);
   const [isWin, setIsWin] = useState(false);
+  const [isStart, setStart] = useState(false);
+
 
     
   const Checker=()=>{ 
@@ -24,6 +26,7 @@ const gameChecker = (props) => {
   }
   if(gameApi===null){
     Checker();
+  setStart(Date.parse(firstGame)<Date.now())
   }
     // const isWin = GameResult(game.bet).includes(GameScore(gameEvent.gameApi.scoreHomeTeam,gameEvent.gameApi.scoreAwayTeam))
     // console.log(isWin,game.bet,gameEvent.gameApi.scoreHomeTeam,gameEvent.gameApi.scoreAwayTeam)
@@ -55,7 +58,7 @@ if(win===null && gameApi!=null){
   return (
 
         <View  style={{flex: 1,flexDirection:"column", alignItems:'center',justifyContent:'center', borderRadius: SIZES.radius, backgroundColor: isWin? COLORS.yellow: COLORS.darkGreen, margin:8,marginTop:10, height: 20, marginBottom:10}}>
-            <Text style={{ flex:5 ,fontWeight:'bold',fontSize:14, color:COLORS.primary,  alignItems:'center',justifyContent:'center', paddingTop:2 }}> {GameResult(game.bet)}</Text>
+            <Text style={{ flex:5 ,fontWeight:'bold',fontSize:14, color:COLORS.primary,  alignItems:'center',justifyContent:'center', paddingTop:2 }}> {isStart? GameResult(game.bet):" "}</Text>
         </View>
 
   );

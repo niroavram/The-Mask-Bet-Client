@@ -20,8 +20,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Feather } from '@expo/vector-icons';
-I18nManager.allowRTL(false)
 
 const Home = ({ navigation}) => {
   const [myGroupss, setMyGroupss] = useState(null)
@@ -75,13 +73,11 @@ const Home = ({ navigation}) => {
       <TouchableOpacity onPress={rulesGame} style={{flex:1, justifyContent:"space-around", borderRadius: SIZES.radius, width:50,left:20 }}>
           <SimpleLineIcons name="book-open" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
-        <TouchableOpacity  style={{flex:1,justifyContent:"space-around",left:50}} >
-      <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
-      </TouchableOpacity>
-        <TouchableOpacity onPress={profilePage} style={{  flex:1, left: 80, justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
+     
+        <TouchableOpacity onPress={profilePage} style={{  flex:1,position: 'absolute', right:10, justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
           <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute',right:180}} >
+        <TouchableOpacity onPress={()=>getMyGroup()} style={{position: 'absolute',right:190}} >
       <Feather name="refresh-cw" size={30} color={COLORS.primary} paddingtop={15}  />
       </TouchableOpacity>
         </View>
@@ -89,12 +85,6 @@ const Home = ({ navigation}) => {
       <Logo  width={0.15} height={0.15}  paddingleft={10} />
       </View>
       <Smiley  style={{flex:3}} navigation={navigation} joinPage={joinPage} />
-      {/* <TouchableOpacity onPress={GroupEvents} style={{flex:1}}>
-     
-        <Text style={{ fontSize: SIZES.h1, color: COLORS.black }}>
-          Group proflie
-        </Text>
-      </TouchableOpacity> */}
       <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
         Here you can see the groups{"\n"} you are part of them {"\n"}
           </Text>

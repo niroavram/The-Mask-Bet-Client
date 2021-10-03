@@ -18,7 +18,6 @@ import Background from "../../components/Background";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
 import Button1 from "../../components/Buttons/Button1";
-I18nManager.allowRTL(false)
 
 const CreateGroup = ({ navigation }) => {
   const [email, setEmail] = useState("");

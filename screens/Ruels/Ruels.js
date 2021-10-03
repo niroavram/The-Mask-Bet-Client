@@ -16,7 +16,6 @@ import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
 import Button1 from '../../components/Buttons/Button1';
-I18nManager.allowRTL(false)
 
 const Rules = ({navigation}) =>{
     

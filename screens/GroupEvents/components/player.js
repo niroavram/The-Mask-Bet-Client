@@ -13,7 +13,7 @@ import { COLORS, SIZES } from "../../../constants";
 import GameChecker from "./gameChecker";
 const Players = (props) => {
   var wid = Dimensions.get("window").width;
-  const{item,gamesEvent,isWinner}= props;
+  const{item,gamesEvent,isWinner,firstGame}= props;
 
   return (
             <View style={{ width: wid * 0.98}}>    
@@ -28,6 +28,7 @@ const Players = (props) => {
                   <GameChecker
                   game={item}
                   gamesEvent={gamesEvent}
+                  firstGame={firstGame}
                 />
                 )}
                 />

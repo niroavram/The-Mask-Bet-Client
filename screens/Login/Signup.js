@@ -20,7 +20,6 @@ import Background from "../../components/Background";
 import Button1 from "../../components/Buttons/Button1";
 import Logo from "../../components/Logo";
 import BackButton from "../../components/Buttons/BackButton";
-I18nManager.allowRTL(false)
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -53,7 +52,7 @@ const Signup = ({ navigation }) => {
      </View>
    
       <View style={{
-flex: 6,
+flex: 10,
 borderRadius: 25,
 backgroundColor: COLORS.white2,
 shadowColor: COLORS.white2,
@@ -67,7 +66,7 @@ borderColor: COLORS.white2
 
 }}>
 
-    <View style={{flex:5 ,alignItems:'center',justifyContent:'center'}}>
+    <View style={{flex:8 ,alignItems:'center',justifyContent:'center'}}>
     <Logo  width={0.3} height={0.3}/>
     <Text style={{fontSize: SIZES.h1,color: COLORS.primary, textAlign: "center", fontWeight:"bold"}}>{"\n"} Welcome To {"\n"} The Mask Bet</Text>
 </View>

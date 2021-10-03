@@ -4,9 +4,9 @@ import {
     Text,
     TouchableOpacity,
     Image,
-    TextInput,
     FlatList,
     Button,
+    TextInput,
     Alert,
     Dimensions,I18nManager
 } from 'react-native';
@@ -21,7 +21,6 @@ import Logo from '../../components/Logo';
 import BackButton from '../../components/Buttons/BackButton';
 import Widget from '../../components/Widget';
 import { AuthContext } from '../../components/context';
-I18nManager.allowRTL(false)
 
 const Signin = ({navigation}) =>{
   const [email, setEmail]=useState("niroavram@gmail.com")
@@ -68,17 +67,16 @@ const Signin = ({navigation}) =>{
 
   }}>
 
-        <View style={{flex:5 ,alignItems:'center',justifyContent:'center'}}>
+        <View style={{flex:8 ,alignItems:'center',justifyContent:'center'}}>
         <Logo  width={0.3} height={0.3}/>
         <Text style={{fontSize: SIZES.h2,color: COLORS.primary, textAlign: "center", fontWeight:"bold"}}> {"\n"}The Mask Bet</Text>
 </View>
 <View style={{flex:1}}>
-<Text style={{fontSize: SIZES.h1 ,color: COLORS.darkGray, fontWeight:"bold"}}>
-  
-  </Text>   
+
          </View>
         
         <View style={styles.inputContainer}>
+ 
           <TextInput
             style={styles.input}
             autoCapitalize="none"
@@ -87,32 +85,33 @@ const Signin = ({navigation}) =>{
             keyboardType="default"
             returnKeyType="next"
             placeholder="Email"
-            selectionColor='white'
+            selectionColor='black'
             keyboardAppearance='dark'
             placeholderTextColor={COLORS.darkGray}
             onChangeText={setEmail}
-            value={email}
-
-                        />
+            value={email}   />
               
-
-          <TextInput
+              <TextInput
             style={styles.input}
-            returnKeyType="go"
-            // ref={input => (this.passwordInput = input)}
+            autoCapitalize="none"
+            // onSubmitEditing={() => this.passwordInput.focus()}
+            autoCorrect={false}
+            keyboardType="default"
+            returnKeyType="next"
             placeholder="Password"
-            placeholderTextColor={COLORS.gray2}
-            selectionColor='white'
+            selectionColor='black'
             keyboardAppearance='dark'
-            value={password}
             secureTextEntry
-            onChangeText={setPassword}
-            />
+            placeholderTextColor={COLORS.darkGray}
+            value={password}
+            onChangeText={setPassword} />
+               
+       
             </View>
             <TouchableOpacity
                     onPress={() => navigation.navigate('Signup')}
                     style={[styles.signIn, {
-                        marginTop:4,
+                    
                         flex:4
                     }]}
                 >

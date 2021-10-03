@@ -23,7 +23,6 @@ import { Switch, TextInput } from "react-native-paper";
 import moment from "moment";
 import Game from "./components/Game";
 import Alert from "react-native";
-I18nManager.allowRTL(false)
 
 const CreateUserBet = ({ navigation,route }) => {
   const [mygames, setMyGames] = useState([]);

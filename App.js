@@ -19,7 +19,11 @@ import Rules from "./screens/Ruels/Ruels";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GroupEvents from "./screens/GroupEvents/GroupEvents";
 import GamePage from "./screens/GamePage/GamePage";
-
+try {
+ I18nManager.allowRTL(false);
+} catch (e) {
+  console.log(e);
+}
 const Stack = createStackNavigator();
 I18nManager.allowRTL(false)
 const App = () => {

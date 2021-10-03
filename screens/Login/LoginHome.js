@@ -19,7 +19,6 @@ import Background from '../../components/Background';
 import Logo from '../../components/Logo';
 import BackButton from '../../components/Buttons/BackButton';
 import Btn from '../../components/Btn';
-I18nManager.allowRTL(false)
 
 const LoginHome = ({navigation}) =>{
       const siginPage = () =>{

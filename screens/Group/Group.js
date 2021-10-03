@@ -11,7 +11,6 @@ import BottomBar from "./compopents/bottomBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Players from "./Players";
 import { Feather } from '@expo/vector-icons';
-I18nManager.allowRTL(false)
 
 
 const Group = ({ navigation, route }) => {

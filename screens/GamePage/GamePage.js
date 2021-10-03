@@ -20,11 +20,11 @@ import Logo from "../../components/Logo";
 import Button1 from "../../components/Buttons/Button1";
 import BackButton from "../../components/Buttons/BackButton";
 import { Alert } from "react-native";
+import Game from "./Game";
 
 
 const GamePage = ( props ) => {
-  const{GamePage}=props
-
+  const{GamePage,navigation,gamesEvent}=props
   const profilePage = () => {
     navigation.navigate('Profile')  
   };
@@ -38,18 +38,6 @@ const GamePage = ( props ) => {
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: COLORS.white2}}>
-      <BackButton goBack={navigation.goBack} />
-      <TouchableOpacity onPress={profilePage} style={{ flexDirection:'row-reverse', marginTop:50, alignSelf:"flex-end", justifyContent:"space-around", borderRadius: SIZES.radius, width:50 }}>
-          <Ionicons name="ios-person-sharp" size={33} color={COLORS.primary} alignItems={'right'} paddingtop={10}/>
-        </TouchableOpacity>
-        <View style ={{flex:1,  justifyContent:"center" }} >
-      <Logo  width={0.15} height={0.15}  paddingleft={10} />
-      </View>
-      
-     
-      
-
-      
         <View
           style={{
             flex: 5,
@@ -63,66 +51,29 @@ const GamePage = ( props ) => {
         >
            
 
-            < >
             
               <View style={{  alignItems: "center", justifyContent: "center" }}>
               <Text style={{fontSize: SIZES.h3 ,color: COLORS.primary,textAlign: "center"} }>
               Choose the games you want to bet on {"\n"} And start playing </Text>
               </View>
             
-            {/* <FlatList
+            <FlatList
               numColumns={1}
               keyExtractor={(item) => item._id}
+              date={gamesEvent}
               renderItem={({ item }) => (
                 <Game
-                  item={item}
+                  game={item.gameApi}
                   addGame={addGame}
                   removeGame={removeGame}
                 />
               )}
-            /> */}
-            </>
+            />
+          
          
         </View>
      
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-        }}
-      >
-       
-        
-        {!isNext ? (
-          <View style={{ flexDirection: "row"}}>
-            <Button1
-              text="Next"
-              backgroundColor={COLORS.orangePrimary} 
-              borderColor={COLORS.orangePrimary}
-              nextPage={nextPage}
-              width={0.6}
-              
-          />
-          </View>
-        ) : (
-          <View style={{ flexDirection: "row" }}>
-            <Button1
-              text="Back"
-              backgroundColor={COLORS.orangePrimary}
-              nextPage={nextPage}
-              width={0.4}
-              borderColor={COLORS.orangePrimary}
-            />
-            <Button1
-              text="Create"
-              backgroundColor={COLORS.orangePrimary}
-              nextPage={() => postEvent()}
-              width={0.4}
-              borderColor={COLORS.orangePrimary}
-            />
-          </View>
-        )}
-      </View>
+  
     </View>
   );
 };

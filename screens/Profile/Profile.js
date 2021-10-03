@@ -23,7 +23,6 @@ import { AuthContext } from '../../components/context';
 import Button1 from '../../components/Buttons/Button1';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-I18nManager.allowRTL(false)
 
 const Profile = ({navigation}) =>{
 

@@ -9,8 +9,10 @@ import {
   Dimensions,
 } from "react-native";
 import moment from "moment";
-import { COLORS, SIZES } from "../../../constants";
-const Game = ({game,addGame,removeGame}) => {
+import { COLORS, SIZES} from "../../constants"
+const Game = (props) => {
+  const {game} = props
+  console.log(game)
   var wid = Dimensions.get("window").width;
   const [isSlected, setIsSlected] = useState(false);
   const gamey ={
@@ -25,10 +27,8 @@ const Game = ({game,addGame,removeGame}) => {
   const selctItem = () => {
       if(isSlected){
         setIsSlected(false)
-         removeGame(gamey) 
       }else{
         setIsSlected(true)
-        addGame(gamey)
       }
   };
 

@@ -10,9 +10,7 @@ const styles = StyleSheet.create({
         padding: 50
       },
       inputContainer: {
-        flex: 3,
-        marginBottom: 60,
-        backgroundColor: 'transparent',
+        flex: 8,
         borderRadius: SIZES.radius,
         alignItems: 'baseline',
       },
@@ -22,15 +20,14 @@ const styles = StyleSheet.create({
       },
       input: {
         fontSize: 16,
-        color: COLORS.darkGray2,
+        backgroundColor: COLORS.white,
         borderColor: COLORS.primary,
         borderWidth: 1,
-        fontWeight: '700',
+        fontWeight: '500',
         height: 48,
+        padding:10,
         borderRadius: SIZES.radius,
-        left:4,
-        width:Dimensions.get('window').width*0.8 ,
-        padding: 10,
+        width:Dimensions.get('window').width*0.9 ,
         margin:10
 
 
